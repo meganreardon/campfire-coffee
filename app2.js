@@ -12,6 +12,7 @@ var pikePlace = {
   cupsPerHour: [],
   beansNeededForCupsPerHour: [],
   poundPackagesPerHour: [],
+  employeesPerHour: [], //I added this variable
   dailyCustomersTotal: 0,
   dailyCupsTotal: 0,
   dailyPoundPackagesTotal: 0,
@@ -50,6 +51,15 @@ var pikePlace = {
       this.beansPerHour.push(pounds);
     }
   },
+  calcEmployeesNeededPerHour: function() {
+    for (var i = 0; i < hours.length; i++) {
+      //
+      var employees = (this.customersPerHour[i] * 2) / 60;
+      employees = Math.ceil(employees);
+      this.employeesPerHour.push(employees);
+      console.log(employees);
+    }
+  },
   render: function() {
     pikePlace.calcCustomersPerHour(pikePlace.minCustomersHour, pikePlace.maxCustomersHour);
     pikePlace.calcCupsPerHour();
@@ -67,3 +77,4 @@ var pikePlace = {
 }; //end of object
 
 pikePlace.render();
+pikePlace.calcEmployeesNeededPerHour();
