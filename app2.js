@@ -5,8 +5,8 @@ var pikePlace = {
   minCustomersHour: 14,
   maxCustomersHour: 35,
   avgCupsPerCustomer: 1.2,
-  //avgPoundsPerCustomer: 0.34,
-  beansPerCup: 0.34,
+  avgPoundsPerCustomer: 0.34,
+  //beansPerCup: 0.34, //this is not the right thing
   beansPerHour: [],
   customersPerHour: [],
   cupsPerHour: [],
@@ -32,17 +32,23 @@ var pikePlace = {
       cups = Math.round( cups * 10 ) / 10; //make this an outside function?
       //console.log(cups);
       this.cupsPerHour.push(cups);
-      console.log(cups);
+      //console.log(cups);
     }
   },
   calcBeansNeededForCupsPerHour: function() {
-    // something goes here
     for (var i = 0; i < hours.length; i++) {
-      var beans = this.cupsPerHour[i] * this.beansPerCup;
-      beans = Math.round( beans * 10 ) / 10;
+      var beans = this.cupsPerHour[i] / 16;
       this.beansNeededForCupsPerHour.push(beans);
     }
   },
+  // calcBeansNeededForCupsPerHour: function() {
+  //   // something goes here
+  //   for (var i = 0; i < hours.length; i++) {
+  //     var beans = this.cupsPerHour[i] * this.beansPerCup;
+  //     beans = Math.round( beans * 10 ) / 10;
+  //     this.beansNeededForCupsPerHour.push(beans);
+  //   }
+  // },
   // this renders to the html page
   render: function() {
     pikePlace.calcCustomersPerHour(pikePlace.minCustomersHour, pikePlace.maxCustomersHour);
