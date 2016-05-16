@@ -34,7 +34,6 @@ var pikePlace = {
       var beans = this.cupsPerHour[i] / 16;
       beans = Math.round( beans * 10 ) / 10;
       this.beansNeededForCupsPerHour.push(beans);
-      //console.log(beans);
     }
   },
   calcPoundPackagesPerHour: function() {
@@ -44,17 +43,24 @@ var pikePlace = {
       this.poundPackagesPerHour.push(bags);
     }
   },
+  calcBeansPerHour: function() {
+    for (var i = 0; i < hours.length; i++) {
+      var pounds = this.beansNeededForCupsPerHour[i] + this.poundPackagesPerHour[i];
+      pounds = Math.round( pounds * 10 ) / 10;
+      this.beansPerHour.push(pounds);
+    }
+  },
   render: function() {
     pikePlace.calcCustomersPerHour(pikePlace.minCustomersHour, pikePlace.maxCustomersHour);
     pikePlace.calcCupsPerHour();
     pikePlace.calcBeansNeededForCupsPerHour();
     pikePlace.calcPoundPackagesPerHour();
-    // call all of the other methods that calc data
+    pikePlace.calcBeansPerHour();
     var ulElement = document.getElementById('pike');
     for (var i = 0; i < hours.length; i++) {
       var liElement = document.createElement('li');
       // this is the line you want to add new functions to
-      liElement.textContent = 'Customers per hour: ' + this.customersPerHour[i] + ', Cups per hour: ' + this.cupsPerHour[i] + ', total beans that went into cups: ' + this.beansNeededForCupsPerHour[i] + ', pound bags sold per hour ' + this.poundPackagesPerHour[i] + '.';
+      liElement.textContent = 'Customers per hour: ' + this.customersPerHour[i] + ', Cups per hour: ' + this.cupsPerHour[i] + ', total beans that went into cups: ' + this.beansNeededForCupsPerHour[i] + ', pound bags sold per hour ' + this.poundPackagesPerHour[i] + ', pound of beans sold per hour ' + this.beansPerHour[i] + '.';
       ulElement.appendChild(liElement);
     }
   }//end of function renderCustomersPerHour
