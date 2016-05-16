@@ -5,8 +5,8 @@ var pikePlace = {
   minCustomersHour: 14,
   maxCustomersHour: 35,
   avgCupsPerCustomer: 1.2,
-  avgPoundsPerCustomer: 0.34,
-  //beansPerCup: 0.34, //this is not the right thing
+  //avgPoundsPerCustomer: 0.34,
+  avgPoundBagsBoughtPerCustomer: 0.34,
   beansPerHour: [],
   customersPerHour: [],
   cupsPerHour: [],
@@ -22,44 +22,39 @@ var pikePlace = {
       this.customersPerHour.push(customers);
     }
   },
-  // here we are filling the cups per hour array
   calcCupsPerHour: function() {
     for (var i = 0; i < hours.length; i++) {
-      //console.log(this.avgCupsPerCustomer);
       var cups = this.customersPerHour[i] * this.avgCupsPerCustomer;
-      //console.log(cups);
-      //cups = Math.ceil(cups);
-      cups = Math.round( cups * 10 ) / 10; //make this an outside function?
-      //console.log(cups);
+      cups = Math.round( cups * 10 ) / 10;
       this.cupsPerHour.push(cups);
-      //console.log(cups);
     }
   },
   calcBeansNeededForCupsPerHour: function() {
     for (var i = 0; i < hours.length; i++) {
       var beans = this.cupsPerHour[i] / 16;
+      beans = Math.round( beans * 10 ) / 10;
       this.beansNeededForCupsPerHour.push(beans);
+      //console.log(beans);
     }
   },
-  // calcBeansNeededForCupsPerHour: function() {
-  //   // something goes here
-  //   for (var i = 0; i < hours.length; i++) {
-  //     var beans = this.cupsPerHour[i] * this.beansPerCup;
-  //     beans = Math.round( beans * 10 ) / 10;
-  //     this.beansNeededForCupsPerHour.push(beans);
-  //   }
-  // },
-  // this renders to the html page
+  calcPoundPackagesPerHour: function() {
+    for (var i = 0; i < hours.length; i++) {
+      var bags = this.customersPerHour[i] * this.avgPoundBagsBoughtPerCustomer;
+      bags = Math.round( bags * 10 ) / 10;
+      this.poundPackagesPerHour.push(bags);
+    }
+  },
   render: function() {
     pikePlace.calcCustomersPerHour(pikePlace.minCustomersHour, pikePlace.maxCustomersHour);
     pikePlace.calcCupsPerHour();
     pikePlace.calcBeansNeededForCupsPerHour();
+    pikePlace.calcPoundPackagesPerHour();
     // call all of the other methods that calc data
     var ulElement = document.getElementById('pike');
     for (var i = 0; i < hours.length; i++) {
       var liElement = document.createElement('li');
       // this is the line you want to add new functions to
-      liElement.textContent = 'Customers per hour: ' + this.customersPerHour[i] + ', Cups per hour: ' + this.cupsPerHour[i] + ', total beans that went into cups: ' + this.beansNeededForCupsPerHour[i] + '.';
+      liElement.textContent = 'Customers per hour: ' + this.customersPerHour[i] + ', Cups per hour: ' + this.cupsPerHour[i] + ', total beans that went into cups: ' + this.beansNeededForCupsPerHour[i] + ', pound bags sold per hour ' + this.poundPackagesPerHour[i] + '.';
       ulElement.appendChild(liElement);
     }
   }//end of function renderCustomersPerHour
