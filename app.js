@@ -1,6 +1,6 @@
 var hours = ['6:00am', '7:00am', '8:00am', '9:00am', '10:00am', '11:00am', '12:00pm', '1:00pm', '2:00pm', '3:00pm', '4:00pm', '5:00pm', '6:00pm', '7:00pm', '8:00pm'];
 
-//----------------------------------------
+// ---------------------------------------
 // Pike Place
 // ---------------------------------------
 var pikePlace = {
@@ -84,16 +84,16 @@ var pikePlace = {
   },
   render: function() {
     // hourly total calculation functions
-    pikePlace.calcCustomersPerHour(pikePlace.minCustomersHour, pikePlace.maxCustomersHour);
-    pikePlace.calcCupsPerHour();
-    pikePlace.calcBeansNeededForCupsPerHour();
-    pikePlace.calcPoundPackagesPerHour();
-    pikePlace.calcBeansPerHour();
+    this.calcCustomersPerHour(this.minCustomersHour, this.maxCustomersHour);
+    this.calcCupsPerHour();
+    this.calcBeansNeededForCupsPerHour();
+    this.calcPoundPackagesPerHour();
+    this.calcBeansPerHour();
     // daily total calculation functions
-    pikePlace.calcDailyCustomersTotal();
-    pikePlace.calcDailyCupsTotal();
-    pikePlace.calcDailyPoundPackagesTotal();
-    pikePlace.calcDailyBeansNeeded();
+    this.calcDailyCustomersTotal();
+    this.calcDailyCupsTotal();
+    this.calcDailyPoundPackagesTotal();
+    this.calcDailyBeansNeeded();
     var ulElement = document.getElementById('pike');
     for (var i = 0; i < hours.length; i++) {
       var liElement = document.createElement('li');
@@ -120,7 +120,7 @@ var pikePlace = {
 pikePlace.render();
 pikePlace.calcEmployeesNeededPerHour(); //do I need to print this anywhere in the html output for today?
 
-//----------------------------------------
+// ---------------------------------------
 // Capitol Hill
 // ---------------------------------------
 var capitolHill = {
@@ -204,16 +204,16 @@ var capitolHill = {
   },
   render: function() {
     // hourly total calculation functions
-    capitolHill.calcCustomersPerHour(capitolHill.minCustomersHour, capitolHill.maxCustomersHour);
-    capitolHill.calcCupsPerHour();
-    capitolHill.calcBeansNeededForCupsPerHour();
-    capitolHill.calcPoundPackagesPerHour();
-    capitolHill.calcBeansPerHour();
+    this.calcCustomersPerHour(this.minCustomersHour, this.maxCustomersHour);
+    this.calcCupsPerHour();
+    this.calcBeansNeededForCupsPerHour();
+    this.calcPoundPackagesPerHour();
+    this.calcBeansPerHour();
     // daily total calculation functions
-    capitolHill.calcDailyCustomersTotal();
-    capitolHill.calcDailyCupsTotal();
-    capitolHill.calcDailyPoundPackagesTotal();
-    capitolHill.calcDailyBeansNeeded();
+    this.calcDailyCustomersTotal();
+    this.calcDailyCupsTotal();
+    this.calcDailyPoundPackagesTotal();
+    this.calcDailyBeansNeeded();
     var ulElement = document.getElementById('capitol');
     for (var i = 0; i < hours.length; i++) {
       var liElement = document.createElement('li');
@@ -238,9 +238,9 @@ var capitolHill = {
 };
 
 capitolHill.render();
-capitolHill.calcEmployeesNeededPerHour(); //do I need to print this anywhere in the html output for today?
+capitolHill.calcEmployeesNeededPerHour(); // do I need to print this anywhere in the html output for today?
 
-//----------------------------------------
+// ---------------------------------------
 // Seattle Public Library
 // ---------------------------------------
 var seattlePublicLibrary = {
@@ -324,16 +324,16 @@ var seattlePublicLibrary = {
   },
   render: function() {
     // hourly total calculation functions
-    seattlePublicLibrary.calcCustomersPerHour(seattlePublicLibrary.minCustomersHour, seattlePublicLibrary.maxCustomersHour);
-    seattlePublicLibrary.calcCupsPerHour();
-    seattlePublicLibrary.calcBeansNeededForCupsPerHour();
-    seattlePublicLibrary.calcPoundPackagesPerHour();
-    seattlePublicLibrary.calcBeansPerHour();
+    this.calcCustomersPerHour(this.minCustomersHour, this.maxCustomersHour);
+    this.calcCupsPerHour();
+    this.calcBeansNeededForCupsPerHour();
+    this.calcPoundPackagesPerHour();
+    this.calcBeansPerHour();
     // daily total calculation functions
-    seattlePublicLibrary.calcDailyCustomersTotal();
-    seattlePublicLibrary.calcDailyCupsTotal();
-    seattlePublicLibrary.calcDailyPoundPackagesTotal();
-    seattlePublicLibrary.calcDailyBeansNeeded();
+    this.calcDailyCustomersTotal();
+    this.calcDailyCupsTotal();
+    this.calcDailyPoundPackagesTotal();
+    this.calcDailyBeansNeeded();
     var ulElement = document.getElementById('spl');
     for (var i = 0; i < hours.length; i++) {
       var liElement = document.createElement('li');
@@ -354,13 +354,13 @@ var seattlePublicLibrary = {
     var liElement = document.createElement('li');
     liElement.textContent = 'Total pounds of beans needed at ' + this.locationName + ': ' + this.dailyBeansNeeded;
     ulElement.appendChild(liElement);
-  }//end of function render
+  }// end of function render
 };
 
 seattlePublicLibrary.render();
 seattlePublicLibrary.calcEmployeesNeededPerHour(); //do I need to print this anywhere in the html output for today?
 
-//----------------------------------------
+// ---------------------------------------
 // South Lake Union
 // ---------------------------------------
 var southLakeUnion = {
@@ -444,16 +444,16 @@ var southLakeUnion = {
   },
   render: function() {
     // hourly total calculation functions
-    southLakeUnion.calcCustomersPerHour(southLakeUnion.minCustomersHour, southLakeUnion.maxCustomersHour);
-    southLakeUnion.calcCupsPerHour();
-    southLakeUnion.calcBeansNeededForCupsPerHour();
-    southLakeUnion.calcPoundPackagesPerHour();
-    southLakeUnion.calcBeansPerHour();
+    this.calcCustomersPerHour(this.minCustomersHour, this.maxCustomersHour);
+    this.calcCupsPerHour();
+    this.calcBeansNeededForCupsPerHour();
+    this.calcPoundPackagesPerHour();
+    this.calcBeansPerHour();
     // daily total calculation functions
-    southLakeUnion.calcDailyCustomersTotal();
-    southLakeUnion.calcDailyCupsTotal();
-    southLakeUnion.calcDailyPoundPackagesTotal();
-    southLakeUnion.calcDailyBeansNeeded();
+    this.calcDailyCustomersTotal();
+    this.calcDailyCupsTotal();
+    this.calcDailyPoundPackagesTotal();
+    this.calcDailyBeansNeeded();
     var ulElement = document.getElementById('slu');
     for (var i = 0; i < hours.length; i++) {
       var liElement = document.createElement('li');
@@ -474,13 +474,13 @@ var southLakeUnion = {
     var liElement = document.createElement('li');
     liElement.textContent = 'Total pounds of beans needed at ' + this.locationName + ': ' + this.dailyBeansNeeded;
     ulElement.appendChild(liElement);
-  }//end of function render
+  }// end of function render
 };
 
 southLakeUnion.render();
 southLakeUnion.calcEmployeesNeededPerHour(); //do I need to print this anywhere in the html output for today?
 
-//----------------------------------------
+// ---------------------------------------
 // Sea-Tac Airport
 // ---------------------------------------
 var seaTac = {
@@ -564,16 +564,16 @@ var seaTac = {
   },
   render: function() {
     // hourly total calculation functions
-    seaTac.calcCustomersPerHour(seaTac.minCustomersHour, seaTac.maxCustomersHour);
-    seaTac.calcCupsPerHour();
-    seaTac.calcBeansNeededForCupsPerHour();
-    seaTac.calcPoundPackagesPerHour();
-    seaTac.calcBeansPerHour();
+    this.calcCustomersPerHour(this.minCustomersHour, this.maxCustomersHour);
+    this.calcCupsPerHour();
+    this.calcBeansNeededForCupsPerHour();
+    this.calcPoundPackagesPerHour();
+    this.calcBeansPerHour();
     // daily total calculation functions
-    seaTac.calcDailyCustomersTotal();
-    seaTac.calcDailyCupsTotal();
-    seaTac.calcDailyPoundPackagesTotal();
-    seaTac.calcDailyBeansNeeded();
+    this.calcDailyCustomersTotal();
+    this.calcDailyCupsTotal();
+    this.calcDailyPoundPackagesTotal();
+    this.calcDailyBeansNeeded();
     var ulElement = document.getElementById('seatac');
     for (var i = 0; i < hours.length; i++) {
       var liElement = document.createElement('li');
@@ -594,7 +594,7 @@ var seaTac = {
     var liElement = document.createElement('li');
     liElement.textContent = 'Total pounds of beans needed at ' + this.locationName + ': ' + this.dailyBeansNeeded;
     ulElement.appendChild(liElement);
-  }//end of function render
+  }// end of function render
 };
 
 seaTac.render();
