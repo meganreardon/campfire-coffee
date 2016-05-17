@@ -96,7 +96,6 @@ var pikePlace = {
     pikePlace.calcDailyBeansNeeded();
     var ulElement = document.getElementById('pike');
     for (var i = 0; i < hours.length; i++) {
-      //console.log(this.hours[1]);
       var liElement = document.createElement('li');
       // string of hourly totals
       liElement.textContent = hours[i] + ': ' + this.beansPerHour[i] + ' lbs [' + this.customersPerHour[i] + ' cutomers, ' + this.cupsPerHour[i] + ' cups (' + this.beansNeededForCupsPerHour[i] + ' lbs), ' + this.poundPackagesPerHour[i] + ' lbs to-go]';
@@ -217,7 +216,6 @@ var capitolHill = {
     capitolHill.calcDailyBeansNeeded();
     var ulElement = document.getElementById('capitol');
     for (var i = 0; i < hours.length; i++) {
-      //console.log(this.hours[1]);
       var liElement = document.createElement('li');
       // string of hourly totals
       liElement.textContent = hours[i] + ': ' + this.beansPerHour[i] + ' lbs [' + this.customersPerHour[i] + ' cutomers, ' + this.cupsPerHour[i] + ' cups (' + this.beansNeededForCupsPerHour[i] + ' lbs), ' + this.poundPackagesPerHour[i] + ' lbs to-go]';
@@ -338,7 +336,6 @@ var seattlePublicLibrary = {
     seattlePublicLibrary.calcDailyBeansNeeded();
     var ulElement = document.getElementById('spl');
     for (var i = 0; i < hours.length; i++) {
-      //console.log(this.hours[1]);
       var liElement = document.createElement('li');
       // string of hourly totals
       liElement.textContent = hours[i] + ': ' + this.beansPerHour[i] + ' lbs [' + this.customersPerHour[i] + ' cutomers, ' + this.cupsPerHour[i] + ' cups (' + this.beansNeededForCupsPerHour[i] + ' lbs), ' + this.poundPackagesPerHour[i] + ' lbs to-go]';
@@ -459,7 +456,6 @@ var southLakeUnion = {
     southLakeUnion.calcDailyBeansNeeded();
     var ulElement = document.getElementById('slu');
     for (var i = 0; i < hours.length; i++) {
-      //console.log(this.hours[1]);
       var liElement = document.createElement('li');
       // string of hourly totals
       liElement.textContent = hours[i] + ': ' + this.beansPerHour[i] + ' lbs [' + this.customersPerHour[i] + ' cutomers, ' + this.cupsPerHour[i] + ' cups (' + this.beansNeededForCupsPerHour[i] + ' lbs), ' + this.poundPackagesPerHour[i] + ' lbs to-go]';
@@ -580,7 +576,6 @@ var seaTac = {
     seaTac.calcDailyBeansNeeded();
     var ulElement = document.getElementById('seatac');
     for (var i = 0; i < hours.length; i++) {
-      //console.log(this.hours[1]);
       var liElement = document.createElement('li');
       // string of hourly totals
       liElement.textContent = hours[i] + ': ' + this.beansPerHour[i] + ' lbs [' + this.customersPerHour[i] + ' cutomers, ' + this.cupsPerHour[i] + ' cups (' + this.beansNeededForCupsPerHour[i] + ' lbs), ' + this.poundPackagesPerHour[i] + ' lbs to-go]';
