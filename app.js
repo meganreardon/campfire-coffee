@@ -105,14 +105,18 @@ CoffeeCarts.prototype.calcDailyBeansNeeded = function() {
   this.dailyBeansNeeded = Math.round( this.dailyBeansNeeded * 10 ) / 10;
 };
 
-// ---------------------------------------
-// making the instances below
-// ---------------------------------------
-
-var pikePlace = new CoffeeCarts('Pike Place Market', 14, 35, 1.2, 0.34, 0, 0, 0, 0);
-
+// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 // don't like having to list these each by name
 // can I put a loop here that runs through each instance name instead? will that also call the functions?
+// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+// ---------------------------------------
+// pike place isntance creation
+// ---------------------------------------
+var pikePlace = new CoffeeCarts('Pike Place Market', 14, 35, 1.2, 0.34, 0, 0, 0, 0);
+
 pikePlace.calcCupsPerHour();
 pikePlace.calcCustomersPerHour(); // might not need this hear, is called inside cups per hour above
 pikePlace.calcBeansPerHour();
@@ -121,26 +125,157 @@ pikePlace.calcPoundPackagesPerHour();
 pikePlace.calcEmployeesNeededPerHour();
 
 // ---------------------------------------
+// capitol hill isntance creation
+// ---------------------------------------
+var capitolHill = new CoffeeCarts('Capitol Hill', 12, 28, 3.2, 0.03, 0, 0, 0, 0);
+
+capitolHill.calcCupsPerHour();
+capitolHill.calcCustomersPerHour(); // might not need this hear
+capitolHill.calcBeansPerHour();
+capitolHill.calcBeansNeededForCupsPerHour();
+capitolHill.calcPoundPackagesPerHour();
+capitolHill.calcEmployeesNeededPerHour();
+
+// ---------------------------------------
+// seattle public library isntance creation
+// ---------------------------------------
+var seattlePublicLibrary = new CoffeeCarts('Seattle Public Library', 9, 45, 2.6, 0.02, 0, 0, 0, 0);
+
+seattlePublicLibrary.calcCupsPerHour();
+seattlePublicLibrary.calcCustomersPerHour(); // might not need this hear
+seattlePublicLibrary.calcBeansPerHour();
+seattlePublicLibrary.calcBeansNeededForCupsPerHour();
+seattlePublicLibrary.calcPoundPackagesPerHour();
+seattlePublicLibrary.calcEmployeesNeededPerHour();
+
+// ---------------------------------------
+// south lake union isntance creation
+// ---------------------------------------
+var southLakeUnion = new CoffeeCarts('South Lake Union', 5, 18, 1.3, 0.04, 0, 0, 0, 0);
+
+southLakeUnion.calcCupsPerHour();
+southLakeUnion.calcCustomersPerHour(); // might not need this hear
+southLakeUnion.calcBeansPerHour();
+southLakeUnion.calcBeansNeededForCupsPerHour();
+southLakeUnion.calcPoundPackagesPerHour();
+southLakeUnion.calcEmployeesNeededPerHour();
+
+// ---------------------------------------
+// sea-tac airport instance creation
+// ---------------------------------------
+var seaTac = new CoffeeCarts('Sea-Tac Airport', 28, 44, 1.1, 0.41, 0, 0, 0, 0);
+
+seaTac.calcCupsPerHour();
+seaTac.calcCustomersPerHour(); // might not need this hear
+seaTac.calcBeansPerHour();
+seaTac.calcBeansNeededForCupsPerHour();
+seaTac.calcPoundPackagesPerHour();
+seaTac.calcEmployeesNeededPerHour();
+
+// ---------------------------------------
 // basic rendering code below
 // ---------------------------------------
+var pikePlace = new CoffeeCarts('Pike Place Market', 14, 35, 1.2, 0.34, 0, 0, 0, 0);
+
+pikePlace.calcCupsPerHour();
+pikePlace.calcCustomersPerHour(); // might not need this hear
+pikePlace.calcBeansPerHour();
+pikePlace.calcBeansNeededForCupsPerHour();
+pikePlace.calcPoundPackagesPerHour();
+pikePlace.calcEmployeesNeededPerHour();
 
 // creating variable to fill test table
 var testTable = document.getElementById('test-table');
 
+/*
+// this makes a TR tag
+var trElement = document.createElement('tr');
+// this makes and populates a TD tag
+var thElement = document.createElement('td');
+thElement.textContext = pikePLace.locationName;
+trElement.appendChild(thElement);
+// this makes another TD tag
+var thElement = document.createElement('td');
+thElement.textContext = pikePLace.customersPerHour[0];
+trElement.appendChild(thElement);
+// this makes another TD tag
+var thElement = document.createElement('td');
+thElement.textContext = pikePLace.customersPerHour[1];
+trElement.appendChild(thElement);
+*/
+
+// -------- below here might be entirely too much
 // creating table row
 var trElement = document.createElement('tr');
-// populating first cell
+// NEW TABLE ROW
+// declaring location
 var thElement = document.createElement('th');
+thElement.textContent = pikePlace.locationName;
+trElement.appendChild(thElement);
+testTable.appendChild(trElement);
+// populating first cell
+var thElement = document.createElement('td');
 thElement.textContent = pikePlace.customersPerHour[0];
 trElement.appendChild(thElement);
 testTable.appendChild(trElement);
 // populating second cell
-var thElement = document.createElement('th');
+var thElement = document.createElement('td');
 thElement.textContent = pikePlace.customersPerHour[1];
 trElement.appendChild(thElement);
 testTable.appendChild(trElement);
+// populating third cell
+var thElement = document.createElement('td');
+thElement.textContent = pikePlace.customersPerHour[2];
+trElement.appendChild(thElement);
+testTable.appendChild(trElement);
 
-// example code below
+// NEW TABLE ROW
+var trElement = document.createElement('tr');
+// declaring location
+var thElement = document.createElement('th');
+thElement.textContent = capitolHill.locationName;
+trElement.appendChild(thElement);
+testTable.appendChild(trElement);
+// populating first cell
+var thElement = document.createElement('td');
+thElement.textContent = capitolHill.customersPerHour[0];
+trElement.appendChild(thElement);
+testTable.appendChild(trElement);
+// populating second cell
+var thElement = document.createElement('td');
+thElement.textContent = capitolHill.customersPerHour[1];
+trElement.appendChild(thElement);
+testTable.appendChild(trElement);
+// populating third cell
+var thElement = document.createElement('td');
+thElement.textContent = capitolHill.customersPerHour[2];
+trElement.appendChild(thElement);
+testTable.appendChild(trElement);
+
+// NEW TABLE ROW
+var trElement = document.createElement('tr');
+// declaring location
+var thElement = document.createElement('th');
+thElement.textContent = seattlePublicLibrary.locationName;
+trElement.appendChild(thElement);
+testTable.appendChild(trElement);
+// populating first cell
+var thElement = document.createElement('td');
+thElement.textContent = seattlePublicLibrary.customersPerHour[0];
+trElement.appendChild(thElement);
+testTable.appendChild(trElement);
+// populating second cell
+var thElement = document.createElement('td');
+thElement.textContent = seattlePublicLibrary.customersPerHour[1];
+trElement.appendChild(thElement);
+testTable.appendChild(trElement);
+// populating third cell
+var thElement = document.createElement('td');
+thElement.textContent = seattlePublicLibrary.customersPerHour[2];
+trElement.appendChild(thElement);
+testTable.appendChild(trElement);
+
+// example code looping through table creation below
 /*
 for(var j = 0; j < arrayTableContent.length; j++) {
   var trElement = document.createElement('tr');
