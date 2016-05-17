@@ -1,5 +1,8 @@
-var hours = ['6:00am', '7:00am', '8:00am', '9:00am', '10:00am', '11:00am', '12:00pm', '1:00pm', '2:00pm', '3:00pm:', '4:00pm', '5:00pm', '6:00pm', '7:00pm', '8:00pm:'];
+var hours = ['6:00am', '7:00am', '8:00am', '9:00am', '10:00am', '11:00am', '12:00pm', '1:00pm', '2:00pm', '3:00pm', '4:00pm', '5:00pm', '6:00pm', '7:00pm', '8:00pm'];
 
+//----------------------------------------
+// Pike Place
+// ---------------------------------------
 var pikePlace = {
   locationName: 'Pike Place Market',
   minCustomersHour: 14,
@@ -92,31 +95,27 @@ var pikePlace = {
     pikePlace.calcDailyBeansNeeded();
     var ulElement = document.getElementById('pike');
     for (var i = 0; i < hours.length; i++) {
+      //console.log(this.hours[1]);
       var liElement = document.createElement('li');
-      // this is the line you want to add new functions to
-      liElement.textContent = 'Customers per hour: ' + this.customersPerHour[i] + ', Cups per hour: ' + this.cupsPerHour[i] + ', total beans that went into cups: ' + this.beansNeededForCupsPerHour[i] + ', pound bags sold per hour ' + this.poundPackagesPerHour[i] + ', pound of beans sold per hour ' + this.beansPerHour[i] + '.';
+      // string of hourly totals
+      liElement.textContent = hours[i] + ': ' + this.beansPerHour[i] + ' lbs [' + this.customersPerHour[i] + ' cutomers, ' + this.cupsPerHour[i] + ' cups (' + this.beansNeededForCupsPerHour[i] + ' lbs), ' + this.poundPackagesPerHour[i] + ' lbs to-go]';
       ulElement.appendChild(liElement);
     }
-
-    // trial adding bullet point for total daily customers,
+    // daily totals
     var liElement = document.createElement('li');
-    liElement.textContent = 'Total daily customers: ' + this.dailyCustomersTotal + '.';
+    liElement.textContent = 'Total daily customers: ' + this.dailyCustomersTotal;
     ulElement.appendChild(liElement);
     var liElement = document.createElement('li');
-    liElement.textContent = 'Total daily cups: ' + this.dailyCupsTotal + '.';
+    liElement.textContent = 'Total daily cups: ' + this.dailyCupsTotal;
     ulElement.appendChild(liElement);
     var liElement = document.createElement('li');
-    liElement.textContent = 'Total daily pound packages: ' + this.dailyPoundPackagesTotal + '.';
+    liElement.textContent = 'Total daily pound packages: ' + this.dailyPoundPackagesTotal;
     ulElement.appendChild(liElement);
     var liElement = document.createElement('li');
-    liElement.textContent = 'Total pounds of beans needed at location: ' + this.dailyBeansNeeded + '.';
+    liElement.textContent = 'Total pounds of beans needed at location: ' + this.dailyBeansNeeded;
     ulElement.appendChild(liElement);
-
-    //12 lines to add the 4 last bullet points
-    //create / give conetnt / appendChild
-
   }//end of function render
-}; //end of object
+};
 
 pikePlace.render();
 pikePlace.calcEmployeesNeededPerHour(); //do I need to print this anywhere in the html output for today?
