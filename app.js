@@ -21,6 +21,10 @@ function CoffeeCarts(locationName, minCustomersHour, maxCustomersHour, avgCupsPe
   this.dailyBeansNeeded = dailyBeansNeeded;
   this.customersPerHour = [];
   this.cupsPerHour = [];
+  this.beansPerHour = [];
+  this.beansNeededForCupsPerHour = [];
+  this.poundPackagesPerHour = [];
+  this.employeesPerHour = [];
   //coffeeCartDataByLocation.push(this);
 };
 
@@ -59,7 +63,7 @@ CoffeeCarts.prototype.calcPoundPackagesPerHour = function() {
   }
 };
 
-CoffeeCarts.prototype.calcBeansPerHou = function() {
+CoffeeCarts.prototype.calcBeansPerHour = function() {
   for (var i = 0; i < hours.length; i++) {
     var pounds = this.beansNeededForCupsPerHour[i] + this.poundPackagesPerHour[i];
     pounds = Math.round( pounds * 10 ) / 10;
@@ -107,9 +111,14 @@ CoffeeCarts.prototype.calcDailyBeansNeeded = function() {
 
 var pikePlace = new CoffeeCarts('Pike Place Market', 14, 35, 1.2, 0.34, 0, 0, 0, 0);
 
+// don't like having to list these each by name
+// can I put a loop here that runs through each instance name instead? will that also call the functions?
 pikePlace.calcCupsPerHour();
-
-//console.log(pikePlace.calcCustomersPerHour(14, 35));
+pikePlace.calcCustomersPerHour(); // might not need this hear, is called inside cups per hour above
+pikePlace.calcBeansPerHour();
+pikePlace.calcBeansNeededForCupsPerHour();
+pikePlace.calcPoundPackagesPerHour();
+pikePlace.calcEmployeesNeededPerHour();
 
 // ---------------------------------------
 // basic rendering code below
@@ -122,12 +131,12 @@ var testTable = document.getElementById('test-table');
 var trElement = document.createElement('tr');
 // populating first cell
 var thElement = document.createElement('th');
-// thElement.textContent = coffeeCartDataByLocation[0];
+thElement.textContent = pikePlace.customersPerHour[0];
 trElement.appendChild(thElement);
 testTable.appendChild(trElement);
 // populating second cell
 var thElement = document.createElement('th');
-// thElement.textContent = coffeeCartDataByLocation[1];
+thElement.textContent = pikePlace.customersPerHour[1];
 trElement.appendChild(thElement);
 testTable.appendChild(trElement);
 
