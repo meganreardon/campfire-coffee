@@ -59,14 +59,25 @@ var pikePlace = {
     }
   },
   calcDailyCustomersTotal: function() {
-    //var dailyCust = 0;
     for (var i = 0; i < hours.length; i++) {
       this.dailyCustomersTotal += this.customersPerHour[i];
-      //console.log('dailyCust before adding is at ' + dailyCust);
-      //dailyCust = this.customersPerHour[i];
-      console.log('dailyCustomersTotal is at ' + this.dailyCustomersTotal);
-      //dailyCust += this.dailyCustomersTotal;
     }
+  },
+  calcDailyCupsTotal: function() {
+    for (var i = 0; i < hours.length; i++) {
+      this.dailyCupsTotal += this.cupsPerHour[i];
+      this.dailyCupsTotal = Math.round( this.dailyCupsTotal * 10 ) / 10;
+    }
+  },
+  calcDailyPoundPackagesTotal: function() {
+    for (var i = 0; i < hours.length; i++) {
+      this.dailyPoundPackagesTotal += this.poundPackagesPerHour[i];
+      this.dailyPoundPackagesTotal = Math.round( this.dailyPoundPackagesTotal * 10 ) / 10;
+    }
+  },
+  calcDailyBeansNeeded: function() {
+    this.dailyBeansNeeded = (this.dailyCupsTotal / 16) + this.dailyPoundPackagesTotal;
+    this.dailyBeansNeeded = Math.round( this.dailyBeansNeeded * 10 ) / 10;
   },
   render: function() {
     pikePlace.calcCustomersPerHour(pikePlace.minCustomersHour, pikePlace.maxCustomersHour);
@@ -76,6 +87,9 @@ var pikePlace = {
     pikePlace.calcBeansPerHour();
     // daily total calc functions here
     pikePlace.calcDailyCustomersTotal();
+    pikePlace.calcDailyCupsTotal();
+    pikePlace.calcDailyPoundPackagesTotal();
+    pikePlace.calcDailyBeansNeeded();
     var ulElement = document.getElementById('pike');
     for (var i = 0; i < hours.length; i++) {
       var liElement = document.createElement('li');
@@ -87,6 +101,15 @@ var pikePlace = {
     // trial adding bullet point for total daily customers,
     var liElement = document.createElement('li');
     liElement.textContent = 'Total daily customers: ' + this.dailyCustomersTotal + '.';
+    ulElement.appendChild(liElement);
+    var liElement = document.createElement('li');
+    liElement.textContent = 'Total daily cups: ' + this.dailyCupsTotal + '.';
+    ulElement.appendChild(liElement);
+    var liElement = document.createElement('li');
+    liElement.textContent = 'Total daily pound packages: ' + this.dailyPoundPackagesTotal + '.';
+    ulElement.appendChild(liElement);
+    var liElement = document.createElement('li');
+    liElement.textContent = 'Total pounds of beans needed at location: ' + this.dailyBeansNeeded + '.';
     ulElement.appendChild(liElement);
 
     //12 lines to add the 4 last bullet points
