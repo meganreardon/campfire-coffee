@@ -123,6 +123,10 @@ pikePlace.calcBeansPerHour();
 pikePlace.calcBeansNeededForCupsPerHour();
 pikePlace.calcPoundPackagesPerHour();
 pikePlace.calcEmployeesNeededPerHour();
+pikePlace.calcDailyCustomersTotal();
+pikePlace.calcDailyCupsTotal();
+pikePlace.calcDailyPoundPackagesTotal();
+pikePlace.calcDailyBeansNeeded();
 
 // ---------------------------------------
 // capitol hill isntance creation
@@ -135,6 +139,11 @@ capitolHill.calcBeansPerHour();
 capitolHill.calcBeansNeededForCupsPerHour();
 capitolHill.calcPoundPackagesPerHour();
 capitolHill.calcEmployeesNeededPerHour();
+capitolHill.calcEmployeesNeededPerHour();
+capitolHill.calcDailyCustomersTotal();
+capitolHill.calcDailyCupsTotal();
+capitolHill.calcDailyPoundPackagesTotal();
+capitolHill.calcDailyBeansNeeded();
 
 // ---------------------------------------
 // seattle public library isntance creation
@@ -147,6 +156,11 @@ seattlePublicLibrary.calcBeansPerHour();
 seattlePublicLibrary.calcBeansNeededForCupsPerHour();
 seattlePublicLibrary.calcPoundPackagesPerHour();
 seattlePublicLibrary.calcEmployeesNeededPerHour();
+seattlePublicLibrary.calcEmployeesNeededPerHour();
+seattlePublicLibrary.calcDailyCustomersTotal();
+seattlePublicLibrary.calcDailyCupsTotal();
+seattlePublicLibrary.calcDailyPoundPackagesTotal();
+seattlePublicLibrary.calcDailyBeansNeeded();
 
 // ---------------------------------------
 // south lake union isntance creation
@@ -159,6 +173,11 @@ southLakeUnion.calcBeansPerHour();
 southLakeUnion.calcBeansNeededForCupsPerHour();
 southLakeUnion.calcPoundPackagesPerHour();
 southLakeUnion.calcEmployeesNeededPerHour();
+southLakeUnion.calcEmployeesNeededPerHour();
+southLakeUnion.calcDailyCustomersTotal();
+southLakeUnion.calcDailyCupsTotal();
+southLakeUnion.calcDailyPoundPackagesTotal();
+southLakeUnion.calcDailyBeansNeeded();
 
 // ---------------------------------------
 // sea-tac airport instance creation
@@ -171,18 +190,28 @@ seaTac.calcBeansPerHour();
 seaTac.calcBeansNeededForCupsPerHour();
 seaTac.calcPoundPackagesPerHour();
 seaTac.calcEmployeesNeededPerHour();
+seaTac.calcEmployeesNeededPerHour();
+seaTac.calcDailyCustomersTotal();
+seaTac.calcDailyCupsTotal();
+seaTac.calcDailyPoundPackagesTotal();
+seaTac.calcDailyBeansNeeded();
 
 // ---------------------------------------
 // basic rendering code below
 // ---------------------------------------
-var pikePlace = new CoffeeCarts('Pike Place Market', 14, 35, 1.2, 0.34, 0, 0, 0, 0);
-
-pikePlace.calcCupsPerHour();
-pikePlace.calcCustomersPerHour(); // might not need this hear
-pikePlace.calcBeansPerHour();
-pikePlace.calcBeansNeededForCupsPerHour();
-pikePlace.calcPoundPackagesPerHour();
-pikePlace.calcEmployeesNeededPerHour();
+// var pikePlace = new CoffeeCarts('Pike Place Market', 14, 35, 1.2, 0.34, 0, 0, 0, 0);
+//
+// pikePlace.calcCupsPerHour();
+// pikePlace.calcCustomersPerHour(); // might not need this hear
+// pikePlace.calcBeansPerHour();
+// pikePlace.calcBeansNeededForCupsPerHour();
+// pikePlace.calcPoundPackagesPerHour();
+// pikePlace.calcEmployeesNeededPerHour();
+// pikePlace.calcEmployeesNeededPerHour();
+// pikePlace.calcDailyCustomersTotal();
+// pikePlace.calcDailyCupsTotal();
+// pikePlace.calcDailyPoundPackagesTotal();
+// pikePlace.calcDailyBeansNeeded();
 
 // creating variable to fill test table
 var testTable = document.getElementById('test-table');
@@ -206,6 +235,37 @@ trElement.appendChild(thElement);
 
 // -------- below here might be entirely too much
 // creating table row
+var table = document.getElementById('test-table');
+var trElement = document.createElement('tr');
+// NEW TABLE ROW
+// declaring location
+var thElement = document.createElement('th');
+thElement.textContent = pikePlace.locationName;
+trElement.appendChild(thElement);
+testTable.appendChild(trElement);
+// wedging in a totals cell
+var tdElement = document.createElement('td');
+tdElement.textContent = pikePlace.dailyCustomersTotal;
+trElement.appendChild(tdElement);
+testTable.appendChild(trElement);
+// populating first cell
+var tdElement = document.createElement('td');
+tdElement.textContent = pikePlace.customersPerHour[0];
+trElement.appendChild(tdElement);
+testTable.appendChild(trElement);
+// populating second cell
+var tdElement = document.createElement('td');
+tdElement.textContent = pikePlace.customersPerHour[1];
+trElement.appendChild(tdElement);
+testTable.appendChild(trElement);
+// populating third cell
+var tdElement = document.createElement('td');
+tdElement.textContent = pikePlace.customersPerHour[2];
+trElement.appendChild(tdElement);
+testTable.appendChild(trElement);
+
+/* THIS BLOCK WORKS
+var table = document.getElementById('test-table');
 var trElement = document.createElement('tr');
 // NEW TABLE ROW
 // declaring location
@@ -228,7 +288,9 @@ var thElement = document.createElement('td');
 thElement.textContent = pikePlace.customersPerHour[2];
 trElement.appendChild(thElement);
 testTable.appendChild(trElement);
+*/
 
+/* hold for possible
 // NEW TABLE ROW
 var trElement = document.createElement('tr');
 // declaring location
@@ -274,6 +336,7 @@ var thElement = document.createElement('td');
 thElement.textContent = seattlePublicLibrary.customersPerHour[2];
 trElement.appendChild(thElement);
 testTable.appendChild(trElement);
+*/
 
 // example code looping through table creation below
 /*
