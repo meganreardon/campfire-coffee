@@ -1,5 +1,7 @@
 var hours = ['6:00am', '7:00am', '8:00am', '9:00am', '10:00am', '11:00am', '12:00pm', '1:00pm', '2:00pm', '3:00pm', '4:00pm', '5:00pm', '6:00pm', '7:00pm', '8:00pm'];
 
+// will need array of table heading text used for both tables cart info and barista info
+
 // this will hold a multidimensional array of the coffee cart data by location
 var coffeeCartDataByLocation = [];
 
@@ -104,3 +106,25 @@ var pikePlace = new CoffeeCarts('Pike Place Market', 14, 35, 1.2, 0.34, 0, 0, 0,
 // ---------------------------------------
 // basic rendering code below
 // ---------------------------------------
+
+// this like totally worked
+var testTable = document.getElementById('test-table');
+
+var trElement = document.createElement('tr');
+var thElement = document.createElement('th');
+thElement.textContent = hours[0]; // for moment just using single thing from an exisiting array to test
+trElement.appendChild(thElement);
+testTable.appendChild(trElement);
+
+// example code below
+/*
+for(var j = 0; j < arrayTableContent.length; j++) {
+  var trElement = document.createElement('tr');
+    for (var i = 0; i < headings.length; i++) {
+      var thElement = document.createElement('th');
+      thElement.textContent = arrayTableContent[j][i];
+      trElement.appendChild(thElement);
+    }
+  catTable.appendChild(trElement);
+}
+*/
