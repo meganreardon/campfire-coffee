@@ -3,7 +3,6 @@ var hours = ['6:00am', '7:00am', '8:00am', '9:00am', '10:00am', '11:00am', '12:0
 // will need array of table heading text used for both tables cart info and barista info
 
 // this will hold a multidimensional array of the coffee cart data by location
-var coffeeCartDataByLocation = [];
 
 // ---------------------------------------
 // constructor funcion code below
@@ -20,18 +19,22 @@ function CoffeeCarts(locationName, minCustomersHour, maxCustomersHour, avgCupsPe
   this.dailyCupsTotal = dailyCupsTotal;
   this.dailyPoundPackagesTotal = dailyPoundPackagesTotal;
   this.dailyBeansNeeded = dailyBeansNeeded;
-  coffeeCartDataByLocation.push(this);
+  this.customersPerHour = [];
+  this.cupsPerHour = [];
+  //coffeeCartDataByLocation.push(this);
 };
 
 // my code for methods for our object
-CoffeeCarts.prototype.calcCustomersPerHour = function(min,max) {
+CoffeeCarts.prototype.calcCustomersPerHour = function(min, max) {
   for (var i = 0; i < hours.length; i ++) {
     var customers = Math.floor(Math.random() * (max - min + 1)) + min;
     this.customersPerHour.push(customers);
+
   }
 };
 
 CoffeeCarts.prototype.calcCupsPerHour = function() {
+  this.calcCustomersPerHour(this.minCustomersHour, this.maxCustomersHour); // spencer added this to call up there
   for (var i = 0; i < hours.length; i++) {
     var cups = this.customersPerHour[i] * this.avgCupsPerCustomer;
     cups = Math.round( cups * 10 ) / 10;
@@ -40,6 +43,7 @@ CoffeeCarts.prototype.calcCupsPerHour = function() {
 };
 
 CoffeeCarts.prototype.calcBeansNeededForCupsPerHour = function() {
+  //this.calcCupsPerHour(); // spencer added this to call up there
   for (var i = 0; i < hours.length; i++) {
     var beans = this.cupsPerHour[i] / 16;
     beans = Math.round( beans * 10 ) / 10;
@@ -103,16 +107,27 @@ CoffeeCarts.prototype.calcDailyBeansNeeded = function() {
 
 var pikePlace = new CoffeeCarts('Pike Place Market', 14, 35, 1.2, 0.34, 0, 0, 0, 0);
 
+pikePlace.calcCupsPerHour();
+
+//console.log(pikePlace.calcCustomersPerHour(14, 35));
+
 // ---------------------------------------
 // basic rendering code below
 // ---------------------------------------
 
-// this like totally worked
+// creating variable to fill test table
 var testTable = document.getElementById('test-table');
 
+// creating table row
 var trElement = document.createElement('tr');
+// populating first cell
 var thElement = document.createElement('th');
-thElement.textContent = hours[0]; // for moment just using single thing from an exisiting array to test
+// thElement.textContent = coffeeCartDataByLocation[0];
+trElement.appendChild(thElement);
+testTable.appendChild(trElement);
+// populating second cell
+var thElement = document.createElement('th');
+// thElement.textContent = coffeeCartDataByLocation[1];
 trElement.appendChild(thElement);
 testTable.appendChild(trElement);
 
