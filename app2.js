@@ -5,14 +5,13 @@ var pikePlace = {
   minCustomersHour: 14,
   maxCustomersHour: 35,
   avgCupsPerCustomer: 1.2,
-  //avgPoundsPerCustomer: 0.34,
   avgPoundBagsBoughtPerCustomer: 0.34,
   beansPerHour: [],
   customersPerHour: [],
   cupsPerHour: [],
   beansNeededForCupsPerHour: [],
   poundPackagesPerHour: [],
-  employeesPerHour: [], //I added this variable
+  employeesPerHour: [], // I added this variable
   dailyCustomersTotal: 0,
   dailyCupsTotal: 0,
   dailyPoundPackagesTotal: 0,
@@ -57,7 +56,16 @@ var pikePlace = {
       var employees = (this.customersPerHour[i] * 2) / 60;
       employees = Math.ceil(employees);
       this.employeesPerHour.push(employees);
-      console.log(employees);
+    }
+  },
+  calcDailyCustomersTotal: function() {
+    //var dailyCust = 0;
+    for (var i = 0; i < hours.length; i++) {
+      this.dailyCustomersTotal += this.customersPerHour[i];
+      //console.log('dailyCust before adding is at ' + dailyCust);
+      //dailyCust = this.customersPerHour[i];
+      console.log('dailyCustomersTotal is at ' + this.dailyCustomersTotal);
+      //dailyCust += this.dailyCustomersTotal;
     }
   },
   render: function() {
@@ -66,6 +74,8 @@ var pikePlace = {
     pikePlace.calcBeansNeededForCupsPerHour();
     pikePlace.calcPoundPackagesPerHour();
     pikePlace.calcBeansPerHour();
+    // daily total calc functions here
+    pikePlace.calcDailyCustomersTotal();
     var ulElement = document.getElementById('pike');
     for (var i = 0; i < hours.length; i++) {
       var liElement = document.createElement('li');
@@ -73,8 +83,17 @@ var pikePlace = {
       liElement.textContent = 'Customers per hour: ' + this.customersPerHour[i] + ', Cups per hour: ' + this.cupsPerHour[i] + ', total beans that went into cups: ' + this.beansNeededForCupsPerHour[i] + ', pound bags sold per hour ' + this.poundPackagesPerHour[i] + ', pound of beans sold per hour ' + this.beansPerHour[i] + '.';
       ulElement.appendChild(liElement);
     }
-  }//end of function renderCustomersPerHour
+
+    // trial adding bullet point for total daily customers,
+    var liElement = document.createElement('li');
+    liElement.textContent = 'Total daily customers: ' + this.dailyCustomersTotal + '.';
+    ulElement.appendChild(liElement);
+
+    //12 lines to add the 4 last bullet points
+    //create / give conetnt / appendChild
+
+  }//end of function render
 }; //end of object
 
 pikePlace.render();
-pikePlace.calcEmployeesNeededPerHour();
+pikePlace.calcEmployeesNeededPerHour(); //do I need to print this anywhere in the html output for today?
