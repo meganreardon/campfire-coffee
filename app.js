@@ -42,7 +42,7 @@ var pikePlace = {
   calcPoundPackagesPerHour: function() {
     for (var i = 0; i < hours.length; i++) {
       var bags = this.customersPerHour[i] * this.avgPoundBagsBoughtPerCustomer;
-      bags = Math.round( bags * 10 ) / 10;
+      bags = Math.round( bags );
       this.poundPackagesPerHour.push(bags);
     }
   },
@@ -75,7 +75,7 @@ var pikePlace = {
   calcDailyPoundPackagesTotal: function() {
     for (var i = 0; i < hours.length; i++) {
       this.dailyPoundPackagesTotal += this.poundPackagesPerHour[i];
-      this.dailyPoundPackagesTotal = Math.round( this.dailyPoundPackagesTotal * 10 ) / 10;
+      this.dailyPoundPackagesTotal = Math.round( this.dailyPoundPackagesTotal);
     }
   },
   calcDailyBeansNeeded: function() {
