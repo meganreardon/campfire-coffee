@@ -11,7 +11,8 @@ var locations = [];
 // ---------------------------------------
 
 // constructor and variables to pass
-function CoffeeCarts(locationName, minCustomersHour, maxCustomersHour, avgCupsPerCustomer, avgPoundBagsBoughtPerCustomer, dailyCustomersTotal, dailyCupsTotal, dailyPoundPackagesTotal, dailyBeansNeeded, dailyEmployeesNeeded, dataBeansNeededPerHour) {
+// function CoffeeCarts(locationName, minCustomersHour, maxCustomersHour, avgCupsPerCustomer, avgPoundBagsBoughtPerCustomer, dailyCustomersTotal, dailyCupsTotal, dailyPoundPackagesTotal, dailyBeansNeeded, dailyEmployeesNeeded, dataBeansNeededPerHour) {
+function CoffeeCarts(locationName, minCustomersHour, maxCustomersHour, avgCupsPerCustomer, avgPoundBagsBoughtPerCustomer) {
   // known values below
   this.locationName = locationName;
   this.minCustomersHour = minCustomersHour;
@@ -361,45 +362,26 @@ for (i = 0; i < hours.length; i++) {
 };
 beansTable.appendChild(trElement);
 
-// NEW TABLE ROW CAPITOL HILL
-var trElement = document.createElement('tr');
-// declaring location
-var thElement = document.createElement('th');
-thElement.textContent = capitolHill.locationName;
-trElement.appendChild(thElement);
-beansTable.appendChild(trElement);
-// wedging in a totals cell
-var tdElement = document.createElement('td');
-tdElement.textContent = capitolHill.dailyCustomersTotal;
-trElement.appendChild(tdElement);
-beansTable.appendChild(trElement);
-// for loop for CAPITOL HILL
-for (i = 0; i < hours.length; i++) {
-  var tdElement = document.createElement('td');
-  tdElement.textContent = capitolHill.customersPerHour[i];
-  trElement.appendChild(tdElement);
-  beansTable.appendChild(trElement);
-};
-
 // NEW TABLE ROW PUBLIC LIBRARY
 var trElement = document.createElement('tr');
 // declaring location
 var thElement = document.createElement('th');
 thElement.textContent = seattlePublicLibrary.locationName;
 trElement.appendChild(thElement);
-beansTable.appendChild(trElement);
+// beansTable.appendChild(trElement);
 // wedging in a totals cell
 var tdElement = document.createElement('td');
 tdElement.textContent = seattlePublicLibrary.dailyCustomersTotal;
 trElement.appendChild(tdElement);
-beansTable.appendChild(trElement);
+// beansTable.appendChild(trElement);
 // for loop for SEATTLE PUBLIC LIBRARY
 for (i = 0; i < hours.length; i++) {
   var tdElement = document.createElement('td');
   tdElement.textContent = seattlePublicLibrary.customersPerHour[i];
   trElement.appendChild(tdElement);
-  beansTable.appendChild(trElement);
+  // beansTable.appendChild(trElement);
 };
+beansTable.appendChild(trElement);
 
 // NEW TABLE ROW SOUTH LAKE UNION
 var trElement = document.createElement('tr');
@@ -407,19 +389,20 @@ var trElement = document.createElement('tr');
 var thElement = document.createElement('th');
 thElement.textContent = southLakeUnion.locationName;
 trElement.appendChild(thElement);
-beansTable.appendChild(trElement);
+// beansTable.appendChild(trElement);
 // wedging in a totals cell
 var tdElement = document.createElement('td');
 tdElement.textContent = southLakeUnion.dailyCustomersTotal;
 trElement.appendChild(tdElement);
-beansTable.appendChild(trElement);
+// beansTable.appendChild(trElement);
 // for loop for SOUTH LAKE UNION
 for (i = 0; i < hours.length; i++) {
   var tdElement = document.createElement('td');
   tdElement.textContent = southLakeUnion.customersPerHour[i];
   trElement.appendChild(tdElement);
-  beansTable.appendChild(trElement);
+  // beansTable.appendChild(trElement);
 };
+beansTable.appendChild(trElement);
 
 // NEW TABLE ROW SEATAC
 var trElement = document.createElement('tr');
@@ -427,19 +410,20 @@ var trElement = document.createElement('tr');
 var thElement = document.createElement('th');
 thElement.textContent = seaTac.locationName;
 trElement.appendChild(thElement);
-beansTable.appendChild(trElement);
+// beansTable.appendChild(trElement);
 // wedging in a totals cell
 var tdElement = document.createElement('td');
 tdElement.textContent = seaTac.dailyCustomersTotal;
 trElement.appendChild(tdElement);
-beansTable.appendChild(trElement);
+// beansTable.appendChild(trElement);
 // for loop for SEA-TAC AIRPORT
 for (i = 0; i < hours.length; i++) {
   var tdElement = document.createElement('td');
   tdElement.textContent = seaTac.customersPerHour[i];
   trElement.appendChild(tdElement);
-  beansTable.appendChild(trElement);
+  // beansTable.appendChild(trElement);
 };
+beansTable.appendChild(trElement);
 
 // ---------------------------------------
 // hardcoded beans footer table row
