@@ -117,24 +117,25 @@ CoffeeCarts.prototype.calcDailyBeansNeeded = function() {
   this.dailyBeansNeeded = (this.dailyCupsTotal / 16) + this.dailyPoundPackagesTotal;
   this.dailyBeansNeeded = Math.round( this.dailyBeansNeeded * 10 ) / 10;
 };
-
-CoffeeCarts.prototype.calcDataBeansNeededPerHour = function() {
-  //
-  // the below is code brought up from a properly formed row in pike place market data
-  //
+// ----------------
+// method for beans data table
+// ----------------
+CoffeeCarts.prototype.calcDataBeansNeededPerHour = function(tableName) {
   // var trElement = document.createElement('tr');
   // var thElement = document.createElement('th');
-  // thElement.textContent = capitolHill.locationName;
+  // thElement.textContent = this.locationName;
   // trElement.appendChild(thElement);
   // var tdElement = document.createElement('td');
-  // tdElement.textContent = capitolHill.dailyCustomersTotal;
+  // //tdElement.textContent = this.beansPerHour[i];
+  // tdElement.textContent = this.beansPerHour;
   // trElement.appendChild(tdElement);
   // for (i = 0; i < hours.length; i++) {
   //   var tdElement = document.createElement('td');
-  //   tdElement.textContent = capitolHill.customersPerHour[i];
+  //   tdElement.textContent = this.beansPerHour[i];
   //   trElement.appendChild(tdElement);
-  // };
-  // beansTable.appendChild(trElement);
+  // }
+  // turn the below back on
+  // tableName.appendChild(trElement);
 };
 
 // added this function to fill in table data for baristas needed per hours
@@ -153,8 +154,8 @@ CoffeeCarts.prototype.dataEmployeesNeededPerHour = function(tableName) {
 };
 
 // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-// don't like having to list these each by name
-// I will put a loop here that runs through each instance name instead
+// make these into loops
+// when I have the time
 // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 // ---------------------------------------
@@ -506,3 +507,34 @@ for (i = 0; i < hours.length; i++) {
 };
 
 coffeeDataFooter(baristasTable);
+
+// ---------------------------------------
+// TEST TABLE
+// ---------------------------------------
+
+var testTable = document.getElementById('test-table');
+// calcDataBeansNeededPerHour(testTable);
+
+// loop to fill in rows of beans data table
+function coffeeData(tableName) {
+  for (var i = 0; i < locations.length; i++) {
+    var trElement = document.createElement('tr');
+    var thElement = document.createElement('th');
+    thElement.textContent = 'LOCATION NAME';
+    trElement.appendChild(thElement);
+    var tdElement = document.createElement('td');
+    //tdElement.textContent = HERE.beansPerHour[i];
+    tdElement.textContent = 'DAILY BEANS TOTAL';
+    trElement.appendChild(tdElement);
+    for (var j = 0; j < hours.length; j++) {
+      var tdElement = document.createElement('td');
+      tdElement.textContent = 'BEANS PER HOUR';
+      trElement.appendChild(tdElement);
+    }
+    tableName.appendChild(trElement);
+  }
+};
+
+coffeeDataHeader(testTable);
+coffeeData(testTable);
+coffeeDataFooter(testTable);
