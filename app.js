@@ -113,16 +113,27 @@ CoffeeCarts.prototype.calcDailyBeansNeeded = function() {
   this.dailyBeansNeeded = (this.dailyCupsTotal / 16) + this.dailyPoundPackagesTotal;
   this.dailyBeansNeeded = Math.round( this.dailyBeansNeeded * 10 ) / 10;
 };
+// added this function to fill table data for beans per hour
+CoffeeCarts.prototype.dataBeansNeededPerHour = function() {
+  for (var i = 0; i < hours.length; i++) {
+    var thElement = document.createElement('td');
+    // oooh dear, this is going to be totally wrong
+    tdElement.textContent = beansPerHour[i];
+    console.log(beansPerHour[i]);
+    trElement.appendChild(tdElement);
+    tableHeader.appendChild(trElement);
+  }
+};
 
 // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 // don't like having to list these each by name
-// can I put a loop here that runs through each instance name instead? will that also call the functions?
+// I will put a loop here that runs through each instance name instead
 // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 // ---------------------------------------
-// pike place isntance creation
+// pike place instance creation
 // ---------------------------------------
 var pikePlace = new CoffeeCarts('Pike Place Market', 14, 35, 1.2, 0.34, 0, 0, 0, 0, 0);
 
@@ -139,7 +150,7 @@ pikePlace.calcDailyBeansNeeded();
 pikePlace.calcDailyEmployeesNeeded();
 
 // ---------------------------------------
-// capitol hill isntance creation
+// capitol hill instance creation
 // ---------------------------------------
 var capitolHill = new CoffeeCarts('Capitol Hill', 12, 28, 3.2, 0.03, 0, 0, 0, 0, 0);
 
@@ -157,7 +168,7 @@ capitolHill.calcDailyBeansNeeded();
 capitolHill.calcDailyEmployeesNeeded();
 
 // ---------------------------------------
-// seattle public library isntance creation
+// seattle public library instance creation
 // ---------------------------------------
 var seattlePublicLibrary = new CoffeeCarts('Seattle Public Library', 9, 45, 2.6, 0.02, 0, 0, 0, 0, 0);
 
@@ -175,7 +186,7 @@ seattlePublicLibrary.calcDailyBeansNeeded();
 seattlePublicLibrary.calcDailyEmployeesNeeded();
 
 // ---------------------------------------
-// south lake union isntance creation
+// south lake union instance creation
 // ---------------------------------------
 var southLakeUnion = new CoffeeCarts('South Lake Union', 5, 18, 1.3, 0.04, 0, 0, 0, 0, 0);
 
@@ -253,7 +264,7 @@ function coffeeDataHeader() {
     trElement.appendChild(thElement);
     tableHeader.appendChild(trElement);
   }
-  // fin -- no need to close the table, we do that elsewhere
+  // fin
 };
 
 // call the coffee data header to render the top row of one of our tables
@@ -268,10 +279,15 @@ function coffeeDataMiddle() {
   // create the tr
   var trElement = document.createElement('tr');
   //create the first th - populate with name of location
-  var thElement = document.createElement('');
   // print the name of the location
+  var thElement = document.createElement('th');
+  thElement.textContent = '';
+  trElement.appendChild(thElement);
+  tableHeader.appendChild(trElement);
   // print the total beans needed for that location
   // loop through the total beans by hours
+  // do this by calling method dataBeansNeededPerHour
+  // loop through each location using the locations[] array
     // loopy
   // no need to close the table
 }
