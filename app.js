@@ -294,7 +294,7 @@ function coffeeDataHeader(tableName) {
 };
 
 // call the coffee data header to render the top row of one of our tables
-coffeeDataHeader(beansTable);
+//coffeeDataHeader(beansTable);
 
 // calcDataBeansNeededPerHour // this is the name of my function for table data rows
 
@@ -302,19 +302,19 @@ coffeeDataHeader(beansTable);
 // code for main data loop creation - move into method
 // ---------------------------------------
 
-var trElement = document.createElement('tr');
-var thElement = document.createElement('th');
-thElement.textContent = pikePlace.locationName;
-trElement.appendChild(thElement);
-var tdElement = document.createElement('td');
-tdElement.textContent = pikePlace.dailyCustomersTotal;
-trElement.appendChild(tdElement);
-for (i = 0; i < hours.length; i++) {
-  var tdElement = document.createElement('td');
-  tdElement.textContent = pikePlace.customersPerHour[i];
-  trElement.appendChild(tdElement);
-};
-beansTable.appendChild(trElement);
+// var trElement = document.createElement('tr');
+// var thElement = document.createElement('th');
+// thElement.textContent = pikePlace.locationName;
+// trElement.appendChild(thElement);
+// var tdElement = document.createElement('td');
+// tdElement.textContent = pikePlace.dailyCustomersTotal;
+// trElement.appendChild(tdElement);
+// for (i = 0; i < hours.length; i++) {
+//   var tdElement = document.createElement('td');
+//   tdElement.textContent = pikePlace.customersPerHour[i];
+//   trElement.appendChild(tdElement);
+// };
+// beansTable.appendChild(trElement);
 
 // ---------------------------------------
 // hardcoded beans needed table data
@@ -322,64 +322,64 @@ beansTable.appendChild(trElement);
 //var table = document.getElementById('beans-table');
 
 // NEW TABLE ROW PIKE PLACE
-var trElement = document.createElement('tr');
-var thElement = document.createElement('th');
-thElement.textContent = capitolHill.locationName;
-trElement.appendChild(thElement);
-var tdElement = document.createElement('td');
-tdElement.textContent = capitolHill.dailyCustomersTotal;
-trElement.appendChild(tdElement);
-for (i = 0; i < hours.length; i++) {
-  var tdElement = document.createElement('td');
-  tdElement.textContent = capitolHill.customersPerHour[i];
-  trElement.appendChild(tdElement);
-};
-beansTable.appendChild(trElement);
-
-// NEW TABLE ROW PUBLIC LIBRARY
-var trElement = document.createElement('tr');
-var thElement = document.createElement('th');
-thElement.textContent = seattlePublicLibrary.locationName;
-trElement.appendChild(thElement);
-var tdElement = document.createElement('td');
-tdElement.textContent = seattlePublicLibrary.dailyCustomersTotal;
-trElement.appendChild(tdElement);
-for (i = 0; i < hours.length; i++) {
-  var tdElement = document.createElement('td');
-  tdElement.textContent = seattlePublicLibrary.customersPerHour[i];
-  trElement.appendChild(tdElement);
-};
-beansTable.appendChild(trElement);
-
-// NEW TABLE ROW SOUTH LAKE UNION
-var trElement = document.createElement('tr');
-var thElement = document.createElement('th');
-thElement.textContent = southLakeUnion.locationName;
-trElement.appendChild(thElement);
-var tdElement = document.createElement('td');
-tdElement.textContent = southLakeUnion.dailyCustomersTotal;
-trElement.appendChild(tdElement);
-for (i = 0; i < hours.length; i++) {
-  var tdElement = document.createElement('td');
-  tdElement.textContent = southLakeUnion.customersPerHour[i];
-  trElement.appendChild(tdElement);
-};
-beansTable.appendChild(trElement);
-
-// NEW TABLE ROW SEATAC
-var trElement = document.createElement('tr');
-var thElement = document.createElement('th');
-thElement.textContent = seaTac.locationName;
-trElement.appendChild(thElement);
-var tdElement = document.createElement('td');
-tdElement.textContent = seaTac.dailyCustomersTotal;
-trElement.appendChild(tdElement);
-for (i = 0; i < hours.length; i++) {
-  var tdElement = document.createElement('td');
-  tdElement.textContent = seaTac.customersPerHour[i];
-  trElement.appendChild(tdElement);
-};
-beansTable.appendChild(trElement);
+// var trElement = document.createElement('tr');
+// var thElement = document.createElement('th');
+// thElement.textContent = capitolHill.locationName;
+// trElement.appendChild(thElement);
+// var tdElement = document.createElement('td');
+// tdElement.textContent = capitolHill.dailyCustomersTotal;
+// trElement.appendChild(tdElement);
+// for (i = 0; i < hours.length; i++) {
+//   var tdElement = document.createElement('td');
+//   tdElement.textContent = capitolHill.customersPerHour[i];
+//   trElement.appendChild(tdElement);
+// };
+// beansTable.appendChild(trElement);
+//
+// // NEW TABLE ROW PUBLIC LIBRARY
+// var trElement = document.createElement('tr');
+// var thElement = document.createElement('th');
+// thElement.textContent = seattlePublicLibrary.locationName;
+// trElement.appendChild(thElement);
+// var tdElement = document.createElement('td');
+// tdElement.textContent = seattlePublicLibrary.dailyCustomersTotal;
+// trElement.appendChild(tdElement);
+// for (i = 0; i < hours.length; i++) {
+//   var tdElement = document.createElement('td');
+//   tdElement.textContent = seattlePublicLibrary.customersPerHour[i];
+//   trElement.appendChild(tdElement);
+// };
+// beansTable.appendChild(trElement);
+//
+// // NEW TABLE ROW SOUTH LAKE UNION
+// var trElement = document.createElement('tr');
+// var thElement = document.createElement('th');
+// thElement.textContent = southLakeUnion.locationName;
+// trElement.appendChild(thElement);
+// var tdElement = document.createElement('td');
+// tdElement.textContent = southLakeUnion.dailyCustomersTotal;
+// trElement.appendChild(tdElement);
+// for (i = 0; i < hours.length; i++) {
+//   var tdElement = document.createElement('td');
+//   tdElement.textContent = southLakeUnion.customersPerHour[i];
+//   trElement.appendChild(tdElement);
+// };
+// beansTable.appendChild(trElement);
+//
+// // NEW TABLE ROW SEATAC
+// var trElement = document.createElement('tr');
+// var thElement = document.createElement('th');
+// thElement.textContent = seaTac.locationName;
+// trElement.appendChild(thElement);
+// var tdElement = document.createElement('td');
+// tdElement.textContent = seaTac.dailyCustomersTotal;
+// trElement.appendChild(tdElement);
+// for (i = 0; i < hours.length; i++) {
+//   var tdElement = document.createElement('td');
+//   tdElement.textContent = seaTac.customersPerHour[i];
+//   trElement.appendChild(tdElement);
+// };
+// beansTable.appendChild(trElement);
 
 // ---------------------------------------
 // hardcoded beans footer table row
@@ -400,7 +400,7 @@ function coffeeDataFooter(tableName) {
     tableName.appendChild(trElement);
   }
 };
-coffeeDataFooter(beansTable);
+//coffeeDataFooter(beansTable);
 
 // ---------------------------------------
 // BARISTAS TABLE
@@ -537,6 +537,6 @@ function coffeeData(tableName) {
   }
 };
 
-coffeeDataHeader(testTable);
-coffeeData(testTable);
-coffeeDataFooter(testTable);
+coffeeDataHeader(beansTable);
+coffeeData(beansTable);
+coffeeDataFooter(beansTable);
