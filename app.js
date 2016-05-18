@@ -221,27 +221,21 @@ seaTac.calcDailyPoundPackagesTotal();
 seaTac.calcDailyBeansNeeded();
 seaTac.calcDailyEmployeesNeeded();
 
+// ---------------------------------------
+// start of temporary table code
+// ---------------------------------------
+// ---------------------------------------
+// temp code for beans data table
+// ---------------------------------------
 // creating variable to fill test table
-var testTable = document.getElementById('test-table');
-
-// loop to create HEADER rows // notes in paper notebook // this will be a FUNCTION with a loop in it
-
-// loop to create REGULAR rows // notes in paper notebook
-//for (loopy) {
-  // if td zero print nothing
-  // if td one print 'Daily Total'
-  // for loop
-      // td content hours[i] - 6am
-      // td content hours[i] - 7am
-  // end for loop
-//};
+var testTable = document.getElementById('beans-table');
 
 // ---------------------------------------
 // function to render table header row
 // ---------------------------------------
 function coffeeDataHeader() {
   // create the table
-  var tableHeader = document.getElementById('test-table-header');
+  var tableHeader = document.getElementById('beans-table');
   // create the tr
   var trElement = document.createElement('tr');
   //create the first th - populate with nothing
@@ -271,37 +265,12 @@ function coffeeDataHeader() {
 coffeeDataHeader();
 
 // ---------------------------------------
-// function to render table data row
+// hardcoded beans needed table data
 // ---------------------------------------
+//var table = document.getElementById('beans-table');
 
-function coffeeDataMiddle() {
-  var tableHeader = document.getElementById('test-table-header'); // do I need this here?
-  // create the tr
-  var trElement = document.createElement('tr');
-  //create the first th - populate with name of location
-  // print the name of the location
-  var thElement = document.createElement('th');
-  thElement.textContent = '';
-  trElement.appendChild(thElement);
-  tableHeader.appendChild(trElement);
-  // print the total beans needed for that location
-  // loop through the total beans by hours
-  // do this by calling method dataBeansNeededPerHour
-  // loop through each location using the locations[] array
-    // loopy
-  // no need to close the table
-}
-
-// loop to create FOOTER rows // notes in paper notebook // this will be a FUNCTION with a loop in it
-
-// ---------------------------------------
-// hardcoded beans needed w/ working data
-// ---------------------------------------
-// -------- below here might be entirely too much
-// creating table row
-var table = document.getElementById('test-table');
+// NEW TABLE ROW PIKE PLACE
 var trElement = document.createElement('tr');
-// NEW TABLE ROW
 // declaring location
 var thElement = document.createElement('th');
 thElement.textContent = pikePlace.locationName;
@@ -312,6 +281,337 @@ var tdElement = document.createElement('td');
 tdElement.textContent = pikePlace.dailyCustomersTotal;
 trElement.appendChild(tdElement);
 testTable.appendChild(trElement);
+// for loop for PIKE PLACE
+for (i = 0; i < hours.length; i++) {
+  var tdElement = document.createElement('td');
+  tdElement.textContent = pikePlace.customersPerHour[i];
+  trElement.appendChild(tdElement);
+  testTable.appendChild(trElement);
+};
+
+// NEW TABLE ROW CAPITOL HILL
+var trElement = document.createElement('tr');
+// declaring location
+var thElement = document.createElement('th');
+thElement.textContent = capitolHill.locationName;
+trElement.appendChild(thElement);
+testTable.appendChild(trElement);
+// wedging in a totals cell
+var tdElement = document.createElement('td');
+tdElement.textContent = capitolHill.dailyCustomersTotal;
+trElement.appendChild(tdElement);
+testTable.appendChild(trElement);
+// for loop for CAPITOL HILL
+for (i = 0; i < hours.length; i++) {
+  var tdElement = document.createElement('td');
+  tdElement.textContent = capitolHill.customersPerHour[i];
+  trElement.appendChild(tdElement);
+  testTable.appendChild(trElement);
+};
+
+// NEW TABLE ROW PUBLIC LIBRARY
+var trElement = document.createElement('tr');
+// declaring location
+var thElement = document.createElement('th');
+thElement.textContent = seattlePublicLibrary.locationName;
+trElement.appendChild(thElement);
+testTable.appendChild(trElement);
+// wedging in a totals cell
+var tdElement = document.createElement('td');
+tdElement.textContent = seattlePublicLibrary.dailyCustomersTotal;
+trElement.appendChild(tdElement);
+testTable.appendChild(trElement);
+// for loop for SEATTLE PUBLIC LIBRARY
+for (i = 0; i < hours.length; i++) {
+  var tdElement = document.createElement('td');
+  tdElement.textContent = seattlePublicLibrary.customersPerHour[i];
+  trElement.appendChild(tdElement);
+  testTable.appendChild(trElement);
+};
+
+// NEW TABLE ROW SOUTH LAKE UNION
+var trElement = document.createElement('tr');
+// declaring location
+var thElement = document.createElement('th');
+thElement.textContent = southLakeUnion.locationName;
+trElement.appendChild(thElement);
+testTable.appendChild(trElement);
+// wedging in a totals cell
+var tdElement = document.createElement('td');
+tdElement.textContent = southLakeUnion.dailyCustomersTotal;
+trElement.appendChild(tdElement);
+testTable.appendChild(trElement);
+// for loop for SOUTH LAKE UNION
+for (i = 0; i < hours.length; i++) {
+  var tdElement = document.createElement('td');
+  tdElement.textContent = southLakeUnion.customersPerHour[i];
+  trElement.appendChild(tdElement);
+  testTable.appendChild(trElement);
+};
+
+// NEW TABLE ROW SEATAC
+var trElement = document.createElement('tr');
+// declaring location
+var thElement = document.createElement('th');
+thElement.textContent = seaTac.locationName;
+trElement.appendChild(thElement);
+testTable.appendChild(trElement);
+// wedging in a totals cell
+var tdElement = document.createElement('td');
+tdElement.textContent = seaTac.dailyCustomersTotal;
+trElement.appendChild(tdElement);
+testTable.appendChild(trElement);
+// for loop for SEA-TAC AIRPORT
+for (i = 0; i < hours.length; i++) {
+  var tdElement = document.createElement('td');
+  tdElement.textContent = seaTac.customersPerHour[i];
+  trElement.appendChild(tdElement);
+  testTable.appendChild(trElement);
+};
+
+// ---------------------------------------
+// hardcoded beans footer table row
+// ---------------------------------------
+ // var table = document.getElementById('beans-table');
+
+function coffeeDataFooter() {
+// create the table
+  var tableHeader = document.getElementById('beans-table');
+  // create the tr
+  var trElement = document.createElement('tr');
+  //create the first th
+  var thElement = document.createElement('th');
+  thElement.textContent = 'TOTALS';
+  trElement.appendChild(thElement);
+  tableHeader.appendChild(trElement);
+  // create the second th - populate with Daily Total
+  var thElement = document.createElement('th');
+  thElement.textContent = 'PH';
+  trElement.appendChild(thElement);
+  tableHeader.appendChild(trElement);
+  for (var i = 0; i < hours.length; i++) {
+    //console.log('got inside the loop');
+    var thElement = document.createElement('th');
+    //console.log(hours[i]);
+    thElement.textContent = 'ph';
+    trElement.appendChild(thElement);
+    tableHeader.appendChild(trElement);
+  }
+// fin
+};
+coffeeDataFooter();
+
+// ---------------------------------------
+// BARISTAS TABLE
+// ---------------------------------------
+// ---------------------------------------
+// function to render table header row for baristas needed
+// ---------------------------------------
+var testTable = document.getElementById('baristas-table');
+function coffeeDataHeader() {
+  // create the table
+  var tableHeader = document.getElementById('baristas-table');
+  // create the tr
+  var trElement = document.createElement('tr');
+  //create the first th - populate with nothing
+  var thElement = document.createElement('th');
+  thElement.textContent = '';
+  trElement.appendChild(thElement);
+  tableHeader.appendChild(trElement);
+  // create the second th - populate with Daily Total
+  var thElement = document.createElement('th');
+  thElement.textContent = 'Daily Total';
+  trElement.appendChild(thElement);
+  tableHeader.appendChild(trElement);
+  //console.log('reached end of static code');
+  // loop through the hours of the day, all th cells
+  for (var i = 0; i < hours.length; i++) {
+    //console.log('got inside the loop');
+    var thElement = document.createElement('th');
+    //console.log(hours[i]);
+    thElement.textContent = hours[i];
+    trElement.appendChild(thElement);
+    tableHeader.appendChild(trElement);
+  }
+  // fin
+};
+
+// NEW TABLE ROW PIKE PLACE
+var trElement = document.createElement('tr');
+// declaring location
+var thElement = document.createElement('th');
+thElement.textContent = pikePlace.locationName;
+trElement.appendChild(thElement);
+testTable.appendChild(trElement);
+// wedging in a totals cell
+var tdElement = document.createElement('td');
+tdElement.textContent = pikePlace.dailyEmployeesNeeded;
+trElement.appendChild(tdElement);
+testTable.appendChild(trElement);
+// for loop for PIKE PLACE
+for (i = 0; i < hours.length; i++) {
+  var tdElement = document.createElement('td');
+  tdElement.textContent = pikePlace.employeesPerHour[i];
+  trElement.appendChild(tdElement);
+  testTable.appendChild(trElement);
+};
+
+// NEW TABLE ROW CAPITOL HILL
+var trElement = document.createElement('tr');
+// declaring location
+var thElement = document.createElement('th');
+thElement.textContent = capitolHill.locationName;
+trElement.appendChild(thElement);
+testTable.appendChild(trElement);
+// wedging in a totals cell
+var tdElement = document.createElement('td');
+tdElement.textContent = capitolHill.dailyEmployeesNeeded;
+trElement.appendChild(tdElement);
+testTable.appendChild(trElement);
+// for loop for CAPITOL HILL
+for (i = 0; i < hours.length; i++) {
+  var tdElement = document.createElement('td');
+  tdElement.textContent = capitolHill.employeesPerHour[i];
+  trElement.appendChild(tdElement);
+  testTable.appendChild(trElement);
+};
+
+// NEW TABLE ROW PUBLIC LIBRARY
+var trElement = document.createElement('tr');
+// declaring location
+var thElement = document.createElement('th');
+thElement.textContent = seattlePublicLibrary.locationName;
+trElement.appendChild(thElement);
+testTable.appendChild(trElement);
+// wedging in a totals cell
+var tdElement = document.createElement('td');
+tdElement.textContent = seattlePublicLibrary.dailyEmployeesNeeded;
+trElement.appendChild(tdElement);
+testTable.appendChild(trElement);
+// for loop for SEATTLE PUBLIC LIBRARY
+for (i = 0; i < hours.length; i++) {
+  var tdElement = document.createElement('td');
+  tdElement.textContent = seattlePublicLibrary.employeesPerHour[i];
+  trElement.appendChild(tdElement);
+  testTable.appendChild(trElement);
+};
+
+// NEW TABLE ROW SOUTH LAKE UNION
+var trElement = document.createElement('tr');
+// declaring location
+var thElement = document.createElement('th');
+thElement.textContent = southLakeUnion.locationName;
+trElement.appendChild(thElement);
+testTable.appendChild(trElement);
+// wedging in a totals cell
+var tdElement = document.createElement('td');
+tdElement.textContent = southLakeUnion.dailyEmployeesNeeded;
+trElement.appendChild(tdElement);
+testTable.appendChild(trElement);
+// for loop for SOUTH LAKE UNION
+for (i = 0; i < hours.length; i++) {
+  var tdElement = document.createElement('td');
+  tdElement.textContent = southLakeUnion.employeesPerHour[i];
+  trElement.appendChild(tdElement);
+  testTable.appendChild(trElement);
+};
+
+// NEW TABLE ROW SEATAC
+var trElement = document.createElement('tr');
+// declaring location
+var thElement = document.createElement('th');
+thElement.textContent = seaTac.locationName;
+trElement.appendChild(thElement);
+testTable.appendChild(trElement);
+// wedging in a totals cell
+var tdElement = document.createElement('td');
+tdElement.textContent = seaTac.dailyEmployeesNeeded;
+trElement.appendChild(tdElement);
+testTable.appendChild(trElement);
+// for loop for SEA-TAC AIRPORT
+for (i = 0; i < hours.length; i++) {
+  var tdElement = document.createElement('td');
+  tdElement.textContent = seaTac.employeesPerHour[i];
+  trElement.appendChild(tdElement);
+  testTable.appendChild(trElement);
+};
+
+function coffeeDataFooter() {
+// create the table
+  var tableHeader = document.getElementById('beans-table');
+  // create the tr
+  var trElement = document.createElement('tr');
+  //create the first th
+  var thElement = document.createElement('th');
+  thElement.textContent = 'TOTALS';
+  trElement.appendChild(thElement);
+  tableHeader.appendChild(trElement);
+  // create the second th - populate with Daily Total
+  var thElement = document.createElement('th');
+  thElement.textContent = 'PH';
+  trElement.appendChild(thElement);
+  tableHeader.appendChild(trElement);
+  for (var i = 0; i < hours.length; i++) {
+    //console.log('got inside the loop');
+    var thElement = document.createElement('th');
+    //console.log(hours[i]);
+    thElement.textContent = 'ph';
+    trElement.appendChild(thElement);
+    tableHeader.appendChild(trElement);
+  }
+// fin
+};
+coffeeDataFooter();
+
+// call the coffee data header to render the top row of one of our tables
+//coffeeDataHeader();
+
+/*
+ hardcoded footer data
+// NEW FOOTER ROW TOTAL
+var trElement = document.createElement('tr');
+// first cell
+var thElement = document.createElement('th');
+thElement.textContent = 'TOTALS';
+trElement.appendChild(thElement);
+testTable.appendChild(trElement);
+// daily total info PIKE PLACE
+var thElement = document.createElement('th');
+thElement.textContent = pikePlace.dailyBeansNeeded;
+trElement.appendChild(thElement);
+testTable.appendChild(trElement);
+// daily total info CAPITOL HILL
+var thElement = document.createElement('th');
+thElement.textContent = capitolHill.dailyBeansNeeded;
+trElement.appendChild(thElement);
+testTable.appendChild(trElement);
+// daily total info LIBRARY
+var thElement = document.createElement('th');
+thElement.textContent = seattlePublicLibrary.dailyBeansNeeded;
+trElement.appendChild(thElement);
+testTable.appendChild(trElement);
+// daily total info SOUTH LAKE UNION
+var thElement = document.createElement('th');
+thElement.textContent = southLakeUnion.dailyBeansNeeded;
+trElement.appendChild(thElement);
+testTable.appendChild(trElement);
+// daily total info SEA=TAC
+var thElement = document.createElement('th');
+thElement.textContent = seaTac.dailyBeansNeeded;
+trElement.appendChild(thElement);
+testTable.appendChild(trElement);
+*/
+
+// ---------------------------------------
+// EVERYTHING BELOW IS SAVED FOR FUTURE FIXING UP OF THIS HERE PAGE
+// ---------------------------------------
+/*
+TEMPORARY, START OF GOOD HARDCODED DATA
+
+// ---------------------------------------
+// hardcoded beans needed w/ working data
+// ---------------------------------------
+
 // populating first cell
 var tdElement = document.createElement('td');
 tdElement.textContent = pikePlace.customersPerHour[0];
@@ -333,6 +633,19 @@ var testTable = document.getElementById('test-table-employees');
 // ---------------------------------------
 // hardcoded employee table w/ working data
 // ---------------------------------------
+var table = document.getElementById('test-table');
+var trElement = document.createElement('tr');
+// NEW TABLE ROW
+// declaring location
+var thElement = document.createElement('th');
+thElement.textContent = pikePlace.locationName;
+trElement.appendChild(thElement);
+testTable.appendChild(trElement);
+// wedging in a totals cell
+var tdElement = document.createElement('td');
+tdElement.textContent = pikePlace.dailyCustomersTotal;
+trElement.appendChild(tdElement);
+testTable.appendChild(trElement);
 // -------- below here might be entirely too much
 // creating table row
 var table = document.getElementById('test-table-employees');
@@ -353,3 +666,30 @@ var tdElement = document.createElement('td');
 tdElement.textContent = pikePlace.employeesPerHour[0];
 trElement.appendChild(tdElement);
 testTable.appendChild(trElement);
+
+TEMPORARY, END OF GOOD HARDCODED DATA
+*/
+
+// ---------------------------------------
+// function to render table data row - unfinished
+// ---------------------------------------
+/* commenting out in block to hold for later work
+function coffeeDataMiddle() {
+var tableHeader = document.getElementById('test-table-header'); // do I need this here?
+// create the tr
+var trElement = document.createElement('tr');
+//create the first th - populate with name of location
+// print the name of the location
+var thElement = document.createElement('th');
+thElement.textContent = '';
+trElement.appendChild(thElement);
+tableHeader.appendChild(trElement);
+// print the total beans needed for that location
+// loop through the total beans by hours
+// do this by calling method dataBeansNeededPerHour
+// loop through each location using the locations[] array
+// loopy
+// no need to close the table
+}
+*/
+// loop to create FOOTER rows // notes in paper notebook // this will be a FUNCTION with a loop in it
