@@ -285,7 +285,28 @@ function coffeeDataHeader(tableName) {
     trElement.appendChild(thElement);
     tableName.appendChild(trElement);
   }
-  // fin
+};
+
+// ---------------------------------------
+// function to coffee data into tables
+// ---------------------------------------
+
+function coffeeData(tableName) {
+  for (var i = 0; i < locations.length; i++) {
+    var trElement = document.createElement('tr');
+    var thElement = document.createElement('th');
+    thElement.textContent = locations[i].locationName;
+    trElement.appendChild(thElement);
+    var tdElement = document.createElement('td');
+    tdElement.textContent = locations[i].dailyBeansNeeded;
+    trElement.appendChild(tdElement);
+    for (var j = 0; j < hours.length; j++) {
+      var tdElement = document.createElement('td');
+      tdElement.textContent = locations[i].beansPerHour[j];
+      trElement.appendChild(tdElement);
+    }
+    tableName.appendChild(trElement);
+  }
 };
 
 // ---------------------------------------
@@ -423,30 +444,3 @@ for (i = 0; i < hours.length; i++) {
 };
 
 coffeeDataFooter(baristasTable);
-
-// ---------------------------------------
-// TEST TABLE
-// ---------------------------------------
-
-var testTable = document.getElementById('test-table');
-// calcDataBeansNeededPerHour(testTable);
-
-// loop to fill in rows of beans data table
-function coffeeData(tableName) {
-  for (var i = 0; i < locations.length; i++) {
-    var trElement = document.createElement('tr');
-    var thElement = document.createElement('th');
-    thElement.textContent = locations[i].locationName;
-    trElement.appendChild(thElement);
-    var tdElement = document.createElement('td');
-    //tdElement.textContent = HERE.beansPerHour[i];
-    tdElement.textContent = locations[i].dailyBeansNeeded;
-    trElement.appendChild(tdElement);
-    for (var j = 0; j < hours.length; j++) {
-      var tdElement = document.createElement('td');
-      tdElement.textContent = locations[i].beansPerHour[j];
-      trElement.appendChild(tdElement);
-    }
-    tableName.appendChild(trElement);
-  }
-};
