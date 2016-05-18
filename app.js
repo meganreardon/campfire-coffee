@@ -72,6 +72,8 @@ CoffeeCarts.prototype.calcPoundPackagesPerHour = function() {
 
 CoffeeCarts.prototype.calcBeansPerHour = function() {
   for (var i = 0; i < hours.length; i++) {
+    // console.log(this.beansNeededForCupsPerHour[i]);
+    // console.log(this.poundPackagesPerHour[i]);
     var pounds = this.beansNeededForCupsPerHour[i] + this.poundPackagesPerHour[i];
     pounds = Math.round( pounds * 10 ) / 10;
     this.beansPerHour.push(pounds);
@@ -165,7 +167,6 @@ var pikePlace = new CoffeeCarts('Pike Place Market', 14, 35, 1.2, 0.34);
 
 pikePlace.calcCupsPerHour();
 // pikePlace.calcCustomersPerHour(); // might not need this hear, is called inside cups per hour above
-pikePlace.calcBeansPerHour();
 pikePlace.calcBeansNeededForCupsPerHour();
 pikePlace.calcPoundPackagesPerHour();
 pikePlace.calcEmployeesNeededPerHour();
@@ -175,6 +176,7 @@ pikePlace.calcDailyPoundPackagesTotal();
 pikePlace.calcDailyBeansNeeded();
 pikePlace.calcDailyEmployeesNeeded();
 pikePlace.calcDataBeansNeededPerHour();
+pikePlace.calcBeansPerHour();
 
 // ---------------------------------------
 // capitol hill instance creation
@@ -183,7 +185,6 @@ var capitolHill = new CoffeeCarts('Capitol Hill', 12, 28, 3.2, 0.03);
 
 capitolHill.calcCupsPerHour();
 // capitolHill.calcCustomersPerHour(); // might not need this hear
-capitolHill.calcBeansPerHour();
 capitolHill.calcBeansNeededForCupsPerHour();
 capitolHill.calcPoundPackagesPerHour();
 capitolHill.calcEmployeesNeededPerHour();
@@ -194,6 +195,7 @@ capitolHill.calcDailyPoundPackagesTotal();
 capitolHill.calcDailyBeansNeeded();
 capitolHill.calcDailyEmployeesNeeded();
 capitolHill.calcDataBeansNeededPerHour();
+capitolHill.calcBeansPerHour();
 
 // ---------------------------------------
 // seattle public library instance creation
@@ -202,7 +204,6 @@ var seattlePublicLibrary = new CoffeeCarts('Seattle Public Library', 9, 45, 2.6,
 
 seattlePublicLibrary.calcCupsPerHour();
 // seattlePublicLibrary.calcCustomersPerHour(); // might not need this hear
-seattlePublicLibrary.calcBeansPerHour();
 seattlePublicLibrary.calcBeansNeededForCupsPerHour();
 seattlePublicLibrary.calcPoundPackagesPerHour();
 seattlePublicLibrary.calcEmployeesNeededPerHour();
@@ -213,6 +214,7 @@ seattlePublicLibrary.calcDailyPoundPackagesTotal();
 seattlePublicLibrary.calcDailyBeansNeeded();
 seattlePublicLibrary.calcDailyEmployeesNeeded();
 seattlePublicLibrary.calcDataBeansNeededPerHour();
+seattlePublicLibrary.calcBeansPerHour();
 
 // ---------------------------------------
 // south lake union instance creation
@@ -221,7 +223,6 @@ var southLakeUnion = new CoffeeCarts('South Lake Union', 5, 18, 1.3, 0.04);
 
 southLakeUnion.calcCupsPerHour();
 // southLakeUnion.calcCustomersPerHour(); // might not need this hear
-southLakeUnion.calcBeansPerHour();
 southLakeUnion.calcBeansNeededForCupsPerHour();
 southLakeUnion.calcPoundPackagesPerHour();
 southLakeUnion.calcEmployeesNeededPerHour();
@@ -232,6 +233,7 @@ southLakeUnion.calcDailyPoundPackagesTotal();
 southLakeUnion.calcDailyBeansNeeded();
 southLakeUnion.calcDailyEmployeesNeeded();
 southLakeUnion.calcDataBeansNeededPerHour();
+southLakeUnion.calcBeansPerHour();
 
 // ---------------------------------------
 // sea-tac airport instance creation
@@ -240,7 +242,6 @@ var seaTac = new CoffeeCarts('Sea-Tac Airport', 28, 44, 1.1, 0.41);
 
 seaTac.calcCupsPerHour();
 // seaTac.calcCustomersPerHour(); // might not need this hear
-seaTac.calcBeansPerHour();
 seaTac.calcBeansNeededForCupsPerHour();
 seaTac.calcPoundPackagesPerHour();
 seaTac.calcEmployeesNeededPerHour();
@@ -251,6 +252,7 @@ seaTac.calcDailyPoundPackagesTotal();
 seaTac.calcDailyBeansNeeded();
 seaTac.calcDailyEmployeesNeeded();
 seaTac.calcDataBeansNeededPerHour();
+seaTac.calcBeansPerHour();
 
 // ---------------------------------------
 // start of temporary table code
@@ -520,15 +522,15 @@ function coffeeData(tableName) {
   for (var i = 0; i < locations.length; i++) {
     var trElement = document.createElement('tr');
     var thElement = document.createElement('th');
-    thElement.textContent = 'LOCATION NAME';
+    thElement.textContent = locations[i].locationName;
     trElement.appendChild(thElement);
     var tdElement = document.createElement('td');
     //tdElement.textContent = HERE.beansPerHour[i];
-    tdElement.textContent = 'DAILY BEANS TOTAL';
+    tdElement.textContent = locations[i].dailyBeansNeeded;
     trElement.appendChild(tdElement);
     for (var j = 0; j < hours.length; j++) {
       var tdElement = document.createElement('td');
-      tdElement.textContent = 'BEANS PER HOUR';
+      tdElement.textContent = locations[i].beansPerHour[j];
       trElement.appendChild(tdElement);
     }
     tableName.appendChild(trElement);
