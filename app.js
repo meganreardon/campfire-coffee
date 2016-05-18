@@ -25,11 +25,11 @@ function CoffeeCarts(locationName, minCustomersHour, maxCustomersHour, avgCupsPe
   this.dailyBeansNeeded = 0;
   this.dailyEmployeesNeeded = 0;
   // new unknown below
-  this.dailyCustomersTotal = dailyCustomersTotal;
-  this.dailyCupsTotal = dailyCupsTotal;
-  this.dailyPoundPackagesTotal = dailyPoundPackagesTotal;
-  this.dailyBeansNeeded = dailyBeansNeeded;
-  this.dailyEmployeesNeeded = dailyEmployeesNeeded; //added this variable correspond w/ new function below
+  // this.dailyCustomersTotal = dailyCustomersTotal;
+  // this.dailyCupsTotal = dailyCupsTotal;
+  // this.dailyPoundPackagesTotal = dailyPoundPackagesTotal;
+  // this.dailyBeansNeeded = dailyBeansNeeded;
+  // this.dailyEmployeesNeeded = dailyEmployeesNeeded; //added this variable correspond w/ new function below
   // arrays!
   this.customersPerHour = [];
   this.cupsPerHour = [];
