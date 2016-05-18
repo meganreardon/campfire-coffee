@@ -1,5 +1,9 @@
 var hours = ['6:00am', '7:00am', '8:00am', '9:00am', '10:00am', '11:00am', '12:00pm', '1:00pm', '2:00pm', '3:00pm', '4:00pm', '5:00pm', '6:00pm', '7:00pm', '8:00pm'];
 
+var locations = [];
+// get with locations[i].locationName
+// will be iteration indicator word, not locationName string
+
 // will need array of table heading text used for both tables cart info and barista info
 
 // ---------------------------------------
@@ -24,7 +28,7 @@ function CoffeeCarts(locationName, minCustomersHour, maxCustomersHour, avgCupsPe
   this.beansNeededForCupsPerHour = [];
   this.poundPackagesPerHour = [];
   this.employeesPerHour = [];
-  //coffeeCartDataByLocation.push(this);
+  locations.push(this);
 };
 
 // my code for methods for our object
@@ -209,6 +213,18 @@ seaTac.calcDailyEmployeesNeeded();
 // creating variable to fill test table
 var testTable = document.getElementById('test-table');
 
+// loop to create HEADER rows // notes in paper notebook // this will be a FUNCTION with a loop in it
+
+// loop to create REGULAR rows // notes in paper notebook
+for (var i = 0; i < locations.length(); i++) {
+  // if is f
+}
+
+// loop to create FOOTER rows // notes in paper notebook // this will be a FUNCTION with a loop in it
+
+// ---------------------------------------
+// hardcoded beans needed w/ working data
+// ---------------------------------------
 // -------- below here might be entirely too much
 // creating table row
 var table = document.getElementById('test-table');
@@ -242,6 +258,9 @@ testTable.appendChild(trElement);
 
 var testTable = document.getElementById('test-table-employees');
 
+// ---------------------------------------
+// hardcoded employee table w/ working data
+// ---------------------------------------
 // -------- below here might be entirely too much
 // creating table row
 var table = document.getElementById('test-table-employees');
