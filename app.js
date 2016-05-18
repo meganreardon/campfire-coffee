@@ -2,8 +2,6 @@ var hours = ['6:00am', '7:00am', '8:00am', '9:00am', '10:00am', '11:00am', '12:0
 
 // will need array of table heading text used for both tables cart info and barista info
 
-// this will hold a multidimensional array of the coffee cart data by location
-
 // ---------------------------------------
 // constructor funcion code below
 // ---------------------------------------
@@ -208,40 +206,6 @@ seaTac.calcDailyPoundPackagesTotal();
 seaTac.calcDailyBeansNeeded();
 seaTac.calcDailyEmployeesNeeded();
 
-// ---------------------------------------
-// basic rendering code below
-// ---------------------------------------
-// var pikePlace = new CoffeeCarts('Pike Place Market', 14, 35, 1.2, 0.34, 0, 0, 0, 0);
-//
-// pikePlace.calcCupsPerHour();
-// pikePlace.calcCustomersPerHour(); // might not need this hear
-// pikePlace.calcBeansPerHour();
-// pikePlace.calcBeansNeededForCupsPerHour();
-// pikePlace.calcPoundPackagesPerHour();
-// pikePlace.calcEmployeesNeededPerHour();
-// pikePlace.calcEmployeesNeededPerHour();
-// pikePlace.calcDailyCustomersTotal();
-// pikePlace.calcDailyCupsTotal();
-// pikePlace.calcDailyPoundPackagesTotal();
-// pikePlace.calcDailyBeansNeeded();
-
-/*
-// this makes a TR tag
-var trElement = document.createElement('tr');
-// this makes and populates a TD tag
-var thElement = document.createElement('td');
-thElement.textContext = pikePLace.locationName;
-trElement.appendChild(thElement);
-// this makes another TD tag
-var thElement = document.createElement('td');
-thElement.textContext = pikePLace.customersPerHour[0];
-trElement.appendChild(thElement);
-// this makes another TD tag
-var thElement = document.createElement('td');
-thElement.textContext = pikePLace.customersPerHour[1];
-trElement.appendChild(thElement);
-*/
-
 // creating variable to fill test table
 var testTable = document.getElementById('test-table');
 
@@ -298,90 +262,3 @@ var tdElement = document.createElement('td');
 tdElement.textContent = pikePlace.employeesPerHour[0];
 trElement.appendChild(tdElement);
 testTable.appendChild(trElement);
-
-/* THIS BLOCK WORKS
-var table = document.getElementById('test-table');
-var trElement = document.createElement('tr');
-// NEW TABLE ROW
-// declaring location
-var thElement = document.createElement('th');
-thElement.textContent = pikePlace.locationName;
-trElement.appendChild(thElement);
-testTable.appendChild(trElement);
-// populating first cell
-var thElement = document.createElement('td');
-thElement.textContent = pikePlace.customersPerHour[0];
-trElement.appendChild(thElement);
-testTable.appendChild(trElement);
-// populating second cell
-var thElement = document.createElement('td');
-thElement.textContent = pikePlace.customersPerHour[1];
-trElement.appendChild(thElement);
-testTable.appendChild(trElement);
-// populating third cell
-var thElement = document.createElement('td');
-thElement.textContent = pikePlace.customersPerHour[2];
-trElement.appendChild(thElement);
-testTable.appendChild(trElement);
-*/
-
-/* hold for possible
-// NEW TABLE ROW
-var trElement = document.createElement('tr');
-// declaring location
-var thElement = document.createElement('th');
-thElement.textContent = capitolHill.locationName;
-trElement.appendChild(thElement);
-testTable.appendChild(trElement);
-// populating first cell
-var thElement = document.createElement('td');
-thElement.textContent = capitolHill.customersPerHour[0];
-trElement.appendChild(thElement);
-testTable.appendChild(trElement);
-// populating second cell
-var thElement = document.createElement('td');
-thElement.textContent = capitolHill.customersPerHour[1];
-trElement.appendChild(thElement);
-testTable.appendChild(trElement);
-// populating third cell
-var thElement = document.createElement('td');
-thElement.textContent = capitolHill.customersPerHour[2];
-trElement.appendChild(thElement);
-testTable.appendChild(trElement);
-
-// NEW TABLE ROW
-var trElement = document.createElement('tr');
-// declaring location
-var thElement = document.createElement('th');
-thElement.textContent = seattlePublicLibrary.locationName;
-trElement.appendChild(thElement);
-testTable.appendChild(trElement);
-// populating first cell
-var thElement = document.createElement('td');
-thElement.textContent = seattlePublicLibrary.customersPerHour[0];
-trElement.appendChild(thElement);
-testTable.appendChild(trElement);
-// populating second cell
-var thElement = document.createElement('td');
-thElement.textContent = seattlePublicLibrary.customersPerHour[1];
-trElement.appendChild(thElement);
-testTable.appendChild(trElement);
-// populating third cell
-var thElement = document.createElement('td');
-thElement.textContent = seattlePublicLibrary.customersPerHour[2];
-trElement.appendChild(thElement);
-testTable.appendChild(trElement);
-*/
-
-// example code looping through table creation below
-/*
-for(var j = 0; j < arrayTableContent.length; j++) {
-  var trElement = document.createElement('tr');
-    for (var i = 0; i < headings.length; i++) {
-      var thElement = document.createElement('th');
-      thElement.textContent = arrayTableContent[j][i];
-      trElement.appendChild(thElement);
-    }
-  catTable.appendChild(trElement);
-}
-*/
