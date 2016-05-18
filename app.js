@@ -310,6 +310,28 @@ function coffeeData(tableName) {
 };
 
 // ---------------------------------------
+// function to baristas
+// ---------------------------------------
+
+function baristasData(tableName) {
+  for (var i = 0; i < locations.length; i++) {
+    var trElement = document.createElement('tr');
+    var thElement = document.createElement('th');
+    thElement.textContent = locations[i].locationName;
+    trElement.appendChild(thElement);
+    var tdElement = document.createElement('td');
+    tdElement.textContent = locations[i].dailyEmployeesNeeded;
+    trElement.appendChild(tdElement);
+    for (var j = 0; j < hours.length; j++) {
+      var tdElement = document.createElement('td');
+      tdElement.textContent = locations[i].employeesPerHour[j];
+      trElement.appendChild(tdElement);
+    }
+    tableName.appendChild(trElement);
+  }
+};
+
+// ---------------------------------------
 // function to render table footer row
 // ---------------------------------------
 
@@ -330,117 +352,13 @@ function coffeeDataFooter(tableName) {
 };
 
 // -----------------------------------------------------------------------------
-// COFFEE DATA TABLE RENDER
+// COFFEE AND BARISTA DATA TABLE RENDER
 // -----------------------------------------------------------------------------
 
 coffeeDataHeader(beansTable);
 coffeeData(beansTable);
 coffeeDataFooter(beansTable);
 
-// ---------------------------------------
-// BARISTAS TABLE
-// ---------------------------------------
-
 coffeeDataHeader(baristasTable);
-
-// NEW TABLE ROW PIKE PLACE
-var trElement = document.createElement('tr');
-// declaring location
-var thElement = document.createElement('th');
-thElement.textContent = pikePlace.locationName;
-trElement.appendChild(thElement);
-baristasTable.appendChild(trElement);
-// wedging in a totals cell
-var tdElement = document.createElement('td');
-tdElement.textContent = pikePlace.dailyEmployeesNeeded;
-trElement.appendChild(tdElement);
-baristasTable.appendChild(trElement);
-// for loop for PIKE PLACE
-for (i = 0; i < hours.length; i++) {
-  var tdElement = document.createElement('td');
-  tdElement.textContent = pikePlace.employeesPerHour[i];
-  trElement.appendChild(tdElement);
-  baristasTable.appendChild(trElement);
-};
-
-// NEW TABLE ROW CAPITOL HILL
-var trElement = document.createElement('tr');
-// declaring location
-var thElement = document.createElement('th');
-thElement.textContent = capitolHill.locationName;
-trElement.appendChild(thElement);
-baristasTable.appendChild(trElement);
-// wedging in a totals cell
-var tdElement = document.createElement('td');
-tdElement.textContent = capitolHill.dailyEmployeesNeeded;
-trElement.appendChild(tdElement);
-baristasTable.appendChild(trElement);
-// for loop for CAPITOL HILL
-for (i = 0; i < hours.length; i++) {
-  var tdElement = document.createElement('td');
-  tdElement.textContent = capitolHill.employeesPerHour[i];
-  trElement.appendChild(tdElement);
-  baristasTable.appendChild(trElement);
-};
-
-// NEW TABLE ROW PUBLIC LIBRARY
-var trElement = document.createElement('tr');
-// declaring location
-var thElement = document.createElement('th');
-thElement.textContent = seattlePublicLibrary.locationName;
-trElement.appendChild(thElement);
-baristasTable.appendChild(trElement);
-// wedging in a totals cell
-var tdElement = document.createElement('td');
-tdElement.textContent = seattlePublicLibrary.dailyEmployeesNeeded;
-trElement.appendChild(tdElement);
-baristasTable.appendChild(trElement);
-// for loop for SEATTLE PUBLIC LIBRARY
-for (i = 0; i < hours.length; i++) {
-  var tdElement = document.createElement('td');
-  tdElement.textContent = seattlePublicLibrary.employeesPerHour[i];
-  trElement.appendChild(tdElement);
-  baristasTable.appendChild(trElement);
-};
-
-// NEW TABLE ROW SOUTH LAKE UNION
-var trElement = document.createElement('tr');
-// declaring location
-var thElement = document.createElement('th');
-thElement.textContent = southLakeUnion.locationName;
-trElement.appendChild(thElement);
-baristasTable.appendChild(trElement);
-// wedging in a totals cell
-var tdElement = document.createElement('td');
-tdElement.textContent = southLakeUnion.dailyEmployeesNeeded;
-trElement.appendChild(tdElement);
-baristasTable.appendChild(trElement);
-// for loop for SOUTH LAKE UNION
-for (i = 0; i < hours.length; i++) {
-  var tdElement = document.createElement('td');
-  tdElement.textContent = southLakeUnion.employeesPerHour[i];
-  trElement.appendChild(tdElement);
-  baristasTable.appendChild(trElement);
-};
-
-// NEW TABLE ROW SEATAC
-var trElement = document.createElement('tr');
-// declaring location
-var thElement = document.createElement('th');
-thElement.textContent = seaTac.locationName;
-trElement.appendChild(thElement);
-baristasTable.appendChild(trElement);
-// wedging in a totals cell
-var tdElement = document.createElement('td');
-tdElement.textContent = seaTac.dailyEmployeesNeeded;
-trElement.appendChild(tdElement);
-baristasTable.appendChild(trElement);
-// for loop for SEA-TAC AIRPORT
-for (i = 0; i < hours.length; i++) {
-  var tdElement = document.createElement('td');
-  tdElement.textContent = seaTac.employeesPerHour[i];
-  trElement.appendChild(tdElement);
-  baristasTable.appendChild(trElement);
-};
-
+baristasData(baristasTable);
 coffeeDataFooter(baristasTable);
