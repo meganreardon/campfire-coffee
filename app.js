@@ -123,20 +123,37 @@ CoffeeCarts.prototype.calcDailyBeansNeeded = function() {
   this.dailyBeansNeeded = (this.dailyCupsTotal / 16) + this.dailyPoundPackagesTotal;
   this.dailyBeansNeeded = Math.round( this.dailyBeansNeeded * 10 ) / 10;
 };
+
 // added this function to fill table data for beans per hour
+// CoffeeCarts.prototype.calcDataBeansNeededPerHour = function() {
+//   for (var i = 0; i < hours.length; i++) {
+//     var pounds = this.dataBeansNeededPerHour[i];
+//     pounds = Math.round( pounds * 10 ) / 10;
+//     this.dataBeansNeededPerHour.push(pounds);
+//     //var thElement = document.createElement('td');
+//     // oooh dear, this is going to be totally wrong
+//     // tdElement.textContent = beansPerHour[i];
+//     // console.log(beansPerHour[i]);
+//     // trElement.appendChild(tdElement);
+//     // tableName.appendChild(trElement);
+//   }
+// };
 CoffeeCarts.prototype.calcDataBeansNeededPerHour = function() {
-  for (var i = 0; i < hours.length; i++) {
-    var pounds = this.dataBeansNeededPerHour[i];
-    pounds = Math.round( pounds * 10 ) / 10;
-    this.dataBeansNeededPerHour.push(pounds);
-    //var thElement = document.createElement('td');
-    // oooh dear, this is going to be totally wrong
-    // tdElement.textContent = beansPerHour[i];
-    // console.log(beansPerHour[i]);
-    // trElement.appendChild(tdElement);
-    // tableName.appendChild(trElement);
-  }
+//   var trElement = document.createElement('tr');
+//   var thElement = document.createElement('th');
+//   thElement.textContent = this.locationName;
+//   trElement.appendChild(thElement);
+//   var tdElement = document.createElement('td');
+//   tdElement.textContent = this.dailyBeansNeeded;
+//   trElement.appendChild(tdElement);
+//   for (i = 0; i < hours.length; i++) {
+//     var tdElement = document.createElement('td');
+//     tdElement.textContent = this.beansPerHour[i];
+//     trElement.appendChild(tdElement);
+//   }
+//   beansTable.appendChild(trElement);
 };
+
 // added this function to fill in table data for baristas needed per hours
 CoffeeCarts.prototype.dataEmployeesNeededPerHour = function(tableName) {
   for (var i = 0; i < hours.length; i++) {
@@ -292,6 +309,32 @@ function coffeeDataHeader(tableName) {
 // call the coffee data header to render the top row of one of our tables
 coffeeDataHeader(beansTable);
 
+// calcDataBeansNeededPerHour // this is the name of my function for table data rows
+
+// ---------------------------------------
+// code for main data loop creation - move into method
+// ---------------------------------------
+
+var trElement = document.createElement('tr');
+// declaring location
+var thElement = document.createElement('th');
+thElement.textContent = pikePlace.locationName;
+trElement.appendChild(thElement);
+// beansTable.appendChild(trElement);
+// wedging in a totals cell
+var tdElement = document.createElement('td');
+tdElement.textContent = pikePlace.dailyCustomersTotal;
+trElement.appendChild(tdElement);
+// beansTable.appendChild(trElement);
+// for loop for PIKE PLACE
+for (i = 0; i < hours.length; i++) {
+  var tdElement = document.createElement('td');
+  tdElement.textContent = pikePlace.customersPerHour[i];
+  trElement.appendChild(tdElement);
+  // beansTable.appendChild(trElement);
+};
+beansTable.appendChild(trElement);
+
 // ---------------------------------------
 // hardcoded beans needed table data
 // ---------------------------------------
@@ -303,19 +346,20 @@ var trElement = document.createElement('tr');
 var thElement = document.createElement('th');
 thElement.textContent = pikePlace.locationName;
 trElement.appendChild(thElement);
-beansTable.appendChild(trElement);
+// beansTable.appendChild(trElement);
 // wedging in a totals cell
 var tdElement = document.createElement('td');
 tdElement.textContent = pikePlace.dailyCustomersTotal;
 trElement.appendChild(tdElement);
-beansTable.appendChild(trElement);
+// beansTable.appendChild(trElement);
 // for loop for PIKE PLACE
 for (i = 0; i < hours.length; i++) {
   var tdElement = document.createElement('td');
   tdElement.textContent = pikePlace.customersPerHour[i];
   trElement.appendChild(tdElement);
-  beansTable.appendChild(trElement);
+  // beansTable.appendChild(trElement);
 };
+beansTable.appendChild(trElement);
 
 // NEW TABLE ROW CAPITOL HILL
 var trElement = document.createElement('tr');
