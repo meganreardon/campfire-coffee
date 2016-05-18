@@ -229,11 +229,12 @@ seaTac.calcDailyEmployeesNeeded();
 // ---------------------------------------
 // creating variable to fill test table
 var beansTable = document.getElementById('beans-table');
+var baristasTable = document.getElementById('baristas-table');
 
 // ---------------------------------------
 // function to render table header row
 // ---------------------------------------
-function coffeeDataHeader() {
+function coffeeDataHeader(tableName) {
   // create the table
   //var tableHeader = document.getElementById('beans-table');
   // create the tr
@@ -242,12 +243,12 @@ function coffeeDataHeader() {
   var thElement = document.createElement('th');
   thElement.textContent = '';
   trElement.appendChild(thElement);
-  beansTable.appendChild(trElement);
+  tableName.appendChild(trElement);
   // create the second th - populate with Daily Total
   var thElement = document.createElement('th');
   thElement.textContent = 'Daily Total';
   trElement.appendChild(thElement);
-  beansTable.appendChild(trElement);
+  tableName.appendChild(trElement);
   //console.log('reached end of static code');
   // loop through the hours of the day, all th cells
   for (var i = 0; i < hours.length; i++) {
@@ -256,13 +257,13 @@ function coffeeDataHeader() {
     //console.log(hours[i]);
     thElement.textContent = hours[i];
     trElement.appendChild(thElement);
-    beansTable.appendChild(trElement);
+    tableName.appendChild(trElement);
   }
   // fin
 };
 
 // call the coffee data header to render the top row of one of our tables
-coffeeDataHeader();
+coffeeDataHeader(beansTable);
 
 // ---------------------------------------
 // hardcoded beans needed table data
@@ -374,32 +375,34 @@ for (i = 0; i < hours.length; i++) {
 // ---------------------------------------
  // var table = document.getElementById('beans-table');
 
-function coffeeDataFooter() {
+//var baristasTable = document.getElementById('bartistas-table');
+
+function coffeeDataFooter(tableName) {
 // create the table
-  var tableHeader = document.getElementById('beans-table');
+  // var tableHeader = document.getElementById('beans-table');
   // create the tr
   var trElement = document.createElement('tr');
   //create the first th
   var thElement = document.createElement('th');
   thElement.textContent = 'TOTALS';
   trElement.appendChild(thElement);
-  tableHeader.appendChild(trElement);
+  tableName.appendChild(trElement);
   // create the second th - populate with Daily Total
   var thElement = document.createElement('th');
   thElement.textContent = 'PH';
   trElement.appendChild(thElement);
-  tableHeader.appendChild(trElement);
+  tableName.appendChild(trElement);
   for (var i = 0; i < hours.length; i++) {
     //console.log('got inside the loop');
     var thElement = document.createElement('th');
     //console.log(hours[i]);
     thElement.textContent = 'ph';
     trElement.appendChild(thElement);
-    tableHeader.appendChild(trElement);
+    tableName.appendChild(trElement);
   }
 // fin
 };
-coffeeDataFooter();
+coffeeDataFooter(beansTable);
 
 // ---------------------------------------
 // BARISTAS TABLE
@@ -409,21 +412,22 @@ coffeeDataFooter();
 // ---------------------------------------
 var baristasTable = document.getElementById('baristas-table');
 
-function coffeeDataHeader() {
+/* begin reduntant function heder loop
+function coffeeDataHeader(tableName) {
   // create the table
-  var baristasTable = document.getElementById('baristas-table');
+  //  var baristasTable = document.getElementById('baristas-table');
   // create the tr
   var trElement = document.createElement('tr');
   //create the first th - populate with nothing
   var thElement = document.createElement('th');
   thElement.textContent = '';
   trElement.appendChild(thElement);
-  baristasTable.appendChild(trElement);
+  tableName.appendChild(trElement);
   // create the second th - populate with Daily Total
   var thElement = document.createElement('th');
   thElement.textContent = 'Daily Total';
   trElement.appendChild(thElement);
-  baristasTable.appendChild(trElement);
+  tableName.appendChild(trElement);
   //console.log('reached end of static code');
   // loop through the hours of the day, all th cells
   for (var i = 0; i < hours.length; i++) {
@@ -432,10 +436,13 @@ function coffeeDataHeader() {
     //console.log(hours[i]);
     thElement.textContent = hours[i];
     trElement.appendChild(thElement);
-    baristasTable.appendChild(trElement);
+    tableName.appendChild(trElement);
   }
   // fin
 };
+end redundant footer table loop */
+
+coffeeDataHeader(baristasTable);
 
 // NEW TABLE ROW PIKE PLACE
 var trElement = document.createElement('tr');
@@ -443,18 +450,18 @@ var trElement = document.createElement('tr');
 var thElement = document.createElement('th');
 thElement.textContent = pikePlace.locationName;
 trElement.appendChild(thElement);
-beansTable.appendChild(trElement);
+baristasTable.appendChild(trElement);
 // wedging in a totals cell
 var tdElement = document.createElement('td');
 tdElement.textContent = pikePlace.dailyEmployeesNeeded;
 trElement.appendChild(tdElement);
-beansTable.appendChild(trElement);
+baristasTable.appendChild(trElement);
 // for loop for PIKE PLACE
 for (i = 0; i < hours.length; i++) {
   var tdElement = document.createElement('td');
   tdElement.textContent = pikePlace.employeesPerHour[i];
   trElement.appendChild(tdElement);
-  beansTable.appendChild(trElement);
+  baristasTable.appendChild(trElement);
 };
 
 // NEW TABLE ROW CAPITOL HILL
@@ -463,18 +470,18 @@ var trElement = document.createElement('tr');
 var thElement = document.createElement('th');
 thElement.textContent = capitolHill.locationName;
 trElement.appendChild(thElement);
-beansTable.appendChild(trElement);
+baristasTable.appendChild(trElement);
 // wedging in a totals cell
 var tdElement = document.createElement('td');
 tdElement.textContent = capitolHill.dailyEmployeesNeeded;
 trElement.appendChild(tdElement);
-beansTable.appendChild(trElement);
+baristasTable.appendChild(trElement);
 // for loop for CAPITOL HILL
 for (i = 0; i < hours.length; i++) {
   var tdElement = document.createElement('td');
   tdElement.textContent = capitolHill.employeesPerHour[i];
   trElement.appendChild(tdElement);
-  beansTable.appendChild(trElement);
+  baristasTable.appendChild(trElement);
 };
 
 // NEW TABLE ROW PUBLIC LIBRARY
@@ -483,18 +490,18 @@ var trElement = document.createElement('tr');
 var thElement = document.createElement('th');
 thElement.textContent = seattlePublicLibrary.locationName;
 trElement.appendChild(thElement);
-beansTable.appendChild(trElement);
+baristasTable.appendChild(trElement);
 // wedging in a totals cell
 var tdElement = document.createElement('td');
 tdElement.textContent = seattlePublicLibrary.dailyEmployeesNeeded;
 trElement.appendChild(tdElement);
-beansTable.appendChild(trElement);
+baristasTable.appendChild(trElement);
 // for loop for SEATTLE PUBLIC LIBRARY
 for (i = 0; i < hours.length; i++) {
   var tdElement = document.createElement('td');
   tdElement.textContent = seattlePublicLibrary.employeesPerHour[i];
   trElement.appendChild(tdElement);
-  beansTable.appendChild(trElement);
+  baristasTable.appendChild(trElement);
 };
 
 // NEW TABLE ROW SOUTH LAKE UNION
@@ -503,18 +510,18 @@ var trElement = document.createElement('tr');
 var thElement = document.createElement('th');
 thElement.textContent = southLakeUnion.locationName;
 trElement.appendChild(thElement);
-beansTable.appendChild(trElement);
+baristasTable.appendChild(trElement);
 // wedging in a totals cell
 var tdElement = document.createElement('td');
 tdElement.textContent = southLakeUnion.dailyEmployeesNeeded;
 trElement.appendChild(tdElement);
-beansTable.appendChild(trElement);
+baristasTable.appendChild(trElement);
 // for loop for SOUTH LAKE UNION
 for (i = 0; i < hours.length; i++) {
   var tdElement = document.createElement('td');
   tdElement.textContent = southLakeUnion.employeesPerHour[i];
   trElement.appendChild(tdElement);
-  beansTable.appendChild(trElement);
+  baristasTable.appendChild(trElement);
 };
 
 // NEW TABLE ROW SEATAC
@@ -523,21 +530,22 @@ var trElement = document.createElement('tr');
 var thElement = document.createElement('th');
 thElement.textContent = seaTac.locationName;
 trElement.appendChild(thElement);
-beansTable.appendChild(trElement);
+baristasTable.appendChild(trElement);
 // wedging in a totals cell
 var tdElement = document.createElement('td');
 tdElement.textContent = seaTac.dailyEmployeesNeeded;
 trElement.appendChild(tdElement);
-beansTable.appendChild(trElement);
+baristasTable.appendChild(trElement);
 // for loop for SEA-TAC AIRPORT
 for (i = 0; i < hours.length; i++) {
   var tdElement = document.createElement('td');
   tdElement.textContent = seaTac.employeesPerHour[i];
   trElement.appendChild(tdElement);
-  beansTable.appendChild(trElement);
+  baristasTable.appendChild(trElement);
 };
 
-function coffeeDataFooter() {
+/* redundant footer loop
+function coffeeDataFooter(tableName) {
 // create the table
   var tableHeader = document.getElementById('beans-table');
   // create the tr
@@ -562,7 +570,8 @@ function coffeeDataFooter() {
   }
 // fin
 };
-coffeeDataFooter();
+*/
+coffeeDataFooter(baristasTable);
 
 // call the coffee data header to render the top row of one of our tables
 //coffeeDataHeader();
