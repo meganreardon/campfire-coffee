@@ -12,16 +12,25 @@ var locations = [];
 
 // constructor and variables to pass
 function CoffeeCarts(locationName, minCustomersHour, maxCustomersHour, avgCupsPerCustomer, avgPoundBagsBoughtPerCustomer, dailyCustomersTotal, dailyCupsTotal, dailyPoundPackagesTotal, dailyBeansNeeded, dailyEmployeesNeeded, dataBeansNeededPerHour) {
+  // known values below
   this.locationName = locationName;
   this.minCustomersHour = minCustomersHour;
   this.maxCustomersHour = maxCustomersHour;
   this.avgCupsPerCustomer = avgCupsPerCustomer;
   this.avgPoundBagsBoughtPerCustomer = avgPoundBagsBoughtPerCustomer;
+  // setting unknowns
+  this.dailyCustomersTotal = 0;
+  this.dailyCupsTotal = 0;
+  this.dailyPoundPackagesTotal = 0;
+  this.dailyBeansNeeded = 0;
+  this.dailyEmployeesNeeded = 0;
+  // new unknown below
   this.dailyCustomersTotal = dailyCustomersTotal;
   this.dailyCupsTotal = dailyCupsTotal;
   this.dailyPoundPackagesTotal = dailyPoundPackagesTotal;
   this.dailyBeansNeeded = dailyBeansNeeded;
   this.dailyEmployeesNeeded = dailyEmployeesNeeded; //added this variable correspond w/ new function below
+  // arrays!
   this.customersPerHour = [];
   this.cupsPerHour = [];
   this.beansPerHour = [];
@@ -150,10 +159,10 @@ CoffeeCarts.prototype.dataEmployeesNeededPerHour = function(tableName) {
 // ---------------------------------------
 // pike place instance creation
 // ---------------------------------------
-var pikePlace = new CoffeeCarts('Pike Place Market', 14, 35, 1.2, 0.34, 0, 0, 0, 0, 0);
+var pikePlace = new CoffeeCarts('Pike Place Market', 14, 35, 1.2, 0.34);
 
 pikePlace.calcCupsPerHour();
-pikePlace.calcCustomersPerHour(); // might not need this hear, is called inside cups per hour above
+// pikePlace.calcCustomersPerHour(); // might not need this hear, is called inside cups per hour above
 pikePlace.calcBeansPerHour();
 pikePlace.calcBeansNeededForCupsPerHour();
 pikePlace.calcPoundPackagesPerHour();
@@ -168,10 +177,10 @@ pikePlace.calcDataBeansNeededPerHour();
 // ---------------------------------------
 // capitol hill instance creation
 // ---------------------------------------
-var capitolHill = new CoffeeCarts('Capitol Hill', 12, 28, 3.2, 0.03, 0, 0, 0, 0, 0);
+var capitolHill = new CoffeeCarts('Capitol Hill', 12, 28, 3.2, 0.03);
 
 capitolHill.calcCupsPerHour();
-capitolHill.calcCustomersPerHour(); // might not need this hear
+// capitolHill.calcCustomersPerHour(); // might not need this hear
 capitolHill.calcBeansPerHour();
 capitolHill.calcBeansNeededForCupsPerHour();
 capitolHill.calcPoundPackagesPerHour();
@@ -187,10 +196,10 @@ capitolHill.calcDataBeansNeededPerHour();
 // ---------------------------------------
 // seattle public library instance creation
 // ---------------------------------------
-var seattlePublicLibrary = new CoffeeCarts('Seattle Public Library', 9, 45, 2.6, 0.02, 0, 0, 0, 0, 0);
+var seattlePublicLibrary = new CoffeeCarts('Seattle Public Library', 9, 45, 2.6, 0.02);
 
 seattlePublicLibrary.calcCupsPerHour();
-seattlePublicLibrary.calcCustomersPerHour(); // might not need this hear
+// seattlePublicLibrary.calcCustomersPerHour(); // might not need this hear
 seattlePublicLibrary.calcBeansPerHour();
 seattlePublicLibrary.calcBeansNeededForCupsPerHour();
 seattlePublicLibrary.calcPoundPackagesPerHour();
@@ -206,10 +215,10 @@ seattlePublicLibrary.calcDataBeansNeededPerHour();
 // ---------------------------------------
 // south lake union instance creation
 // ---------------------------------------
-var southLakeUnion = new CoffeeCarts('South Lake Union', 5, 18, 1.3, 0.04, 0, 0, 0, 0, 0);
+var southLakeUnion = new CoffeeCarts('South Lake Union', 5, 18, 1.3, 0.04);
 
 southLakeUnion.calcCupsPerHour();
-southLakeUnion.calcCustomersPerHour(); // might not need this hear
+// southLakeUnion.calcCustomersPerHour(); // might not need this hear
 southLakeUnion.calcBeansPerHour();
 southLakeUnion.calcBeansNeededForCupsPerHour();
 southLakeUnion.calcPoundPackagesPerHour();
@@ -225,10 +234,10 @@ southLakeUnion.calcDataBeansNeededPerHour();
 // ---------------------------------------
 // sea-tac airport instance creation
 // ---------------------------------------
-var seaTac = new CoffeeCarts('Sea-Tac Airport', 28, 44, 1.1, 0.41, 0, 0, 0, 0, 0);
+var seaTac = new CoffeeCarts('Sea-Tac Airport', 28, 44, 1.1, 0.41);
 
 seaTac.calcCupsPerHour();
-seaTac.calcCustomersPerHour(); // might not need this hear
+// seaTac.calcCustomersPerHour(); // might not need this hear
 seaTac.calcBeansPerHour();
 seaTac.calcBeansNeededForCupsPerHour();
 seaTac.calcPoundPackagesPerHour();
@@ -263,12 +272,10 @@ function coffeeDataHeader(tableName) {
   var thElement = document.createElement('th');
   thElement.textContent = '';
   trElement.appendChild(thElement);
-  tableName.appendChild(trElement);
   // create the second th - populate with Daily Total
   var thElement = document.createElement('th');
   thElement.textContent = 'Daily Total';
   trElement.appendChild(thElement);
-  tableName.appendChild(trElement);
   //console.log('reached end of static code');
   // loop through the hours of the day, all th cells
   for (var i = 0; i < hours.length; i++) {
@@ -403,12 +410,10 @@ function coffeeDataFooter(tableName) {
   var thElement = document.createElement('th');
   thElement.textContent = 'TOTALS';
   trElement.appendChild(thElement);
-  tableName.appendChild(trElement);
   // create the second th - populate with Daily Total
   var thElement = document.createElement('th');
   thElement.textContent = 'PH';
   trElement.appendChild(thElement);
-  tableName.appendChild(trElement);
   for (var i = 0; i < hours.length; i++) {
     // <---------- the loops to add up table columns will eventually go here
     //console.log('got inside the loop');
@@ -534,8 +539,9 @@ for (i = 0; i < hours.length; i++) {
 
 coffeeDataFooter(baristasTable);
 
-// TEST TABLE TEST TABLE
-
+// ---------------------------------------
+// TEST TABLE TEST TABLE -- ALL BELOW HERE IS ME FIGURING OUT LOOPING THE TABLES
+// ---------------------------------------
 var testTable = document.getElementById('test-table');
 
 // ---------------------------------------
@@ -570,13 +576,11 @@ function coffeeDataMain(tableName) {
 // fin
 };
 
-var locationAndHour = instanceName.locationName
+// ????? var locationAndHour = instanceName.locationName;
 
-coffeeDataHeader(testTable);
-coffeeDataMain(testTable);
-coffeeDataFooter(testTable);
-
-
-
+// turn these back on for testing later
+// coffeeDataHeader(testTable);
+// coffeeDataMain(testTable);
+// coffeeDataFooter(testTable);
 
 //dataBeansNeededPerHour(beansTable);

@@ -1,0 +1,34 @@
+body {
+  background-color: white;
+  color: black;
+  font-family: Verdana, Arial, sans-serif;
+  font-size: 12px;
+  empty-cells: show;
+}
+
+table {
+  background-color: #4d79ff;
+}
+
+tr {
+  background-color: #4d79ff;
+  padding: 2px 5px;
+  color: #ffffff;
+}
+
+tr.hover {
+  background-color: #4d79ff;
+}
+
+th {
+  background-color: #4d79ff;
+  padding: 2px 5px 2px 5px;
+  text-align: left;
+  color: #ffffff;
+}
+
+td {
+  background-color: #ffffff;
+  padding: 2px 5px;
+  color: black;
+}
