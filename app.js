@@ -216,8 +216,64 @@ var testTable = document.getElementById('test-table');
 // loop to create HEADER rows // notes in paper notebook // this will be a FUNCTION with a loop in it
 
 // loop to create REGULAR rows // notes in paper notebook
-for (var i = 0; i < locations.length(); i++) {
-  // if is f
+//for (loopy) {
+  // if td zero print nothing
+  // if td one print 'Daily Total'
+  // for loop
+      // td content hours[i] - 6am
+      // td content hours[i] - 7am
+  // end for loop
+//};
+
+// ---------------------------------------
+// function to render table header row
+// ---------------------------------------
+function coffeeDataHeader() {
+  // create the table
+  var tableHeader = document.getElementById('test-table-header');
+  // create the tr
+  var trElement = document.createElement('tr');
+  //create the first th - populate with nothing
+  var thElement = document.createElement('th');
+  thElement.textContent = '';
+  trElement.appendChild(thElement);
+  tableHeader.appendChild(trElement);
+  // create the second th - populate with Daily Total
+  var thElement = document.createElement('th');
+  thElement.textContent = 'Daily Total';
+  trElement.appendChild(thElement);
+  tableHeader.appendChild(trElement);
+  //console.log('reached end of static code');
+  // loop through the hours of the day, all th cells
+  for (var i = 0; i < hours.length; i++) {
+    //console.log('got inside the loop');
+    var thElement = document.createElement('th');
+    //console.log(hours[i]);
+    thElement.textContent = hours[i];
+    trElement.appendChild(thElement);
+    tableHeader.appendChild(trElement);
+  }
+  // fin -- no need to close the table, we do that elsewhere
+};
+
+// call the coffee data header to render the top row of one of our tables
+coffeeDataHeader();
+
+// ---------------------------------------
+// function to render table data row
+// ---------------------------------------
+
+function coffeeDataMiddle() {
+  var tableHeader = document.getElementById('test-table-header'); // do I need this here?
+  // create the tr
+  var trElement = document.createElement('tr');
+  //create the first th - populate with name of location
+  var thElement = document.createElement('');
+  // print the name of the location
+  // print the total beans needed for that location
+  // loop through the total beans by hours
+    // loopy
+  // no need to close the table
 }
 
 // loop to create FOOTER rows // notes in paper notebook // this will be a FUNCTION with a loop in it
