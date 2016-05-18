@@ -9,7 +9,7 @@ var hours = ['6:00am', '7:00am', '8:00am', '9:00am', '10:00am', '11:00am', '12:0
 // ---------------------------------------
 
 // constructor and variables to pass
-function CoffeeCarts(locationName, minCustomersHour, maxCustomersHour, avgCupsPerCustomer, avgPoundBagsBoughtPerCustomer, dailyCustomersTotal, dailyCupsTotal, dailyPoundPackagesTotal, dailyBeansNeeded) {
+function CoffeeCarts(locationName, minCustomersHour, maxCustomersHour, avgCupsPerCustomer, avgPoundBagsBoughtPerCustomer, dailyCustomersTotal, dailyCupsTotal, dailyPoundPackagesTotal, dailyBeansNeeded, dailyEmployeesNeeded) {
   this.locationName = locationName;
   this.minCustomersHour = minCustomersHour;
   this.maxCustomersHour = maxCustomersHour;
@@ -19,6 +19,7 @@ function CoffeeCarts(locationName, minCustomersHour, maxCustomersHour, avgCupsPe
   this.dailyCupsTotal = dailyCupsTotal;
   this.dailyPoundPackagesTotal = dailyPoundPackagesTotal;
   this.dailyBeansNeeded = dailyBeansNeeded;
+  this.dailyEmployeesNeeded = dailyEmployeesNeeded; //added this variable correspond w/ new function below
   this.customersPerHour = [];
   this.cupsPerHour = [];
   this.beansPerHour = [];
@@ -73,10 +74,16 @@ CoffeeCarts.prototype.calcBeansPerHour = function() {
 
 CoffeeCarts.prototype.calcEmployeesNeededPerHour = function() {
   for (var i = 0; i < hours.length; i++) {
-    //
     var employees = (this.customersPerHour[i] * 2) / 60;
     employees = Math.ceil(employees);
     this.employeesPerHour.push(employees);
+  }
+};
+
+// new function added to varible dailyEmployeesNeeded
+CoffeeCarts.prototype.calcDailyEmployeesNeeded = function() {
+  for (var i = 0; i < hours.length; i++) {
+    this.dailyEmployeesNeeded += this.employeesPerHour[i];
   }
 };
 
@@ -115,7 +122,7 @@ CoffeeCarts.prototype.calcDailyBeansNeeded = function() {
 // ---------------------------------------
 // pike place isntance creation
 // ---------------------------------------
-var pikePlace = new CoffeeCarts('Pike Place Market', 14, 35, 1.2, 0.34, 0, 0, 0, 0);
+var pikePlace = new CoffeeCarts('Pike Place Market', 14, 35, 1.2, 0.34, 0, 0, 0, 0, 0);
 
 pikePlace.calcCupsPerHour();
 pikePlace.calcCustomersPerHour(); // might not need this hear, is called inside cups per hour above
@@ -127,11 +134,12 @@ pikePlace.calcDailyCustomersTotal();
 pikePlace.calcDailyCupsTotal();
 pikePlace.calcDailyPoundPackagesTotal();
 pikePlace.calcDailyBeansNeeded();
+pikePlace.calcDailyEmployeesNeeded();
 
 // ---------------------------------------
 // capitol hill isntance creation
 // ---------------------------------------
-var capitolHill = new CoffeeCarts('Capitol Hill', 12, 28, 3.2, 0.03, 0, 0, 0, 0);
+var capitolHill = new CoffeeCarts('Capitol Hill', 12, 28, 3.2, 0.03, 0, 0, 0, 0, 0);
 
 capitolHill.calcCupsPerHour();
 capitolHill.calcCustomersPerHour(); // might not need this hear
@@ -144,11 +152,12 @@ capitolHill.calcDailyCustomersTotal();
 capitolHill.calcDailyCupsTotal();
 capitolHill.calcDailyPoundPackagesTotal();
 capitolHill.calcDailyBeansNeeded();
+capitolHill.calcDailyEmployeesNeeded();
 
 // ---------------------------------------
 // seattle public library isntance creation
 // ---------------------------------------
-var seattlePublicLibrary = new CoffeeCarts('Seattle Public Library', 9, 45, 2.6, 0.02, 0, 0, 0, 0);
+var seattlePublicLibrary = new CoffeeCarts('Seattle Public Library', 9, 45, 2.6, 0.02, 0, 0, 0, 0, 0);
 
 seattlePublicLibrary.calcCupsPerHour();
 seattlePublicLibrary.calcCustomersPerHour(); // might not need this hear
@@ -161,11 +170,12 @@ seattlePublicLibrary.calcDailyCustomersTotal();
 seattlePublicLibrary.calcDailyCupsTotal();
 seattlePublicLibrary.calcDailyPoundPackagesTotal();
 seattlePublicLibrary.calcDailyBeansNeeded();
+seattlePublicLibrary.calcDailyEmployeesNeeded();
 
 // ---------------------------------------
 // south lake union isntance creation
 // ---------------------------------------
-var southLakeUnion = new CoffeeCarts('South Lake Union', 5, 18, 1.3, 0.04, 0, 0, 0, 0);
+var southLakeUnion = new CoffeeCarts('South Lake Union', 5, 18, 1.3, 0.04, 0, 0, 0, 0, 0);
 
 southLakeUnion.calcCupsPerHour();
 southLakeUnion.calcCustomersPerHour(); // might not need this hear
@@ -178,11 +188,12 @@ southLakeUnion.calcDailyCustomersTotal();
 southLakeUnion.calcDailyCupsTotal();
 southLakeUnion.calcDailyPoundPackagesTotal();
 southLakeUnion.calcDailyBeansNeeded();
+southLakeUnion.calcDailyEmployeesNeeded();
 
 // ---------------------------------------
 // sea-tac airport instance creation
 // ---------------------------------------
-var seaTac = new CoffeeCarts('Sea-Tac Airport', 28, 44, 1.1, 0.41, 0, 0, 0, 0);
+var seaTac = new CoffeeCarts('Sea-Tac Airport', 28, 44, 1.1, 0.41, 0, 0, 0, 0, 0);
 
 seaTac.calcCupsPerHour();
 seaTac.calcCustomersPerHour(); // might not need this hear
@@ -195,6 +206,7 @@ seaTac.calcDailyCustomersTotal();
 seaTac.calcDailyCupsTotal();
 seaTac.calcDailyPoundPackagesTotal();
 seaTac.calcDailyBeansNeeded();
+seaTac.calcDailyEmployeesNeeded();
 
 // ---------------------------------------
 // basic rendering code below
@@ -213,9 +225,6 @@ seaTac.calcDailyBeansNeeded();
 // pikePlace.calcDailyPoundPackagesTotal();
 // pikePlace.calcDailyBeansNeeded();
 
-// creating variable to fill test table
-var testTable = document.getElementById('test-table');
-
 /*
 // this makes a TR tag
 var trElement = document.createElement('tr');
@@ -232,6 +241,9 @@ var thElement = document.createElement('td');
 thElement.textContext = pikePLace.customersPerHour[1];
 trElement.appendChild(thElement);
 */
+
+// creating variable to fill test table
+var testTable = document.getElementById('test-table');
 
 // -------- below here might be entirely too much
 // creating table row
@@ -261,6 +273,29 @@ testTable.appendChild(trElement);
 // populating third cell
 var tdElement = document.createElement('td');
 tdElement.textContent = pikePlace.customersPerHour[2];
+trElement.appendChild(tdElement);
+testTable.appendChild(trElement);
+
+var testTable = document.getElementById('test-table-employees');
+
+// -------- below here might be entirely too much
+// creating table row
+var table = document.getElementById('test-table-employees');
+var trElement = document.createElement('tr');
+// NEW TABLE ROW
+// declaring location
+var thElement = document.createElement('th');
+thElement.textContent = pikePlace.locationName;
+trElement.appendChild(thElement);
+testTable.appendChild(trElement);
+// wedging in a totals cell
+var tdElement = document.createElement('td');
+tdElement.textContent = pikePlace.dailyEmployeesNeeded;
+trElement.appendChild(tdElement);
+testTable.appendChild(trElement);
+// populating first cell
+var tdElement = document.createElement('td');
+tdElement.textContent = pikePlace.employeesPerHour[0];
 trElement.appendChild(tdElement);
 testTable.appendChild(trElement);
 
