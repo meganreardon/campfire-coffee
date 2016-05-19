@@ -181,6 +181,26 @@ CoffeeCarts.prototype.renderCoffeeDataRows = function() {
 
 };
 
+// function to render barista table
+// Comment.prototype.renderBaristasDataRows = function() {
+//   tableName.appendChild(trElement);
+//   var tableName = beansTable;
+//   var trElement = document.createElement('tr');
+//   trElement.innerHTML = '<tr>';
+//   var thElement = document.createElement('th');
+//   thElement.innerHTML = '<th>' + this.locationName + '</th>';
+//   trElement.appendChild(thElement);
+//   var tdElement = document.createElement('td');
+//   tdElement.innerHTML = '<td>' + this.dailyEmployeesNeeded + '</td>';
+//   trElement.appendChild(tdElement);
+//   for (var j = 0; j < hours.length; j++) {
+//     var tdElement = document.createElement('td');
+//     tdElement.innerHTML = '<td>' + this.employeesPerHour[j] + '</td>';
+//     trElement.appendChild(tdElement);
+//   }
+//   tableName.appendChild(trElement);
+// };
+
 // ---------------------------------------
 // instance creation
 // ---------------------------------------
@@ -208,6 +228,7 @@ function callCalcMethods() {
     calcMethodsNames[i].calcBeansPerHour();
     //calcMethodsNames[i].renderBeansData();
     calcMethodsNames[i].renderCoffeeDataRows();
+    //calcMethodsNames[i].renderBaristasDataRows();
   }
 };
 
@@ -270,23 +291,23 @@ function coffeeDataHeader(tableName) {
 // function to render baristas
 // ---------------------------------------
 
-function baristasData(tableName) {
-  for (var i = 0; i < locations.length; i++) {
-    var trElement = document.createElement('tr');
-    var thElement = document.createElement('th');
-    thElement.textContent = locations[i].locationName;
-    trElement.appendChild(thElement);
-    var tdElement = document.createElement('td');
-    tdElement.textContent = locations[i].dailyEmployeesNeeded;
-    trElement.appendChild(tdElement);
-    for (var j = 0; j < hours.length; j++) {
-      var tdElement = document.createElement('td');
-      tdElement.textContent = locations[i].employeesPerHour[j];
-      trElement.appendChild(tdElement);
-    }
-    tableName.appendChild(trElement);
-  }
-};
+// function baristasData(tableName) {
+//   for (var i = 0; i < locations.length; i++) {
+//     var trElement = document.createElement('tr');
+//     var thElement = document.createElement('th');
+//     thElement.textContent = locations[i].locationName;
+//     trElement.appendChild(thElement);
+//     var tdElement = document.createElement('td');
+//     tdElement.textContent = locations[i].dailyEmployeesNeeded;
+//     trElement.appendChild(tdElement);
+//     for (var j = 0; j < hours.length; j++) {
+//       var tdElement = document.createElement('td');
+//       tdElement.textContent = locations[i].employeesPerHour[j];
+//       trElement.appendChild(tdElement);
+//     }
+//     tableName.appendChild(trElement);
+//   }
+// };
 
 // ---------------------------------------
 // function to render table footer row
@@ -325,7 +346,8 @@ callCalcMethods(); // this is here because it runs my render method // need to f
 coffeeDataFooter(beansTable);
 
 coffeeDataHeader(baristasTable);
-baristasData(baristasTable);
+//renderBaristasDataRows();
+// baristasData(baristasTable);
 coffeeDataFooter(baristasTable);
 
 // -----------------------------------------------------------------------------
