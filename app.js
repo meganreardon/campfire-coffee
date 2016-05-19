@@ -127,9 +127,8 @@ CoffeeCarts.prototype.calcDailyBeansNeeded = function() {
 CoffeeCarts.prototype.renderCoffeeDataRows = function() {
   var tableName = beansTable;
   var trElement = document.createElement('tr');
-  trElement.innerHTML = '<tr>';
   var thElement = document.createElement('th');
-  thElement.innerHTML = '<th>' + this.locationName + '</th>';
+  thElement.textContent = this.locationName ;
   trElement.appendChild(thElement);
   var tdElement = document.createElement('td');
   tdElement.innerHTML = '<td>' + this.dailyBeansNeeded + '</td>';
@@ -183,19 +182,17 @@ var southLakeUnion = new CoffeeCarts('South Lake Union', 5, 18, 1.3, 0.04);
 var seaTac = new CoffeeCarts('Sea-Tac Airport', 28, 44, 1.1, 0.41);
 
 //loop to call methods
-function callCalcMethods() {
-  for (var i = 0; i < locations.length; i++) {
-    locations[i].calcCupsPerHour();
-    locations[i].calcBeansNeededForCupsPerHour();
-    locations[i].calcPoundPackagesPerHour();
-    locations[i].calcEmployeesNeededPerHour();
-    locations[i].calcDailyCustomersTotal();
-    locations[i].calcDailyCupsTotal();
-    locations[i].calcDailyPoundPackagesTotal();
-    locations[i].calcDailyBeansNeeded();
-    locations[i].calcDailyEmployeesNeeded();
-    locations[i].calcBeansPerHour();
-  }
+function callCalcMethods(location) {
+  location.calcCupsPerHour();
+  location.calcBeansNeededForCupsPerHour();
+  location.calcPoundPackagesPerHour();
+  location.calcEmployeesNeededPerHour();
+  location.calcDailyCustomersTotal();
+  location.calcDailyCupsTotal();
+  location.calcDailyPoundPackagesTotal();
+  location.calcDailyBeansNeeded();
+  location.calcDailyEmployeesNeeded();
+  location.calcBeansPerHour();
 };
 
 function callBeanData() {
@@ -210,7 +207,11 @@ function callBaristasData() {
   }
 };
 
-callCalcMethods();
+callCalcMethods(pikePlace);
+callCalcMethods(capitolHill);
+callCalcMethods(seattlePublicLibrary);
+callCalcMethods(southLakeUnion);
+callCalcMethods(seaTac);
 
 // ---------------------------------------
 // function to render table header row
@@ -284,7 +285,6 @@ coffeeDataFooter(baristasTable);
 
 // setting up variables
 var handleNewCartSubmit = document.getElementById('add-new-location-form'); // this is the form itself
-//var handleNewCartSubmit = document.getElementById('add-new-location-button'); // this is the button
 
 // handle submission - my own, unfinished
 handleNewCartSubmit.addEventListener('submit', function(event){
@@ -292,33 +292,43 @@ handleNewCartSubmit.addEventListener('submit', function(event){
   event.preventDefault();
 
   var addNewLocation = event.target.newlocation.value;
-  console.log(addNewLocation);
-  var addNewMin = event.target.newmin.value;
-  var addNewMax = event.target.newmax.value;
-  var addNewCups = event.target.newcups.value;
-  var addNewPounds = event.target.newpounds.value;
+  // need to parse int the numbers as they go in
+  var addNewMin = parseFloat(event.target.newmin.value);
+  var addNewMax = parseFloat(event.target.newmax.value);
+  var addNewCups = parseFloat(event.target.newcups.value);
+  var addNewPounds = parseFloat(event.target.newpounds.value);
 
   if (!event.target.newlocation.value || !event.target.newmin.value || !event.target.newmax.value || !event.target.newcups.value || !event.target.newpounds.value) {
     return alert('All fields need to be filled in. Thanks!');
   }
 
-  console.log(addNewMin);
-  console.log(addNewMax);
-  console.log(addNewCups);
-  console.log(addNewPounds);
-
   var newCoffeeCart = new CoffeeCarts(addNewLocation, addNewMin, addNewMax, addNewCups, addNewPounds);
+  callCalcMethods(newCoffeeCart);
+
+
+
+  // loop through body and footer of Beans table and set
+  //chatList.innerHTML = '';
+  beansTable.innerHTML = '';
+  baristasTable.innerHTML = '';
+  // for (var i = 0; i < locations.length; i++) {
+  //   console.log('about to delete ' + i);
+  //   locations[i].innerHTML = '';
+  // };
+
+
+  //rewrite body and footers of tables
+  coffeeDataHeader(beansTable);
+  callBeanData();
+  coffeeDataFooter(beansTable);
+
+  coffeeDataHeader(baristasTable);
+  callBaristasData();
+  coffeeDataFooter(baristasTable);
 
   event.target.newlocation.value = null;
   event.target.newmin.value = null;
   event.target.newmax.value = null;
   event.target.newcups.value = null;
   event.target.newpounds.value = null;
-
-  locations.push(newCoffeeCart);
-
-  // i have call bean data and call barista data methods, what goes here for me??
-  // renderAllComments(); // ????
 });
-
-//newLocationNameButton.addEventListener('click', handleNewCartSubmit);
