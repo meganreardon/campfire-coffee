@@ -123,7 +123,7 @@ CoffeeCarts.prototype.calcDailyBeansNeeded = function() {
   this.dailyBeansNeeded = Math.round( this.dailyBeansNeeded * 10 ) / 10;
 };
 
-// set up to create my own render function inside the object constructor
+// method to render bean data table
 CoffeeCarts.prototype.renderCoffeeDataRows = function() {
   var tableName = beansTable;
   var trElement = document.createElement('tr');
@@ -142,7 +142,7 @@ CoffeeCarts.prototype.renderCoffeeDataRows = function() {
   tableName.appendChild(trElement);
 };
 
-// function to render barista table
+// method to render baristas data table
 CoffeeCarts.prototype.renderBaristasDataRows = function() {
   var tableName = baristasTable;
   var trElement = document.createElement('tr');
@@ -161,6 +161,7 @@ CoffeeCarts.prototype.renderBaristasDataRows = function() {
   tableName.appendChild(trElement);
 };
 
+/*
 // ----------------
 // render for the form
 // ----------------
@@ -170,6 +171,7 @@ Comment.prototype.render = function() {
   liEl.innerHTML = '<img width="100px" src="img/' + this.userName + '.jpg"> <b>' + this.userName + ': </b><em>' + this.text + '</em>';
   return liEl;
 };
+*/
 
 // ---------------------------------------
 // instance creation
@@ -180,26 +182,35 @@ var seattlePublicLibrary = new CoffeeCarts('Seattle Public Library', 9, 45, 2.6,
 var southLakeUnion = new CoffeeCarts('South Lake Union', 5, 18, 1.3, 0.04);
 var seaTac = new CoffeeCarts('Sea-Tac Airport', 28, 44, 1.1, 0.41);
 
-// array of calc methods names // I suspect this could be done better
-var calcMethodsNames = [pikePlace, capitolHill, seattlePublicLibrary, southLakeUnion, seaTac];
-
 //loop to call methods
 function callCalcMethods() {
-  for (var i = 0; i < calcMethodsNames.length; i++) {
-    calcMethodsNames[i].calcCupsPerHour();
-    calcMethodsNames[i].calcBeansNeededForCupsPerHour();
-    calcMethodsNames[i].calcPoundPackagesPerHour();
-    calcMethodsNames[i].calcEmployeesNeededPerHour();
-    calcMethodsNames[i].calcDailyCustomersTotal();
-    calcMethodsNames[i].calcDailyCupsTotal();
-    calcMethodsNames[i].calcDailyPoundPackagesTotal();
-    calcMethodsNames[i].calcDailyBeansNeeded();
-    calcMethodsNames[i].calcDailyEmployeesNeeded();
-    calcMethodsNames[i].calcBeansPerHour();
-    calcMethodsNames[i].renderCoffeeDataRows();
-    calcMethodsNames[i].renderBaristasDataRows();
+  for (var i = 0; i < locations.length; i++) {
+    locations[i].calcCupsPerHour();
+    locations[i].calcBeansNeededForCupsPerHour();
+    locations[i].calcPoundPackagesPerHour();
+    locations[i].calcEmployeesNeededPerHour();
+    locations[i].calcDailyCustomersTotal();
+    locations[i].calcDailyCupsTotal();
+    locations[i].calcDailyPoundPackagesTotal();
+    locations[i].calcDailyBeansNeeded();
+    locations[i].calcDailyEmployeesNeeded();
+    locations[i].calcBeansPerHour();
   }
 };
+
+function callBeanData() {
+  for (var i = 0; i < locations.length; i++) {
+    locations[i].renderCoffeeDataRows();
+  }
+};
+
+function callBaristasData() {
+  for (var i = 0; i < locations.length; i++) {
+    locations[i].renderBaristasDataRows();
+  }
+};
+
+callCalcMethods();
 
 // ---------------------------------------
 // function to render table header row
@@ -216,8 +227,8 @@ function coffeeDataHeader(tableName) {
     var thElement = document.createElement('th');
     thElement.textContent = hours[i];
     trElement.appendChild(thElement);
-    tableName.appendChild(trElement);
   }
+  tableName.appendChild(trElement);
 };
 
 // ---------------------------------------
@@ -236,72 +247,78 @@ function coffeeDataFooter(tableName) {
     var thElement = document.createElement('th');
     thElement.textContent = 'ph';
     trElement.appendChild(thElement);
-    tableName.appendChild(trElement);
   }
+  tableName.appendChild(trElement);
 };
+
+// // sam's example code
+// var destinationArray = [];
+// var a = [3, 7, 6, 5];
+// var b = [9, 4, 2, 6];
+// var c = [5, 1, 8, 7];
+// var all = [a, b, c];
+//
+// for (var i = 0; i < a.length; i++) {
+//   var sum = 0;
+//   for (var j = 0; j < all.length; j++) {
+//     sum += all[j][i];
+//   }
+//   destinationArray.push(sum);
+// }
 
 // -----------------------------------------------------------------------------
 // COFFEE AND BARISTA DATA TABLE RENDER
 // -----------------------------------------------------------------------------
 
 coffeeDataHeader(beansTable);
-
-callCalcMethods(); // this is here because it runs my render method // need to fix this
-// coffeeData(beansTable);
-//renderBeansData();
-// CoffeeData(beansTable, dailyBeansNeeded, beansPerHour);
-
-// this is newest method
-//renderCoffeeDataRows();
-
+callBeanData();
 coffeeDataFooter(beansTable);
 
 coffeeDataHeader(baristasTable);
-//renderBaristasDataRows();
-// baristasData(baristasTable);
+callBaristasData();
 coffeeDataFooter(baristasTable);
 
 // -----------------------------------------------------------------------------
 // FORM INFORMATION BELOW
 // -----------------------------------------------------------------------------
-
-// setting up variables
-var addNewLocation = document.getElementById('add-new-location'); // this is the form itself
-var newLocationName = document.getElementById('new-location-name');
-var newMinCustomers = document.getElementById('new-min-customers');
-var newMaxCustomers = document.getElementById('new-max-customers');
-var newAvgCups = document.getElementById('new-avg-cups');
-var newAvgBags = document.getElementById('new-avg-bags');
-var submitNewStore = document.getElementById('submit-new-store'); // this is the button
-
-// handle submission - my own, unfinished
-function handleNewCartSubmit(event) {
-  event.preventDefault();
-  if (!event.target.says.value || !event.target.who.value) {
-    return alert('Fields cannot be empty!');
-  }
-  var variable1 = event.target.___.value;
-  var variable2 = event.target.___.value;
-  var variable3 = event.target.___.value;
-  var variable4 = event.target.___.value;
-  var variable5 = event.target.___.value;
-  var variable6 = event.target.___.value;
-  // not finished, looking at class code below
-};
-
-// handle submission from class code
-function handleCommentSubmit(event) {
-  event.preventDefault(); //gotta have it. prevents page reload
-  if (!event.target.says.value || !event.target.who.value) {
-    return alert('Fields cannot be empty!');
-  }
-  var commenter = event.target.who.value;
-  var remark = event.target.says.value;
-  var newComment = new Comment(commenter, remark);
-  event.target.who.value = null;
-  event.target.says.value = null;
-  allComments.push(newComment);
-  renderAllComments();
-};
+//
+// // setting up variables
+// var addNewLocation = document.getElementById('add-new-location'); // this is the form itself
+// var newLocationName = document.getElementById('new-location-name');
+// var newMinCustomers = document.getElementById('new-min-customers');
+// var newMaxCustomers = document.getElementById('new-max-customers');
+// var newAvgCups = document.getElementById('new-avg-cups');
+// var newAvgBags = document.getElementById('new-avg-bags');
+// var submitNewStore = document.getElementById('submit-new-store'); // this is the button
+//
+// // handle submission - my own, unfinished
+// function handleNewCartSubmit(event) {
+//   event.preventDefault();
+//   if (!event.target.says.value || !event.target.who.value) {
+//     return alert('Fields cannot be empty!');
+//   }
+//   var variable1 = event.target.___.value;
+//   var variable2 = event.target.___.value;
+//   var variable3 = event.target.___.value;
+//   var variable4 = event.target.___.value;
+//   var variable5 = event.target.___.value;
+//   var variable6 = event.target.___.value;
+//   // not finished, looking at class code below
+// };
+//
+// // handle submission from class code
+// function handleCommentSubmit(event) {
+//   event.preventDefault(); //gotta have it. prevents page reload
+//   if (!event.target.says.value || !event.target.who.value) {
+//     return alert('Fields cannot be empty!');
+//   }
+//   var commenter = event.target.who.value;
+//   var remark = event.target.says.value;
+//   var newComment = new Comment(commenter, remark);
+//   event.target.who.value = null;
+//   event.target.says.value = null;
+//   allComments.push(newComment);
+//   renderAllComments();
+// };
 
 // render
