@@ -1,5 +1,12 @@
 var hours = ['6:00am', '7:00am', '8:00am', '9:00am', '10:00am', '11:00am', '12:00pm', '1:00pm', '2:00pm', '3:00pm', '4:00pm', '5:00pm', '6:00pm', '7:00pm', '8:00pm'];
 
+// varibles to create data tables
+var tableName = '';
+var whichDailyTotal = '';
+var whichHourlyTotal = '';
+var beansTable = document.getElementById('beans-table');
+var baristasTable = document.getElementById('baristas-table');
+
 var locations = [];
 // get with locations[i].locationName
 // will be iteration indicator word, not locationName string
@@ -116,37 +123,53 @@ CoffeeCarts.prototype.calcDailyBeansNeeded = function() {
   this.dailyBeansNeeded = Math.round( this.dailyBeansNeeded * 10 ) / 10;
 };
 
+// set up to create my own render function inside the object constructor
+CoffeeCarts.prototype.renderCoffeeDataRows = function() {
+  var tableName = beansTable;
+  var trElement = document.createElement('tr');
+  trElement.innerHTML = '<tr>';
+  var thElement = document.createElement('th');
+  thElement.innerHTML = '<th>' + this.locationName + '</th>';
+  trElement.appendChild(thElement);
+  var tdElement = document.createElement('td');
+  tdElement.innerHTML = '<td>' + this.dailyBeansNeeded + '</td>';
+  trElement.appendChild(tdElement);
+  for (var j = 0; j < hours.length; j++) {
+    var tdElement = document.createElement('td');
+    tdElement.innerHTML = '<td>' + this.beansPerHour[j] + '</td>';
+    trElement.appendChild(tdElement);
+  }
+  tableName.appendChild(trElement);
+};
+
+// function to render barista table
+CoffeeCarts.prototype.renderBaristasDataRows = function() {
+  var tableName = baristasTable;
+  var trElement = document.createElement('tr');
+  trElement.innerHTML = '<tr>';
+  var thElement = document.createElement('th');
+  thElement.innerHTML = '<th>' + this.locationName + '</th>';
+  trElement.appendChild(thElement);
+  var tdElement = document.createElement('td');
+  tdElement.innerHTML = '<td>' + this.dailyEmployeesNeeded + '</td>';
+  trElement.appendChild(tdElement);
+  for (var j = 0; j < hours.length; j++) {
+    var tdElement = document.createElement('td');
+    tdElement.innerHTML = '<td>' + this.employeesPerHour[j] + '</td>';
+    trElement.appendChild(tdElement);
+  }
+  tableName.appendChild(trElement);
+};
+
 // ----------------
 // render for the form
 // ----------------
-//this is example from class // delete later
-// Comment.prototype.render = function() {
-//   var liEl = document.createElement('li');
-//   liEl.innerHTML = '<img width="100px" src="img/' + this.userName + '.jpg"> <b>' + this.userName + ': </b><em>' + this.text + '</em>';
-//   return liEl;
-// };
-//
-// //this is the table data rendering loop from below // delete later
-// for (var i = 0; i < locations.length; i++) {
-//   var trElement = document.createElement('tr');
-//   var thElement = document.createElement('th');
-//   thElement.textContent = locations[i].locationName;
-//   trElement.appendChild(thElement);
-//   var tdElement = document.createElement('td');
-//   tdElement.textContent = locations[i].dailyBeansNeeded;
-//   trElement.appendChild(tdElement);
-//   for (var j = 0; j < hours.length; j++) {
-//     var tdElement = document.createElement('td');
-//     tdElement.textContent = locations[i].beansPerHour[j];
-//     trElement.appendChild(tdElement);
-//   }
-//   tableName.appendChild(trElement);
-// }
-//
-// //set up to create my own render function inside the object constructor
-// CoffeeCarts.prototype.render = function() {
-//
-// };
+// this is example from class // delete later
+Comment.prototype.render = function() {
+  var liEl = document.createElement('li');
+  liEl.innerHTML = '<img width="100px" src="img/' + this.userName + '.jpg"> <b>' + this.userName + ': </b><em>' + this.text + '</em>';
+  return liEl;
+};
 
 // ---------------------------------------
 // instance creation
@@ -160,7 +183,7 @@ var seaTac = new CoffeeCarts('Sea-Tac Airport', 28, 44, 1.1, 0.41);
 // array of calc methods names // I suspect this could be done better
 var calcMethodsNames = [pikePlace, capitolHill, seattlePublicLibrary, southLakeUnion, seaTac];
 
-// loop to call methods
+//loop to call methods
 function callCalcMethods() {
   for (var i = 0; i < calcMethodsNames.length; i++) {
     calcMethodsNames[i].calcCupsPerHour();
@@ -173,85 +196,26 @@ function callCalcMethods() {
     calcMethodsNames[i].calcDailyBeansNeeded();
     calcMethodsNames[i].calcDailyEmployeesNeeded();
     calcMethodsNames[i].calcBeansPerHour();
+    calcMethodsNames[i].renderCoffeeDataRows();
+    calcMethodsNames[i].renderBaristasDataRows();
   }
 };
-
-callCalcMethods();
-
-// ---------------------------------------
-// variables to call table
-// ---------------------------------------
-var beansTable = document.getElementById('beans-table');
-var baristasTable = document.getElementById('baristas-table');
 
 // ---------------------------------------
 // function to render table header row
 // ---------------------------------------
 function coffeeDataHeader(tableName) {
-  // create the table
-  //var tableHeader = document.getElementById('beans-table');
-  // create the tr
   var trElement = document.createElement('tr');
-  //create the first th - populate with nothing
   var thElement = document.createElement('th');
   thElement.textContent = '';
   trElement.appendChild(thElement);
-  // create the second th - populate with Daily Total
   var thElement = document.createElement('th');
   thElement.textContent = 'Daily Total';
   trElement.appendChild(thElement);
-  //console.log('reached end of static code');
-  // loop through the hours of the day, all th cells
   for (var i = 0; i < hours.length; i++) {
-    //console.log('got inside the loop');
     var thElement = document.createElement('th');
-    //console.log(hours[i]);
     thElement.textContent = hours[i];
     trElement.appendChild(thElement);
-    tableName.appendChild(trElement);
-  }
-};
-
-// ---------------------------------------
-// function to coffee data into tables
-// ---------------------------------------
-
-function coffeeData(tableName) {
-  for (var i = 0; i < locations.length; i++) {
-    var trElement = document.createElement('tr');
-    var thElement = document.createElement('th');
-    thElement.textContent = locations[i].locationName;
-    trElement.appendChild(thElement);
-    var tdElement = document.createElement('td');
-    tdElement.textContent = locations[i].dailyBeansNeeded;
-    trElement.appendChild(tdElement);
-    for (var j = 0; j < hours.length; j++) {
-      var tdElement = document.createElement('td');
-      tdElement.textContent = locations[i].beansPerHour[j];
-      trElement.appendChild(tdElement);
-    }
-    tableName.appendChild(trElement);
-  }
-};
-
-// ---------------------------------------
-// function to baristas
-// ---------------------------------------
-
-function baristasData(tableName) {
-  for (var i = 0; i < locations.length; i++) {
-    var trElement = document.createElement('tr');
-    var thElement = document.createElement('th');
-    thElement.textContent = locations[i].locationName;
-    trElement.appendChild(thElement);
-    var tdElement = document.createElement('td');
-    tdElement.textContent = locations[i].dailyEmployeesNeeded;
-    trElement.appendChild(tdElement);
-    for (var j = 0; j < hours.length; j++) {
-      var tdElement = document.createElement('td');
-      tdElement.textContent = locations[i].employeesPerHour[j];
-      trElement.appendChild(tdElement);
-    }
     tableName.appendChild(trElement);
   }
 };
@@ -281,24 +245,63 @@ function coffeeDataFooter(tableName) {
 // -----------------------------------------------------------------------------
 
 coffeeDataHeader(beansTable);
-coffeeData(beansTable);
+
+callCalcMethods(); // this is here because it runs my render method // need to fix this
+// coffeeData(beansTable);
+//renderBeansData();
+// CoffeeData(beansTable, dailyBeansNeeded, beansPerHour);
+
+// this is newest method
+//renderCoffeeDataRows();
+
 coffeeDataFooter(beansTable);
 
 coffeeDataHeader(baristasTable);
-baristasData(baristasTable);
+//renderBaristasDataRows();
+// baristasData(baristasTable);
 coffeeDataFooter(baristasTable);
 
 // -----------------------------------------------------------------------------
 // FORM INFORMATION BELOW
 // -----------------------------------------------------------------------------
 
-// // setting up variables
-// var addNewLocation = document.getElementById('add-new-location'); // this is the form itself
-// var newLocationName = document.getElementById('new-location-name');
-// var newMinCustomers = document.getElementById('new-min-customers');
-// var newMaxCustomers = document.getElementById('new-max-customers');
-// var newAvgCups = document.getElementById('new-avg-cups');
-// var newAvgBags = document.getElementById('new-avg-bags');
-// var submitNewStore = document.getElementById('submit-new-store'); // this is the button
-//
-// // render
+// setting up variables
+var addNewLocation = document.getElementById('add-new-location'); // this is the form itself
+var newLocationName = document.getElementById('new-location-name');
+var newMinCustomers = document.getElementById('new-min-customers');
+var newMaxCustomers = document.getElementById('new-max-customers');
+var newAvgCups = document.getElementById('new-avg-cups');
+var newAvgBags = document.getElementById('new-avg-bags');
+var submitNewStore = document.getElementById('submit-new-store'); // this is the button
+
+// handle submission - my own, unfinished
+function handleNewCartSubmit(event) {
+  event.preventDefault();
+  if (!event.target.says.value || !event.target.who.value) {
+    return alert('Fields cannot be empty!');
+  }
+  var variable1 = event.target.___.value;
+  var variable2 = event.target.___.value;
+  var variable3 = event.target.___.value;
+  var variable4 = event.target.___.value;
+  var variable5 = event.target.___.value;
+  var variable6 = event.target.___.value;
+  // not finished, looking at class code below
+};
+
+// handle submission from class code
+function handleCommentSubmit(event) {
+  event.preventDefault(); //gotta have it. prevents page reload
+  if (!event.target.says.value || !event.target.who.value) {
+    return alert('Fields cannot be empty!');
+  }
+  var commenter = event.target.who.value;
+  var remark = event.target.says.value;
+  var newComment = new Comment(commenter, remark);
+  event.target.who.value = null;
+  event.target.says.value = null;
+  allComments.push(newComment);
+  renderAllComments();
+};
+
+// render
