@@ -148,11 +148,6 @@ CoffeeCarts.prototype.calcDailyBeansNeeded = function() {
 //
 // };
 
-// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-// make these into loops
-// when I have the time
-// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-
 // ---------------------------------------
 // instance creation
 // ---------------------------------------
@@ -162,105 +157,26 @@ var seattlePublicLibrary = new CoffeeCarts('Seattle Public Library', 9, 45, 2.6,
 var southLakeUnion = new CoffeeCarts('South Lake Union', 5, 18, 1.3, 0.04);
 var seaTac = new CoffeeCarts('Sea-Tac Airport', 28, 44, 1.1, 0.41);
 
-// // array of calc methods names // I know this could be done better
-// var calcMethodsNames = [pikePlace, capitolHill, seattlePublicLibrary, southLakeUnion, seaTac];
-//
-// // loop to call methods
-// function callCalcMethods() {
-//   for (var i = 0; i < calcMethodsNames.length; i++) {
-//     calcMethodsNames[i].calcCupsPerHour();
-//     console.log(calcMethodsNames[i].calcCupsPerHour());
-//     calcMethodsNames[i].calcBeansNeededForCupsPerHour();
-//     calcMethodsNames[i].calcPoundPackagesPerHour();
-//     calcMethodsNames[i].calcEmployeesNeededPerHour();
-//     calcMethodsNames[i].calcDailyCustomersTotal();
-//     calcMethodsNames[i].calcDailyCupsTotal();
-//     calcMethodsNames[i].calcDailyPoundPackagesTotal();
-//     calcMethodsNames[i].calcDailyBeansNeeded();
-//     calcMethodsNames[i].calcDailyEmployeesNeeded();
-//     calcMethodsNames[i].calcDataBeansNeededPerHour();
-//     calcMethodsNames[i].calcBeansPerHour();
-//   }
-// };
-//
-// ---------------------------------------
-// pike place instance creation
-// ---------------------------------------
+// array of calc methods names // I suspect this could be done better
+var calcMethodsNames = [pikePlace, capitolHill, seattlePublicLibrary, southLakeUnion, seaTac];
 
-pikePlace.calcCupsPerHour();
-pikePlace.calcBeansNeededForCupsPerHour();
-pikePlace.calcPoundPackagesPerHour();
-pikePlace.calcEmployeesNeededPerHour();
-pikePlace.calcDailyCustomersTotal();
-pikePlace.calcDailyCupsTotal();
-pikePlace.calcDailyPoundPackagesTotal();
-pikePlace.calcDailyBeansNeeded();
-pikePlace.calcDailyEmployeesNeeded();
-pikePlace.calcBeansPerHour();
+// loop to call methods
+function callCalcMethods() {
+  for (var i = 0; i < calcMethodsNames.length; i++) {
+    calcMethodsNames[i].calcCupsPerHour();
+    calcMethodsNames[i].calcBeansNeededForCupsPerHour();
+    calcMethodsNames[i].calcPoundPackagesPerHour();
+    calcMethodsNames[i].calcEmployeesNeededPerHour();
+    calcMethodsNames[i].calcDailyCustomersTotal();
+    calcMethodsNames[i].calcDailyCupsTotal();
+    calcMethodsNames[i].calcDailyPoundPackagesTotal();
+    calcMethodsNames[i].calcDailyBeansNeeded();
+    calcMethodsNames[i].calcDailyEmployeesNeeded();
+    calcMethodsNames[i].calcBeansPerHour();
+  }
+};
 
-// ---------------------------------------
-// capitol hill instance creation
-// ---------------------------------------
-
-capitolHill.calcCupsPerHour();
-capitolHill.calcBeansNeededForCupsPerHour();
-capitolHill.calcPoundPackagesPerHour();
-capitolHill.calcEmployeesNeededPerHour();
-capitolHill.calcEmployeesNeededPerHour();
-capitolHill.calcDailyCustomersTotal();
-capitolHill.calcDailyCupsTotal();
-capitolHill.calcDailyPoundPackagesTotal();
-capitolHill.calcDailyBeansNeeded();
-capitolHill.calcDailyEmployeesNeeded();
-capitolHill.calcBeansPerHour();
-
-// ---------------------------------------
-// seattle public library instance creation
-// ---------------------------------------
-
-seattlePublicLibrary.calcCupsPerHour();
-seattlePublicLibrary.calcBeansNeededForCupsPerHour();
-seattlePublicLibrary.calcPoundPackagesPerHour();
-seattlePublicLibrary.calcEmployeesNeededPerHour();
-seattlePublicLibrary.calcEmployeesNeededPerHour();
-seattlePublicLibrary.calcDailyCustomersTotal();
-seattlePublicLibrary.calcDailyCupsTotal();
-seattlePublicLibrary.calcDailyPoundPackagesTotal();
-seattlePublicLibrary.calcDailyBeansNeeded();
-seattlePublicLibrary.calcDailyEmployeesNeeded();
-seattlePublicLibrary.calcBeansPerHour();
-
-// ---------------------------------------
-// south lake union instance creation
-// ---------------------------------------
-
-southLakeUnion.calcCupsPerHour();
-southLakeUnion.calcBeansNeededForCupsPerHour();
-southLakeUnion.calcPoundPackagesPerHour();
-southLakeUnion.calcEmployeesNeededPerHour();
-southLakeUnion.calcEmployeesNeededPerHour();
-southLakeUnion.calcDailyCustomersTotal();
-southLakeUnion.calcDailyCupsTotal();
-southLakeUnion.calcDailyPoundPackagesTotal();
-southLakeUnion.calcDailyBeansNeeded();
-southLakeUnion.calcDailyEmployeesNeeded();
-southLakeUnion.calcBeansPerHour();
-
-// ---------------------------------------
-// sea-tac airport instance creation
-// ---------------------------------------
-
-seaTac.calcCupsPerHour();
-seaTac.calcBeansNeededForCupsPerHour();
-seaTac.calcPoundPackagesPerHour();
-seaTac.calcEmployeesNeededPerHour();
-seaTac.calcEmployeesNeededPerHour();
-seaTac.calcDailyCustomersTotal();
-seaTac.calcDailyCupsTotal();
-seaTac.calcDailyPoundPackagesTotal();
-seaTac.calcDailyBeansNeeded();
-seaTac.calcDailyEmployeesNeeded();
-seaTac.calcBeansPerHour();
+callCalcMethods();
 
 // ---------------------------------------
 // variables to call table
