@@ -72,6 +72,7 @@ CoffeeCarts.prototype.calcPoundPackagesPerHour = function() {
     var bags = this.customersPerHour[i] * this.avgPoundBagsBoughtPerCustomer;
     bags = Math.round( bags );
     this.poundPackagesPerHour.push(bags);
+    this.dailyPoundPackagesTotal += bags;
   }
 };
 
@@ -80,6 +81,7 @@ CoffeeCarts.prototype.calcBeansPerHour = function() {
     var pounds = this.beansNeededForCupsPerHour[i] + this.poundPackagesPerHour[i];
     pounds = Math.round( pounds * 10 ) / 10;
     this.beansPerHour.push(pounds);
+    grandTotalBeansPerDay =+ pounds;
   }
 };
 
@@ -127,9 +129,8 @@ CoffeeCarts.prototype.calcDailyBeansNeeded = function() {
 CoffeeCarts.prototype.renderCoffeeDataRows = function() {
   var tableName = beansTable;
   var trElement = document.createElement('tr');
-  trElement.innerHTML = '<tr>';
   var thElement = document.createElement('th');
-  thElement.innerHTML = '<th>' + this.locationName + '</th>';
+  thElement.textContent = this.locationName ;
   trElement.appendChild(thElement);
   var tdElement = document.createElement('td');
   tdElement.innerHTML = '<td>' + this.dailyBeansNeeded + '</td>';
@@ -183,19 +184,17 @@ var southLakeUnion = new CoffeeCarts('South Lake Union', 5, 18, 1.3, 0.04);
 var seaTac = new CoffeeCarts('Sea-Tac Airport', 28, 44, 1.1, 0.41);
 
 //loop to call methods
-function callCalcMethods() {
-  for (var i = 0; i < locations.length; i++) {
-    locations[i].calcCupsPerHour();
-    locations[i].calcBeansNeededForCupsPerHour();
-    locations[i].calcPoundPackagesPerHour();
-    locations[i].calcEmployeesNeededPerHour();
-    locations[i].calcDailyCustomersTotal();
-    locations[i].calcDailyCupsTotal();
-    locations[i].calcDailyPoundPackagesTotal();
-    locations[i].calcDailyBeansNeeded();
-    locations[i].calcDailyEmployeesNeeded();
-    locations[i].calcBeansPerHour();
-  }
+function callCalcMethods(location) {
+  location.calcCupsPerHour();
+  location.calcBeansNeededForCupsPerHour();
+  location.calcPoundPackagesPerHour();
+  location.calcEmployeesNeededPerHour();
+  location.calcDailyCustomersTotal();
+  location.calcDailyCupsTotal();
+  location.calcDailyPoundPackagesTotal();
+  location.calcDailyBeansNeeded();
+  location.calcDailyEmployeesNeeded();
+  location.calcBeansPerHour();
 };
 
 function callBeanData() {
@@ -210,7 +209,11 @@ function callBaristasData() {
   }
 };
 
-callCalcMethods();
+callCalcMethods(pikePlace);
+callCalcMethods(capitolHill);
+callCalcMethods(seattlePublicLibrary);
+callCalcMethods(southLakeUnion);
+callCalcMethods(seaTac);
 
 // ---------------------------------------
 // function to render table header row
@@ -281,44 +284,53 @@ coffeeDataFooter(baristasTable);
 // -----------------------------------------------------------------------------
 // FORM INFORMATION BELOW
 // -----------------------------------------------------------------------------
-//
-// // setting up variables
-// var addNewLocation = document.getElementById('add-new-location'); // this is the form itself
-// var newLocationName = document.getElementById('new-location-name');
-// var newMinCustomers = document.getElementById('new-min-customers');
-// var newMaxCustomers = document.getElementById('new-max-customers');
-// var newAvgCups = document.getElementById('new-avg-cups');
-// var newAvgBags = document.getElementById('new-avg-bags');
-// var submitNewStore = document.getElementById('submit-new-store'); // this is the button
-//
-// // handle submission - my own, unfinished
-// function handleNewCartSubmit(event) {
-//   event.preventDefault();
-//   if (!event.target.says.value || !event.target.who.value) {
-//     return alert('Fields cannot be empty!');
-//   }
-//   var variable1 = event.target.___.value;
-//   var variable2 = event.target.___.value;
-//   var variable3 = event.target.___.value;
-//   var variable4 = event.target.___.value;
-//   var variable5 = event.target.___.value;
-//   var variable6 = event.target.___.value;
-//   // not finished, looking at class code below
-// };
-//
-// // handle submission from class code
-// function handleCommentSubmit(event) {
-//   event.preventDefault(); //gotta have it. prevents page reload
-//   if (!event.target.says.value || !event.target.who.value) {
-//     return alert('Fields cannot be empty!');
-//   }
-//   var commenter = event.target.who.value;
-//   var remark = event.target.says.value;
-//   var newComment = new Comment(commenter, remark);
-//   event.target.who.value = null;
-//   event.target.says.value = null;
-//   allComments.push(newComment);
-//   renderAllComments();
-// };
 
-// render
+// setting up variables
+var handleNewCartSubmit = document.getElementById('add-new-location-form'); // this is the form itself
+
+// handle submission - my own, unfinished
+handleNewCartSubmit.addEventListener('submit', function(event){
+
+  event.preventDefault();
+
+  var addNewLocation = event.target.newlocation.value;
+  // need to parse int the numbers as they go in
+  var addNewMin = parseFloat(event.target.newmin.value);
+  var addNewMax = parseFloat(event.target.newmax.value);
+  var addNewCups = parseFloat(event.target.newcups.value);
+  var addNewPounds = parseFloat(event.target.newpounds.value);
+
+  if (!event.target.newlocation.value || !event.target.newmin.value || !event.target.newmax.value || !event.target.newcups.value || !event.target.newpounds.value) {
+    return alert('All fields need to be filled in. Thanks!');
+  }
+
+  var newCoffeeCart = new CoffeeCarts(addNewLocation, addNewMin, addNewMax, addNewCups, addNewPounds);
+  callCalcMethods(newCoffeeCart);
+
+
+
+  // loop through body and footer of Beans table and set
+  //chatList.innerHTML = '';
+  beansTable.innerHTML = '';
+  baristasTable.innerHTML = '';
+  // for (var i = 0; i < locations.length; i++) {
+  //   console.log('about to delete ' + i);
+  //   locations[i].innerHTML = '';
+  // };
+
+
+  //rewrite body and footers of tables
+  coffeeDataHeader(beansTable);
+  callBeanData();
+  coffeeDataFooter(beansTable);
+
+  coffeeDataHeader(baristasTable);
+  callBaristasData();
+  coffeeDataFooter(baristasTable);
+
+  event.target.newlocation.value = null;
+  event.target.newmin.value = null;
+  event.target.newmax.value = null;
+  event.target.newcups.value = null;
+  event.target.newpounds.value = null;
+});
