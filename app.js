@@ -152,7 +152,7 @@ Comment.prototype.render = function() {
   return liEl;
 };
 
-//s et up to create my own render function inside the object constructor
+// set up to create my own render function inside the object constructor
 CoffeeCarts.prototype.renderCoffeeDataRows = function() {
 
   var tableName = beansTable;
@@ -341,7 +341,7 @@ var newAvgCups = document.getElementById('new-avg-cups');
 var newAvgBags = document.getElementById('new-avg-bags');
 var submitNewStore = document.getElementById('submit-new-store'); // this is the button
 
-// handle submission
+// handle submission - my own, unfinished
 function handleNewCartSubmit(event) {
   event.preventDefault();
   if (!event.target.says.value || !event.target.who.value) {
