@@ -341,4 +341,34 @@ var newAvgCups = document.getElementById('new-avg-cups');
 var newAvgBags = document.getElementById('new-avg-bags');
 var submitNewStore = document.getElementById('submit-new-store'); // this is the button
 
+// handle submission
+function handleNewCartSubmit(event) {
+  event.preventDefault();
+  if (!event.target.says.value || !event.target.who.value) {
+    return alert('Fields cannot be empty!');
+  }
+  var variable1 = event.target.___.value;
+  var variable2 = event.target.___.value;
+  var variable3 = event.target.___.value;
+  var variable4 = event.target.___.value;
+  var variable5 = event.target.___.value;
+  var variable6 = event.target.___.value;
+  // not finished, looking at class code below
+};
+
+// handle submission from class code
+function handleCommentSubmit(event) {
+  event.preventDefault(); //gotta have it. prevents page reload
+  if (!event.target.says.value || !event.target.who.value) {
+    return alert('Fields cannot be empty!');
+  }
+  var commenter = event.target.who.value;
+  var remark = event.target.says.value;
+  var newComment = new Comment(commenter, remark);
+  event.target.who.value = null;
+  event.target.says.value = null;
+  allComments.push(newComment);
+  renderAllComments();
+};
+
 // render
