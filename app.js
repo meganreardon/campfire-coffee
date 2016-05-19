@@ -123,7 +123,7 @@ CoffeeCarts.prototype.calcDailyBeansNeeded = function() {
   this.dailyBeansNeeded = Math.round( this.dailyBeansNeeded * 10 ) / 10;
 };
 
-// set up to create my own render function inside the object constructor
+// method to render bean data table
 CoffeeCarts.prototype.renderCoffeeDataRows = function() {
   var tableName = beansTable;
   var trElement = document.createElement('tr');
@@ -142,7 +142,7 @@ CoffeeCarts.prototype.renderCoffeeDataRows = function() {
   tableName.appendChild(trElement);
 };
 
-// function to render barista table
+// method to render baristas data table
 CoffeeCarts.prototype.renderBaristasDataRows = function() {
   var tableName = baristasTable;
   var trElement = document.createElement('tr');
@@ -265,10 +265,6 @@ function coffeeDataFooter(tableName) {
 //   }
 //   destinationArray.push(sum);
 // }
-// console.log('The sums of the array elements at each location are ' + destinationArray);
-// question about sam's example code
-// why are we creating and pushing to new arrays when we already have all the data
-// either in variables or arrays that we can access?? (can we access them?)
 
 // -----------------------------------------------------------------------------
 // COFFEE AND BARISTA DATA TABLE RENDER
