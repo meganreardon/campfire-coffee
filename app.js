@@ -201,6 +201,8 @@ function callCalcMethods() {
   }
 };
 
+//callCalcMethods();
+
 // ---------------------------------------
 // function to render table header row
 // ---------------------------------------
@@ -240,13 +242,33 @@ function coffeeDataFooter(tableName) {
   }
 };
 
+// ---------------------------------------
+// function to render table data
+// ---------------------------------------
+
+// for (var i = 0; i < locations.length; i++) {
+//   var trElement = document.createElement('tr');
+//   var thElement = document.createElement('th');
+//   thElement.textContent = locations[i].locationName;
+//   trElement.appendChild(thElement);
+//   var tdElement = document.createElement('td');
+//   tdElement.textContent = locations[i].dailyBeansNeeded;
+//   trElement.appendChild(tdElement);
+//   for (var j = 0; j < hours.length; j++) {
+//     var tdElement = document.createElement('td');
+//     tdElement.textContent = locations[i].beansPerHour[j];
+//     trElement.appendChild(tdElement);
+//   }
+//   tableName.appendChild(trElement);
+// }
+
 // -----------------------------------------------------------------------------
 // COFFEE AND BARISTA DATA TABLE RENDER
 // -----------------------------------------------------------------------------
 
 coffeeDataHeader(beansTable);
 
-callCalcMethods(); // this is here because it runs my render method // need to fix this
+//  callCalcMethods(); // this is here because it runs my render method // need to fix this
 // coffeeData(beansTable);
 //renderBeansData();
 // CoffeeData(beansTable, dailyBeansNeeded, beansPerHour);
@@ -260,6 +282,17 @@ coffeeDataHeader(baristasTable);
 //renderBaristasDataRows();
 // baristasData(baristasTable);
 coffeeDataFooter(baristasTable);
+
+// renderCoffeeDataRows();
+// renderBaristasDataRows();
+
+function placeHolder() {
+  alert('see me');
+  pikePlace.renderCoffeeDataRows();
+  renderCoffeeDataRows();
+};
+
+placeHolder();
 
 // -----------------------------------------------------------------------------
 // FORM INFORMATION BELOW
