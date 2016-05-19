@@ -5,7 +5,7 @@ var locations = [];
 // will be iteration indicator word, not locationName string
 
 // ---------------------------------------
-// constructor funcion code below
+// constructor function code below
 // ---------------------------------------
 
 // constructor and variables to pass
@@ -16,7 +16,7 @@ function CoffeeCarts(locationName, minCustomersHour, maxCustomersHour, avgCupsPe
   this.maxCustomersHour = maxCustomersHour;
   this.avgCupsPerCustomer = avgCupsPerCustomer;
   this.avgPoundBagsBoughtPerCustomer = avgPoundBagsBoughtPerCustomer;
-  // setting unknowns
+  // unknown values below
   this.dailyCustomersTotal = 0;
   this.dailyCupsTotal = 0;
   this.dailyPoundPackagesTotal = 0;
@@ -29,7 +29,7 @@ function CoffeeCarts(locationName, minCustomersHour, maxCustomersHour, avgCupsPe
   this.beansNeededForCupsPerHour = [];
   this.poundPackagesPerHour = [];
   this.employeesPerHour = [];
-  this.dataBeansNeededPerHour = []; // added this
+  // this creates our global locations array
   locations.push(this);
 };
 
@@ -70,8 +70,6 @@ CoffeeCarts.prototype.calcPoundPackagesPerHour = function() {
 
 CoffeeCarts.prototype.calcBeansPerHour = function() {
   for (var i = 0; i < hours.length; i++) {
-    // console.log(this.beansNeededForCupsPerHour[i]);
-    // console.log(this.poundPackagesPerHour[i]);
     var pounds = this.beansNeededForCupsPerHour[i] + this.poundPackagesPerHour[i];
     pounds = Math.round( pounds * 10 ) / 10;
     this.beansPerHour.push(pounds);
@@ -117,41 +115,38 @@ CoffeeCarts.prototype.calcDailyBeansNeeded = function() {
   this.dailyBeansNeeded = (this.dailyCupsTotal / 16) + this.dailyPoundPackagesTotal;
   this.dailyBeansNeeded = Math.round( this.dailyBeansNeeded * 10 ) / 10;
 };
-// ----------------
-// method for beans data table
-// ----------------
-CoffeeCarts.prototype.calcDataBeansNeededPerHour = function(tableName) {
-  // var trElement = document.createElement('tr');
-  // var thElement = document.createElement('th');
-  // thElement.textContent = this.locationName;
-  // trElement.appendChild(thElement);
-  // var tdElement = document.createElement('td');
-  // //tdElement.textContent = this.beansPerHour[i];
-  // tdElement.textContent = this.beansPerHour;
-  // trElement.appendChild(tdElement);
-  // for (i = 0; i < hours.length; i++) {
-  //   var tdElement = document.createElement('td');
-  //   tdElement.textContent = this.beansPerHour[i];
-  //   trElement.appendChild(tdElement);
-  // }
-  // turn the below back on
-  // tableName.appendChild(trElement);
-};
 
-// added this function to fill in table data for baristas needed per hours
+// ----------------
+// render for the form
+// ----------------
+//this is example from class // delete later
+// Comment.prototype.render = function() {
+//   var liEl = document.createElement('li');
+//   liEl.innerHTML = '<img width="100px" src="img/' + this.userName + '.jpg"> <b>' + this.userName + ': </b><em>' + this.text + '</em>';
+//   return liEl;
+// };
 //
-// the below is unfinished
+// //this is the table data rendering loop from below // delete later
+// for (var i = 0; i < locations.length; i++) {
+//   var trElement = document.createElement('tr');
+//   var thElement = document.createElement('th');
+//   thElement.textContent = locations[i].locationName;
+//   trElement.appendChild(thElement);
+//   var tdElement = document.createElement('td');
+//   tdElement.textContent = locations[i].dailyBeansNeeded;
+//   trElement.appendChild(tdElement);
+//   for (var j = 0; j < hours.length; j++) {
+//     var tdElement = document.createElement('td');
+//     tdElement.textContent = locations[i].beansPerHour[j];
+//     trElement.appendChild(tdElement);
+//   }
+//   tableName.appendChild(trElement);
+// }
 //
-CoffeeCarts.prototype.dataEmployeesNeededPerHour = function(tableName) {
-  for (var i = 0; i < hours.length; i++) {
-    var thElement = document.createElement('td');
-    // oooh dear, this is going to be totally wrong
-    tdElement.textContent = employeesPerHour[i];
-    console.log(employeesPerHour[i]);
-    trElement.appendChild(tdElement);
-    tableName.appendChild(trElement);
-  }
-};
+// //set up to create my own render function inside the object constructor
+// CoffeeCarts.prototype.render = function() {
+//
+// };
 
 // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 // make these into loops
@@ -159,12 +154,40 @@ CoffeeCarts.prototype.dataEmployeesNeededPerHour = function(tableName) {
 // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 // ---------------------------------------
-// pike place instance creation
+// instance creation
 // ---------------------------------------
 var pikePlace = new CoffeeCarts('Pike Place Market', 14, 35, 1.2, 0.34);
+var capitolHill = new CoffeeCarts('Capitol Hill', 12, 28, 3.2, 0.03);
+var seattlePublicLibrary = new CoffeeCarts('Seattle Public Library', 9, 45, 2.6, 0.02);
+var southLakeUnion = new CoffeeCarts('South Lake Union', 5, 18, 1.3, 0.04);
+var seaTac = new CoffeeCarts('Sea-Tac Airport', 28, 44, 1.1, 0.41);
+
+// // array of calc methods names // I know this could be done better
+// var calcMethodsNames = [pikePlace, capitolHill, seattlePublicLibrary, southLakeUnion, seaTac];
+//
+// // loop to call methods
+// function callCalcMethods() {
+//   for (var i = 0; i < calcMethodsNames.length; i++) {
+//     calcMethodsNames[i].calcCupsPerHour();
+//     console.log(calcMethodsNames[i].calcCupsPerHour());
+//     calcMethodsNames[i].calcBeansNeededForCupsPerHour();
+//     calcMethodsNames[i].calcPoundPackagesPerHour();
+//     calcMethodsNames[i].calcEmployeesNeededPerHour();
+//     calcMethodsNames[i].calcDailyCustomersTotal();
+//     calcMethodsNames[i].calcDailyCupsTotal();
+//     calcMethodsNames[i].calcDailyPoundPackagesTotal();
+//     calcMethodsNames[i].calcDailyBeansNeeded();
+//     calcMethodsNames[i].calcDailyEmployeesNeeded();
+//     calcMethodsNames[i].calcDataBeansNeededPerHour();
+//     calcMethodsNames[i].calcBeansPerHour();
+//   }
+// };
+//
+// ---------------------------------------
+// pike place instance creation
+// ---------------------------------------
 
 pikePlace.calcCupsPerHour();
-// pikePlace.calcCustomersPerHour(); // might not need this hear, is called inside cups per hour above
 pikePlace.calcBeansNeededForCupsPerHour();
 pikePlace.calcPoundPackagesPerHour();
 pikePlace.calcEmployeesNeededPerHour();
@@ -173,16 +196,13 @@ pikePlace.calcDailyCupsTotal();
 pikePlace.calcDailyPoundPackagesTotal();
 pikePlace.calcDailyBeansNeeded();
 pikePlace.calcDailyEmployeesNeeded();
-pikePlace.calcDataBeansNeededPerHour();
 pikePlace.calcBeansPerHour();
 
 // ---------------------------------------
 // capitol hill instance creation
 // ---------------------------------------
-var capitolHill = new CoffeeCarts('Capitol Hill', 12, 28, 3.2, 0.03);
 
 capitolHill.calcCupsPerHour();
-// capitolHill.calcCustomersPerHour(); // might not need this hear
 capitolHill.calcBeansNeededForCupsPerHour();
 capitolHill.calcPoundPackagesPerHour();
 capitolHill.calcEmployeesNeededPerHour();
@@ -192,16 +212,13 @@ capitolHill.calcDailyCupsTotal();
 capitolHill.calcDailyPoundPackagesTotal();
 capitolHill.calcDailyBeansNeeded();
 capitolHill.calcDailyEmployeesNeeded();
-capitolHill.calcDataBeansNeededPerHour();
 capitolHill.calcBeansPerHour();
 
 // ---------------------------------------
 // seattle public library instance creation
 // ---------------------------------------
-var seattlePublicLibrary = new CoffeeCarts('Seattle Public Library', 9, 45, 2.6, 0.02);
 
 seattlePublicLibrary.calcCupsPerHour();
-// seattlePublicLibrary.calcCustomersPerHour(); // might not need this hear
 seattlePublicLibrary.calcBeansNeededForCupsPerHour();
 seattlePublicLibrary.calcPoundPackagesPerHour();
 seattlePublicLibrary.calcEmployeesNeededPerHour();
@@ -211,16 +228,13 @@ seattlePublicLibrary.calcDailyCupsTotal();
 seattlePublicLibrary.calcDailyPoundPackagesTotal();
 seattlePublicLibrary.calcDailyBeansNeeded();
 seattlePublicLibrary.calcDailyEmployeesNeeded();
-seattlePublicLibrary.calcDataBeansNeededPerHour();
 seattlePublicLibrary.calcBeansPerHour();
 
 // ---------------------------------------
 // south lake union instance creation
 // ---------------------------------------
-var southLakeUnion = new CoffeeCarts('South Lake Union', 5, 18, 1.3, 0.04);
 
 southLakeUnion.calcCupsPerHour();
-// southLakeUnion.calcCustomersPerHour(); // might not need this hear
 southLakeUnion.calcBeansNeededForCupsPerHour();
 southLakeUnion.calcPoundPackagesPerHour();
 southLakeUnion.calcEmployeesNeededPerHour();
@@ -230,16 +244,13 @@ southLakeUnion.calcDailyCupsTotal();
 southLakeUnion.calcDailyPoundPackagesTotal();
 southLakeUnion.calcDailyBeansNeeded();
 southLakeUnion.calcDailyEmployeesNeeded();
-southLakeUnion.calcDataBeansNeededPerHour();
 southLakeUnion.calcBeansPerHour();
 
 // ---------------------------------------
 // sea-tac airport instance creation
 // ---------------------------------------
-var seaTac = new CoffeeCarts('Sea-Tac Airport', 28, 44, 1.1, 0.41);
 
 seaTac.calcCupsPerHour();
-// seaTac.calcCustomersPerHour(); // might not need this hear
 seaTac.calcBeansNeededForCupsPerHour();
 seaTac.calcPoundPackagesPerHour();
 seaTac.calcEmployeesNeededPerHour();
@@ -249,13 +260,11 @@ seaTac.calcDailyCupsTotal();
 seaTac.calcDailyPoundPackagesTotal();
 seaTac.calcDailyBeansNeeded();
 seaTac.calcDailyEmployeesNeeded();
-seaTac.calcDataBeansNeededPerHour();
 seaTac.calcBeansPerHour();
 
 // ---------------------------------------
 // variables to call table
 // ---------------------------------------
-// creating variable to fill test table
 var beansTable = document.getElementById('beans-table');
 var baristasTable = document.getElementById('baristas-table');
 
@@ -362,3 +371,18 @@ coffeeDataFooter(beansTable);
 coffeeDataHeader(baristasTable);
 baristasData(baristasTable);
 coffeeDataFooter(baristasTable);
+
+// -----------------------------------------------------------------------------
+// FORM INFORMATION BELOW
+// -----------------------------------------------------------------------------
+
+// // setting up variables
+// var addNewLocation = document.getElementById('add-new-location'); // this is the form itself
+// var newLocationName = document.getElementById('new-location-name');
+// var newMinCustomers = document.getElementById('new-min-customers');
+// var newMaxCustomers = document.getElementById('new-max-customers');
+// var newAvgCups = document.getElementById('new-avg-cups');
+// var newAvgBags = document.getElementById('new-avg-bags');
+// var submitNewStore = document.getElementById('submit-new-store'); // this is the button
+//
+// // render

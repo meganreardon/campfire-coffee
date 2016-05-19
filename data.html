@@ -8,14 +8,20 @@
 
   <body>
 
+    <form id="add-new-location">
+      Name of new location: <input id="new-location-name" type="text" name="" size="15" maxlength="30" /><br />
+      Minimum customers per hour: <input id="new-min-customers" type="text" name="" size="15" maxlength="30" /><br />
+      Maximum customers per hour: <input id="new-max-customers" type="text" name="" size="15" maxlength="30" /><br />
+      Average cups sold per customer: <input id="new-avg-cups" type="text" name="" size="15" maxlength="30" /><br />
+      Average pound bags sold per customer: <input id="new-avg-bags" type="text" name="" size="15" maxlength="30" /><br />
+      <input type='submit' name='submit-new-store' value='Add New Store' />
+    </form>
+
     <h1>Beans Needed By Location Each Day</h1>
     <table id="beans-table"></table>
 
     <h1>Barista Hours Needed By Location Each Day</h1>
     <table id="baristas-table"></table>
-
-    <!-- <h1>This Is A Test Table</h1>
-    <table id="test-table"></table> -->
 
     <script src="app.js"></script>
 
