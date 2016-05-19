@@ -123,62 +123,23 @@ CoffeeCarts.prototype.calcDailyBeansNeeded = function() {
   this.dailyBeansNeeded = Math.round( this.dailyBeansNeeded * 10 ) / 10;
 };
 
-// this is old
-// CoffeeCarts.prototype.renderBeansData = function () {
-//   //alert('here we go');
-//   var tableName = beansTable;
-//   var trElement = document.createElement('tr');
-//   var thElement = document.createElement('th');
-//   thElement.textContent = this.locationName;
-//   trElement.appendChild(thElement);
-//   var tdElement = document.createElement('td');
-//   tdElement.textContent = this.dailyBeansNeeded;
-//   trElement.appendChild(tdElement);
-//   for (var j = 0; j < hours.length; j++) {
-//     var tdElement = document.createElement('td');
-//     tdElement.textContent = this.beansPerHour[j];
-//     trElement.appendChild(tdElement);
-//   }
-//   tableName.appendChild(trElement);
-// };
-
-// ----------------
-// render for the form
-// ----------------
-// this is example from class // delete later
-Comment.prototype.render = function() {
-  var liEl = document.createElement('li');
-  liEl.innerHTML = '<img width="100px" src="img/' + this.userName + '.jpg"> <b>' + this.userName + ': </b><em>' + this.text + '</em>';
-  return liEl;
-};
-
 // set up to create my own render function inside the object constructor
 CoffeeCarts.prototype.renderCoffeeDataRows = function() {
-
   var tableName = beansTable;
-
   var trElement = document.createElement('tr');
   trElement.innerHTML = '<tr>';
-
   var thElement = document.createElement('th');
-  //alert('entering location name terriotry');
-  //thElement.textContent = this.locationName;
   thElement.innerHTML = '<th>' + this.locationName + '</th>';
   trElement.appendChild(thElement);
-
   var tdElement = document.createElement('td');
-  //tdElement.textContent = this.dailyBeansNeeded;
   tdElement.innerHTML = '<td>' + this.dailyBeansNeeded + '</td>';
   trElement.appendChild(tdElement);
-
   for (var j = 0; j < hours.length; j++) {
     var tdElement = document.createElement('td');
-    // tdElement.textContent = this.beansPerHour[j];
     tdElement.innerHTML = '<td>' + this.beansPerHour[j] + '</td>';
     trElement.appendChild(tdElement);
   }
   tableName.appendChild(trElement);
-
 };
 
 // function to render barista table
@@ -198,6 +159,16 @@ CoffeeCarts.prototype.renderBaristasDataRows = function() {
     trElement.appendChild(tdElement);
   }
   tableName.appendChild(trElement);
+};
+
+// ----------------
+// render for the form
+// ----------------
+// this is example from class // delete later
+Comment.prototype.render = function() {
+  var liEl = document.createElement('li');
+  liEl.innerHTML = '<img width="100px" src="img/' + this.userName + '.jpg"> <b>' + this.userName + ': </b><em>' + this.text + '</em>';
+  return liEl;
 };
 
 // ---------------------------------------
@@ -225,13 +196,10 @@ function callCalcMethods() {
     calcMethodsNames[i].calcDailyBeansNeeded();
     calcMethodsNames[i].calcDailyEmployeesNeeded();
     calcMethodsNames[i].calcBeansPerHour();
-    //calcMethodsNames[i].renderBeansData();
     calcMethodsNames[i].renderCoffeeDataRows();
     calcMethodsNames[i].renderBaristasDataRows();
   }
 };
-
-// ---------------------------------------
 
 // ---------------------------------------
 // function to render table header row
@@ -251,62 +219,6 @@ function coffeeDataHeader(tableName) {
     tableName.appendChild(trElement);
   }
 };
-
-// ---------------------------------------
-// function to render any table data
-// ---------------------------------------
-// function coffeeData(tableName) {
-//   renderBeansData();
-//   tableName.appendChild(trElement);
-  // I could not get the renderBeansData method to take the tableName argument
-  // or any arguments for that matter coffeeData(tableName, whichDailyTotal, whichHourlyTotal)
-  // was my original plan to turn it into a method that could be used for all data tables.
-  // when I tried to turn it into a
-// };
-
-// ---------------------------------------
-// function to coffee data into tables
-// ---------------------------------------
-
-// function coffeeData(tableName) {
-//   for (var i = 0; i < locations.length; i++) {
-//     var trElement = document.createElement('tr');
-//     var thElement = document.createElement('th');
-//     thElement.textContent = locations[i].locationName;
-//     trElement.appendChild(thElement);
-//     var tdElement = document.createElement('td');
-//     tdElement.textContent = locations[i].dailyBeansNeeded;
-//     trElement.appendChild(tdElement);
-//     for (var j = 0; j < hours.length; j++) {
-//       var tdElement = document.createElement('td');
-//       tdElement.textContent = locations[i].beansPerHour[j];
-//       trElement.appendChild(tdElement);
-//     }
-//     tableName.appendChild(trElement);
-//   }
-// };
-
-// ---------------------------------------
-// function to render baristas
-// ---------------------------------------
-
-// function baristasData(tableName) {
-//   for (var i = 0; i < locations.length; i++) {
-//     var trElement = document.createElement('tr');
-//     var thElement = document.createElement('th');
-//     thElement.textContent = locations[i].locationName;
-//     trElement.appendChild(thElement);
-//     var tdElement = document.createElement('td');
-//     tdElement.textContent = locations[i].dailyEmployeesNeeded;
-//     trElement.appendChild(tdElement);
-//     for (var j = 0; j < hours.length; j++) {
-//       var tdElement = document.createElement('td');
-//       tdElement.textContent = locations[i].employeesPerHour[j];
-//       trElement.appendChild(tdElement);
-//     }
-//     tableName.appendChild(trElement);
-//   }
-// };
 
 // ---------------------------------------
 // function to render table footer row
