@@ -72,6 +72,7 @@ CoffeeCarts.prototype.calcPoundPackagesPerHour = function() {
     var bags = this.customersPerHour[i] * this.avgPoundBagsBoughtPerCustomer;
     bags = Math.round( bags );
     this.poundPackagesPerHour.push(bags);
+    this.dailyPoundPackagesTotal += bags;
   }
 };
 
@@ -80,6 +81,7 @@ CoffeeCarts.prototype.calcBeansPerHour = function() {
     var pounds = this.beansNeededForCupsPerHour[i] + this.poundPackagesPerHour[i];
     pounds = Math.round( pounds * 10 ) / 10;
     this.beansPerHour.push(pounds);
+    grandTotalBeansPerDay =+ pounds;
   }
 };
 
