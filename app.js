@@ -281,44 +281,44 @@ coffeeDataFooter(baristasTable);
 // -----------------------------------------------------------------------------
 // FORM INFORMATION BELOW
 // -----------------------------------------------------------------------------
-//
-// // setting up variables
-// var addNewLocation = document.getElementById('add-new-location'); // this is the form itself
-// var newLocationName = document.getElementById('new-location-name');
-// var newMinCustomers = document.getElementById('new-min-customers');
-// var newMaxCustomers = document.getElementById('new-max-customers');
-// var newAvgCups = document.getElementById('new-avg-cups');
-// var newAvgBags = document.getElementById('new-avg-bags');
-// var submitNewStore = document.getElementById('submit-new-store'); // this is the button
-//
-// // handle submission - my own, unfinished
-// function handleNewCartSubmit(event) {
-//   event.preventDefault();
-//   if (!event.target.says.value || !event.target.who.value) {
-//     return alert('Fields cannot be empty!');
-//   }
-//   var variable1 = event.target.___.value;
-//   var variable2 = event.target.___.value;
-//   var variable3 = event.target.___.value;
-//   var variable4 = event.target.___.value;
-//   var variable5 = event.target.___.value;
-//   var variable6 = event.target.___.value;
-//   // not finished, looking at class code below
-// };
-//
-// // handle submission from class code
-// function handleCommentSubmit(event) {
-//   event.preventDefault(); //gotta have it. prevents page reload
-//   if (!event.target.says.value || !event.target.who.value) {
-//     return alert('Fields cannot be empty!');
-//   }
-//   var commenter = event.target.who.value;
-//   var remark = event.target.says.value;
-//   var newComment = new Comment(commenter, remark);
-//   event.target.who.value = null;
-//   event.target.says.value = null;
-//   allComments.push(newComment);
-//   renderAllComments();
-// };
 
-// render
+// setting up variables
+var handleNewCartSubmit = document.getElementById('add-new-location-form'); // this is the form itself
+//var handleNewCartSubmit = document.getElementById('add-new-location-button'); // this is the button
+
+// handle submission - my own, unfinished
+handleNewCartSubmit.addEventListener('submit', function(event){
+
+  event.preventDefault();
+
+  var addNewLocation = event.target.newlocation.value;
+  console.log(addNewLocation);
+  var addNewMin = event.target.newmin.value;
+  var addNewMax = event.target.newmax.value;
+  var addNewCups = event.target.newcups.value;
+  var addNewPounds = event.target.newpounds.value;
+
+  if (!event.target.newlocation.value || !event.target.newmin.value || !event.target.newmax.value || !event.target.newcups.value || !event.target.newpounds.value) {
+    return alert('All fields need to be filled in. Thanks!');
+  }
+
+  console.log(addNewMin);
+  console.log(addNewMax);
+  console.log(addNewCups);
+  console.log(addNewPounds);
+
+  var newCoffeeCart = new CoffeeCarts(addNewLocation, addNewMin, addNewMax, addNewCups, addNewPounds);
+
+  event.target.newlocation.value = null;
+  event.target.newmin.value = null;
+  event.target.newmax.value = null;
+  event.target.newcups.value = null;
+  event.target.newpounds.value = null;
+
+  locations.push(newCoffeeCart);
+
+  // i have call bean data and call barista data methods, what goes here for me??
+  // renderAllComments(); // ????
+});
+
+//newLocationNameButton.addEventListener('click', handleNewCartSubmit);
