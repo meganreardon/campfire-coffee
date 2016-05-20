@@ -321,6 +321,9 @@ function coffeeDataFooter(tableName) {
 // COFFEE AND BARISTA DATA TABLE RENDER
 // -----------------------------------------------------------------------------
 
+var testTable = document.getElementById('test-table');
+calcCoffeeDataFooter(testTable);
+
 coffeeDataHeader(beansTable);
 callBeanData();
 coffeeDataFooter(beansTable);
