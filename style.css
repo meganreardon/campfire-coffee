@@ -8,6 +8,7 @@ body {
 
 table {
   background-color: #4d79ff;
+  border-radius: 5px;
 }
 
 tr {
@@ -31,4 +32,35 @@ td {
   background-color: #ffffff;
   padding: 2px 5px;
   color: black;
+}
+
+div {
+  margin: 10px;
+  padding: 10px;
+}
+
+form {
+  background-color: #808080;
+  padding: 30px 10px 15px 10px;
+  border-radius: 5px;
+  width: 500px;
+  color: white;
+}
+
+input {
+  margin: 4px;
+  text-align: right;
+}
+
+.submitbutton {
+  text-align: right;
+  padding-right: 40px;
+}
+
+.formtext {
+  float: left;
+  text-align: right;
+  width: 325px;
+  font-size: 14px;
+  padding: 4px 10px 0px 4px;
 }

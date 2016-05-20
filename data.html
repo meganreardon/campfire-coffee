@@ -8,14 +8,17 @@
 
   <body>
 
-    <form id="add-new-location-form">
-      Name of new location: <input name="newlocation" type="text" size="15" maxlength="30" /><br />
-      Minimum customers per hour: <input name="newmin" type="text" size="15" maxlength="30" /><br />
-      Maximum customers per hour: <input name="newmax" type="text" size="15" maxlength="30" /><br />
-      Average cups sold per customer: <input name="newcups" type="text" size="15" maxlength="30" /><br />
-      Average pound bags sold per customer: <input name="newpounds" type="text" size="15" maxlength="30" /><br />
-      <input type='submit' id='add-new-location-button' value='Add New Store' />
-    </form>
+    <h1>Add A New Coffee Cart To Track</h1>
+    <div id="formcontainer">
+      <form id="add-new-location-form">
+        <span class="formtext">Name of new location:</span> <input name="newlocation" type="text" size="15" maxlength="30" /><br />
+        <span class="formtext">Minimum customers per hour:</span> <input name="newmin" type="text" size="15" maxlength="30" /><br />
+        <span class="formtext">Maximum customers per hour:</span> <input name="newmax" type="text" size="15" maxlength="30" /><br />
+        <span class="formtext">Average cups sold per customer:</span> <input name="newcups" type="text" size="15" maxlength="30" /><br />
+        <span class="formtext">Average pound bags sold per customer:</span> <input name="newpounds" type="text" size="15" maxlength="30" /><br />
+        <div class="submitbutton"><input type='submit' id='add-new-location-button' value='Add New Store' /></div>
+      </form>
+    </div>
 
     <h1>Beans Needed By Location Each Day</h1>
     <table id="beans-table"></table>
