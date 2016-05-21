@@ -201,7 +201,7 @@ function callCalcMethods(location) {
   location.calcDailyBeansNeeded();
   location.calcDailyEmployeesNeeded();
   location.calcBeansPerHour();
-};
+  // SAM HAS ALL KIOSK PUSH THING HERE
 
 function callBeanData() {
   for (var i = 0; i < locations.length; i++) {
