@@ -1,66 +1,189 @@
+
 body {
-  background-color: white;
-  color: black;
-  font-family: Verdana, Arial, sans-serif;
-  font-size: 12px;
-  empty-cells: show;
+  background-image: url("images/campsite-tent-night.jpg");
+  background-repeat: no-repeat;
+  background-attachment: scroll;
+  background-size: contain;
+  background-color: #333333;
+  color: #ffffff;
+  font-family: 'Oswald', sans-serif;
+  margin: 0px;
+  padding: 0px;
+}
+
+main {
+  min-width: 200px;
+  max-width: 800px;
+  display: flex;
+  flex-direction: column;
+  /* this is what is keeping everything centered, why? */
+  margin: auto;
+  /* the below does not center the main part of the page, why?*/
+  /*justify-content: center;*/
+  /*justify-content: space-around;*/
+}
+
+h1 {
+  max-width: 800px;
+  font-family: 'Fredericka the Great', cursive;
+  font-size: 655%;
+  color: #ffffff;
+  font-weight: normal;
+}
+
+h2 {
+  font-family: 'Fredericka the Great', cursive;
+  font-size: 300%;
+  color: #ffffff;
+  font-weight: normal;
+  margin: 0px;
+  padding: 0px;
+  padding-bottom: 30px;
+}
+
+h3 {
+  font-family: 'Fredericka the Great', cursive;
+  font-size: 200%;
+  color: #ffffff;
+  font-weight: normal;
+  margin: 0px;
+  padding: 0px;
+}
+
+footer {
+  text-align: center;
+  margin: 0px;
+  padding: 30px 0px;
+  font-size: 80%;
+  width: 100%;
+  background-image: url("images/campsite-tent-night.jpg");
+  background-repeat: no-repeat;
+  background-attachment: scroll;
+  /*background-size: contain;*/
+  background-size: cover;
+}
+
+h2 a {
+    text-decoration: none;
+    color: #ffffff;
+}
+
+h3 a {
+    text-decoration: none;
+    color: #ffffff;
+}
+
+p a:link {
+  color: #999999;
+  text-decoration: none;
+}
+
+p a:visited {
+  color: #999999;
+  text-decoration: none;
+}
+
+p a:hover {
+  color: #ff6600;
+  text-decoration: underline;
+}
+
+p a:active {
+  color: #ffd633;
+  text-decoration: none;
 }
 
 table {
-  background-color: #4d79ff;
-  border-radius: 5px;
+  /* style for the public page locations & hours */
+  /*margin: 10px 10px 40px 10px;*/
+  padding: 20px 10px 10px 20px;
+  font-size: 150%;
 }
 
-tr {
-  background-color: #4d79ff;
-  padding: 2px 5px;
-  color: #ffffff;
-}
-
-tr.hover {
-  background-color: #4d79ff;
+th, td {
+  padding: 0px 30px 15px 0px;
 }
 
 th {
-  background-color: #4d79ff;
-  padding: 2px 5px 2px 5px;
+  text-transform: uppercase;
   text-align: left;
-  color: #ffffff;
+  color: #999999;
 }
 
 td {
-  background-color: #ffffff;
-  padding: 2px 5px;
-  color: black;
 }
 
-div {
+#maininfo {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding-bottom: 60px;
+  /* the following creates a transparent background image for the element to allow white text to be more readable */
+  background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAJklEQVQYV2M0Njb+f/bsWUZCNCMDAwMDIUUgeYImwQwZNRFvUAEAsOW8A5HBcJkAAAAASUVORK5CYII=) repeat;
+}
+
+#aboutus {
+  display: flex;
+  justify-content: space-between;
+  background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAJklEQVQYV2M0Njb+f/bsWUZCNCMDAwMDIUUgeYImwQwZNRFvUAEAsOW8A5HBcJkAAAAASUVORK5CYII=) repeat;
+}
+
+#aboutustext {
+  width: 50%;
+  margin: 0px 0px 60px 40px;
+  padding: 0px;
+}
+
+#aboutcoffee {
+  display: flex;
+  justify-content: space-between;
+  background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAJklEQVQYV2M0Njb+f/bsWUZCNCMDAwMDIUUgeYImwQwZNRFvUAEAsOW8A5HBcJkAAAAASUVORK5CYII=) repeat;
+}
+
+#aboutcoffeetext {
+  width: 50%;
+  margin: 0px 40px 60px 0px;
+  padding: 0px;
+}
+
+#blogcontainer {
+  background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAJklEQVQYV2M0Njb+f/bsWUZCNCMDAwMDIUUgeYImwQwZNRFvUAEAsOW8A5HBcJkAAAAASUVORK5CYII=) repeat;
+}
+
+#blog {
+  display: flex;
+  justify-content: space-between;
+}
+
+#blogtext {
+  width: 50%;
+  margin: 0px 0px 60px 40px;
+  padding: 0px;
+}
+
+#socialmedia {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  margin: 20px 10px;
+}
+
+.blogtimestamp {
+  font-size: 90%;
+  color: #999999;
+}
+
+.socialimg {
+  width: 80px;
   margin: 10px;
-  padding: 10px;
 }
 
-form {
-  background-color: #808080;
-  padding: 30px 10px 15px 10px;
-  border-radius: 5px;
-  width: 500px;
-  color: white;
+/* sets the width of the div that contains photo to half the width of the div */
+.imagecontainer {
+  width: 50%
 }
 
-input {
-  margin: 4px;
-  text-align: right;
-}
-
-.submitbutton {
-  text-align: right;
-  padding-right: 40px;
-}
-
-.formtext {
-  float: left;
-  text-align: right;
-  width: 325px;
-  font-size: 14px;
-  padding: 4px 10px 0px 4px;
+/* sets the width of the photograph to take up the whole container */
+.photograph {
+  width: 100%;
 }
