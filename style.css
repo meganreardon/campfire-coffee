@@ -43,8 +43,8 @@ h3 {
   font-size: 200%;
   color: #ffffff;
   font-weight: normal;
+  margin: 0px;
   padding: 0px;
-  margin: 10
 }
 
 footer {
@@ -82,37 +82,16 @@ a:active {
   background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAJklEQVQYV2M0Njb+f/bsWUZCNCMDAwMDIUUgeYImwQwZNRFvUAEAsOW8A5HBcJkAAAAASUVORK5CYII=) repeat;
 }
 
-/*change to class*/
-
-.about {
+#aboutus {
   display: flex;
   justify-content: space-between;
   background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAJklEQVQYV2M0Njb+f/bsWUZCNCMDAwMDIUUgeYImwQwZNRFvUAEAsOW8A5HBcJkAAAAASUVORK5CYII=) repeat;
 }
 
-.abouttext {
+#aboutustext {
   width: 50%;
-}
-
-.blog {
-  display: flex;
-  justify-content: space-between;
-  background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAJklEQVQYV2M0Njb+f/bsWUZCNCMDAwMDIUUgeYImwQwZNRFvUAEAsOW8A5HBcJkAAAAASUVORK5CYII=) repeat;
-}
-
-.blogtext {
-  width: 50%;
-}
-
-.blogtimestamp {
-  font-size: 90%;
-  color: #999999;
-}
-
-/*#aboutus {
-  display: flex;
-  justify-content: space-between;
-  background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAJklEQVQYV2M0Njb+f/bsWUZCNCMDAwMDIUUgeYImwQwZNRFvUAEAsOW8A5HBcJkAAAAASUVORK5CYII=) repeat;
+  margin: 0px 0px 60px 40px;
+  padding: 0px;
 }
 
 #aboutcoffee {
@@ -121,10 +100,29 @@ a:active {
   background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAJklEQVQYV2M0Njb+f/bsWUZCNCMDAwMDIUUgeYImwQwZNRFvUAEAsOW8A5HBcJkAAAAASUVORK5CYII=) repeat;
 }
 
-#blogcontent {
+#aboutcoffeetext {
+  width: 50%;
+  /*margin: 0px 0px 60px 40px;*/
+  margin: 0px 40px 60px 0px;
+  padding: 0px;
+}
+
+#blog {
   display: flex;
   justify-content: space-between;
-}*/
+  background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAJklEQVQYV2M0Njb+f/bsWUZCNCMDAwMDIUUgeYImwQwZNRFvUAEAsOW8A5HBcJkAAAAASUVORK5CYII=) repeat;
+}
+
+#blogtext {
+  width: 50%;
+  margin: 0px 0px 60px 40px;
+  padding: 0px;
+}
+
+.blogtimestamp {
+  font-size: 90%;
+  color: #999999;
+}
 
 table {
   /* style for the public page locations & hours */
