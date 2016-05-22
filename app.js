@@ -10,6 +10,8 @@ var testTable = document.getElementById('test-table');
 // new for footer
 var companyBeansPerDay = 0;
 var beansForHour = 0;
+var companyEmployeesPerDay = 0;
+var employeesForHour = 0;
 
 var locations = [];
 // get with locations[i].locationName
@@ -106,6 +108,7 @@ CoffeeCarts.prototype.calcDailyEmployeesNeeded = function() {
   for (var i = 0; i < hours.length; i++) {
     this.dailyEmployeesNeeded += this.employeesPerHour[i];
   }
+  companyEmployeesPerDay += this.dailyEmployeesNeeded;
 };
 
 CoffeeCarts.prototype.calcDailyCustomersTotal = function() {
@@ -359,6 +362,26 @@ function calcCoffeeDataFooter(tableName) {
   // push this to an array
 };
 
+function calcBaristasDataFooter(tableName) {
+  var trElement = document.createElement('tr');
+  var thElement = document.createElement('th');
+  thElement.textContent = 'TOTALS';
+  trElement.appendChild(thElement);
+  var thElement = document.createElement('th');
+  thElement.textContent = Math.ceil(companyEmployeesPerDay);// CHANGE
+  trElement.appendChild(thElement);
+  for (var i = 0; i < hours.length; i++) {
+    var employeesForHour = 0; // reset to zero for new hour // CHANGE
+    for (var j = 0; j < locations.length; j++) {
+      employeesForHour += locations[j].employeesPerHour[i];// CHANGE
+    }
+    var thElement = document.createElement('th');
+    thElement.textContent = Math.ceil(employeesForHour);// CHANGE
+    trElement.appendChild(thElement);
+  }
+  tableName.appendChild(trElement);
+};
+
 function coffeeDataFooter(tableName) {
   var trElement = document.createElement('tr');
   var thElement = document.createElement('th');
@@ -394,15 +417,15 @@ function coffeeDataFooter(tableName) {
 // COFFEE AND BARISTA DATA TABLE RENDER
 // -----------------------------------------------------------------------------
 
-calcCoffeeDataFooter(testTable);
-
 coffeeDataHeader(beansTable);
 callBeanData();
-coffeeDataFooter(beansTable);
+// coffeeDataFooter(beansTable);
+calcCoffeeDataFooter(beansTable);
 
 coffeeDataHeader(baristasTable);
 callBaristasData();
-coffeeDataFooter(baristasTable);
+calcBaristasDataFooter(baristasTable);
+// coffeeDataFooter(baristasTable);
 
 // -----------------------------------------------------------------------------
 // FORM INFORMATION BELOW
