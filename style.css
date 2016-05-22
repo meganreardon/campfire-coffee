@@ -23,11 +23,6 @@ main {
   /*justify-content: space-around;*/
 }
 
-#maininfo {
-  background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAJklEQVQYV2M0Njb+f/bsWUZCNCMDAwMDIUUgeYImwQwZNRFvUAEAsOW8A5HBcJkAAAAASUVORK5CYII=) repeat;
-  padding: 20px 10px 100px 20px;
-}
-
 h1 {
   max-width: 800px;
   font-family: 'Fredericka the Great', cursive;
@@ -41,6 +36,9 @@ h2 {
   font-size: 300%;
   color: #ffffff;
   font-weight: normal;
+  margin: 0px;
+  padding: 0px;
+  padding-bottom: 30px;
 }
 
 h3 {
@@ -63,7 +61,6 @@ footer {
   background-attachment: scroll;
   /*background-size: contain;*/
   background-size: cover;
-  background-color: #999999;
 }
 
 h2 a {
@@ -96,10 +93,31 @@ p a:active {
   text-decoration: none;
 }
 
+table {
+  /* style for the public page locations & hours */
+  /*margin: 10px 10px 40px 10px;*/
+  padding: 20px 10px 10px 20px;
+  font-size: 150%;
+}
+
+th, td {
+  padding: 0px 30px 15px 0px;
+}
+
+th {
+  text-transform: uppercase;
+  text-align: left;
+  color: #999999;
+}
+
+td {
+}
+
 #maininfo {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
+  padding-bottom: 60px;
   /* the following creates a transparent background image for the element to allow white text to be more readable */
   background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAJklEQVQYV2M0Njb+f/bsWUZCNCMDAwMDIUUgeYImwQwZNRFvUAEAsOW8A5HBcJkAAAAASUVORK5CYII=) repeat;
 }
@@ -124,15 +142,17 @@ p a:active {
 
 #aboutcoffeetext {
   width: 50%;
-  /*margin: 0px 0px 60px 40px;*/
   margin: 0px 40px 60px 0px;
   padding: 0px;
+}
+
+#blogcontainer {
+  background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAJklEQVQYV2M0Njb+f/bsWUZCNCMDAwMDIUUgeYImwQwZNRFvUAEAsOW8A5HBcJkAAAAASUVORK5CYII=) repeat;
 }
 
 #blog {
   display: flex;
   justify-content: space-between;
-  background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAJklEQVQYV2M0Njb+f/bsWUZCNCMDAwMDIUUgeYImwQwZNRFvUAEAsOW8A5HBcJkAAAAASUVORK5CYII=) repeat;
 }
 
 #blogtext {
@@ -141,34 +161,16 @@ p a:active {
   padding: 0px;
 }
 
-.blogtimestamp {
-  font-size: 90%;
-  color: #999999;
-}
-
-table {
-  /* style for the public page locations & hours */
-  /*margin: 10px 10px 40px 10px;*/
-  font-size: 150%;
-}
-
-th, td {
-  padding: 0px 30px 15px 0px;
-}
-
-th {
-  text-transform: uppercase;
-  text-align: left;
-  color: #999999;
-}
-
-td {
-}
-
 #socialmedia {
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
+  margin: 20px 10px;
+}
+
+.blogtimestamp {
+  font-size: 90%;
+  color: #999999;
 }
 
 .socialimg {
@@ -176,14 +178,12 @@ td {
   margin: 10px;
 }
 
+/* sets the width of the div that contains photo to half the width of the div */
 .imagecontainer {
   width: 50%
 }
 
+/* sets the width of the photograph to take up the whole container */
 .photograph {
   width: 100%;
-}
-
-.more {
-
 }
