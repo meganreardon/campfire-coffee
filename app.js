@@ -81,11 +81,11 @@ CoffeeCarts.prototype.calcPoundPackagesPerHour = function() {
 CoffeeCarts.prototype.calcBeansPerHour = function() {
   for (var i = 0; i < hours.length; i++) {
     var pounds = this.beansNeededForCupsPerHour[i] + this.poundPackagesPerHour[i];
-    console.log('pounds is at: ' + pounds);
+    // console.log('pounds is at: ' + pounds);
     // console.log (this.beansNeededForCupsPerHour[i] + this.poundPackagesPerHour[i]);
     pounds = Math.round( pounds * 10 ) / 10;
     this.beansPerHour.push(pounds);
-    companyBeansPerDay += pounds;
+    // companyBeansPerDay += pounds;
     // this is Dan example code
     // why is pounds a string here??
   }
@@ -129,6 +129,15 @@ CoffeeCarts.prototype.calcDailyPoundPackagesTotal = function() {
 CoffeeCarts.prototype.calcDailyBeansNeeded = function() {
   this.dailyBeansNeeded = (this.dailyCupsTotal / 16) + this.dailyPoundPackagesTotal;
   this.dailyBeansNeeded = Math.round( this.dailyBeansNeeded * 10 ) / 10;
+  console.log('location is ' + this.location + ' and daily beans needed is ' + this.dailyBeansNeeded);
+  console.log('daily beans needed type is:' + typeof this.dailyBeansNeeded);
+  // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+  // COMPANY TOTAL BEANS CALCULTAIONS HERE ALSO RETURN STRING
+  // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+  parseInt(this.dailyBeansNeeded);
+  parseInt(companyBeansPerDay);
+  companyBeansPerDay = companyBeansPerDay + this.dailyBeansNeeded;
+  console.log('daily beans needed total is at: ' + companyBeansPerDay);
 };
 
 // method to render bean data table
@@ -203,6 +212,12 @@ function callCalcMethods(location) {
   location.calcBeansPerHour();
 };
 
+callCalcMethods(pikePlace);
+callCalcMethods(capitolHill);
+callCalcMethods(seattlePublicLibrary);
+callCalcMethods(southLakeUnion);
+callCalcMethods(seaTac);
+
 function callBeanData() {
   for (var i = 0; i < locations.length; i++) {
     locations[i].renderCoffeeDataRows();
@@ -214,12 +229,6 @@ function callBaristasData() {
     locations[i].renderBaristasDataRows();
   }
 };
-
-callCalcMethods(pikePlace);
-callCalcMethods(capitolHill);
-callCalcMethods(seattlePublicLibrary);
-callCalcMethods(southLakeUnion);
-callCalcMethods(seaTac);
 
 // ---------------------------------------
 // function to render table header row
@@ -267,7 +276,7 @@ function calcCoffeeDataFooter(tableName) {
     for (var j = 0; j < locations.length; j++) {
       // added to check
       var numeral = locations[j].beansPerHour[i];
-      console.log(numeral);
+      //console.log(numeral);
       // console.log(i++);
       // console.log(locations[j]);
       // console.log(beansPerHour[i]);
