@@ -6,8 +6,10 @@ var whichDailyTotal = '';
 var whichHourlyTotal = '';
 var beansTable = document.getElementById('beans-table');
 var baristasTable = document.getElementById('baristas-table');
+var testTable = document.getElementById('test-table');
 // new for footer
 var companyBeansPerDay = 0;
+var beansForHour = 0;
 
 var locations = [];
 // get with locations[i].locationName
@@ -129,16 +131,13 @@ CoffeeCarts.prototype.calcDailyPoundPackagesTotal = function() {
 CoffeeCarts.prototype.calcDailyBeansNeeded = function() {
   this.dailyBeansNeeded = (this.dailyCupsTotal / 16) + this.dailyPoundPackagesTotal;
   this.dailyBeansNeeded = Math.round( this.dailyBeansNeeded * 10 ) / 10;
-  console.log('daily beans needed is: ' + this.dailyBeansNeeded);
-  console.log('daily beans needed is: ' + typeof this.dailyBeansNeeded);
-  // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-  // COMPANY TOTAL BEANS CALCULTAIONS HERE ALSO RETURN STRING
-  // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+  // console.log('daily beans needed is: ' + this.dailyBeansNeeded);
+  // console.log('daily beans needed is: ' + typeof this.dailyBeansNeeded);
   parseInt(this.dailyBeansNeeded);
   parseInt(companyBeansPerDay);
   companyBeansPerDay = companyBeansPerDay + this.dailyBeansNeeded;
-  console.log('company beans needed total is at: ' + companyBeansPerDay); // THIS RETURNS A STRING
-  console.log('...........');
+  // console.log('company beans needed total is at: ' + companyBeansPerDay);
+  // console.log('...........');
 };
 
 // method to render bean data table
@@ -146,14 +145,16 @@ CoffeeCarts.prototype.renderCoffeeDataRows = function() {
   var tableName = beansTable;
   var trElement = document.createElement('tr');
   var thElement = document.createElement('th');
-  thElement.textContent = this.locationName ;
+  thElement.textContent = this.locationName;
   trElement.appendChild(thElement);
   var tdElement = document.createElement('td');
-  tdElement.innerHTML = '<td>' + this.dailyBeansNeeded + '</td>';
+  // tdElement.innerHTML = '<td>' + this.dailyBeansNeeded + '</td>';
+  tdElement.textContent = this.dailyBeansNeeded;
   trElement.appendChild(tdElement);
   for (var j = 0; j < hours.length; j++) {
     var tdElement = document.createElement('td');
-    tdElement.innerHTML = '<td>' + this.beansPerHour[j] + '</td>';
+    // tdElement.innerHTML = '<td>' + this.beansPerHour[j] + '</td>';
+    tdElement.textContent = this.beansPerHour[j];
     trElement.appendChild(tdElement);
   }
   tableName.appendChild(trElement);
@@ -165,18 +166,69 @@ CoffeeCarts.prototype.renderBaristasDataRows = function() {
   var trElement = document.createElement('tr');
   trElement.innerHTML = '<tr>';
   var thElement = document.createElement('th');
-  thElement.innerHTML = '<th>' + this.locationName + '</th>';
+  // thElement.innerHTML = '<th>' + this.locationName + '</th>';
+  thElement.textContent = this.locationName;
   trElement.appendChild(thElement);
   var tdElement = document.createElement('td');
-  tdElement.innerHTML = '<td>' + this.dailyEmployeesNeeded + '</td>';
+  // tdElement.innerHTML = '<td>' + this.dailyEmployeesNeeded + '</td>';
+  tdElement.textContent = this.dailyEmployeesNeeded;
   trElement.appendChild(tdElement);
   for (var j = 0; j < hours.length; j++) {
     var tdElement = document.createElement('td');
-    tdElement.innerHTML = '<td>' + this.employeesPerHour[j] + '</td>';
+    // tdElement.innerHTML = '<td>' + this.employeesPerHour[j] + '</td>';
+    tdElement.textContent = this.employeesPerHour[j];
     trElement.appendChild(tdElement);
   }
   tableName.appendChild(trElement);
 };
+
+// // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+// // YEAH PRETTY MUCH DELETE ALL THIS MESS
+// // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+//
+// CoffeeCarts.prototype.calcCoffeeDataFooter = function(tableName) {
+//   console.log('can u c me?');
+//   // console.log('inside new footer row, table name is: ' + tableName);
+//   // first cell 'TOTALS'
+//   var trElement = document.createElement('tr');
+//   var thElement = document.createElement('th');
+//   thElement.textContent = 'TOTALS';
+//   trElement.appendChild(thElement);
+//   // second cell company wide beans per day
+//   var thElement = document.createElement('th');
+//   thElement.textContent = companyBeansPerDay;
+//   // thElement.textContent = 'placeholder';
+//   // console.log('company beans per day is: ' + companyBeansPerDay);
+//   trElement.appendChild(thElement);
+//   // loops
+//   for (var i = 0; i < hours.length; i++) {
+//     // declare empty variables
+//     // var beansForHour = 0;
+//     for (var j = 0; j < locations.length; j++) {
+//       // added to check
+//       var numeral = locations[j].beansPerHour[i];
+//       console.log(locations[j].locationName);
+//       console.log(beansPerHour);
+//       console.log(numeral);
+//       console.log('.................');
+//       // console.log(i++);
+//       // console.log(locations[j]);
+//       // console.log(beansPerHour[i]);
+//       // close added to check
+//       // put me back in beansForHour += locations[j].beansPerHour[i];
+//       var thElement = document.createElement('th');
+//       thElement.textContent = beansForHour;
+//       trElement.appendChild(thElement);
+//     }
+//     //beansForHour.push(sum-name-tbd);
+//   }
+//   // THE BELOW THROWS NOT A FUNCTION ERROR
+//   tableName.appendChild(trElement);
+//   // loop
+//   // third cell addition of hourly totals for 6am location[i].hours[j]
+//   // fourth cell addition of hourly totals for 7am location[i].hours[j]
+//   // push this to an array
+// };
 
 /*
 // ----------------
@@ -259,6 +311,7 @@ function coffeeDataHeader(tableName) {
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 
 function calcCoffeeDataFooter(tableName) {
+  console.log('inside new footer row, table name is: ' + tableName);
   // first cell 'TOTALS'
   var trElement = document.createElement('tr');
   var thElement = document.createElement('th');
@@ -266,29 +319,39 @@ function calcCoffeeDataFooter(tableName) {
   trElement.appendChild(thElement);
   // second cell company wide beans per day
   var thElement = document.createElement('th');
-  thElement.textContent = companyBeansPerDay;
+  thElement.textContent = Math.ceil(companyBeansPerDay);
   // thElement.textContent = 'placeholder';
   // console.log('company beans per day is: ' + companyBeansPerDay);
   trElement.appendChild(thElement);
   // loops
   for (var i = 0; i < hours.length; i++) {
     // declare empty variables
-    var beansForHour = 0;
+    var beansForHour = 0; // reset to zero for new hour
+    // var locationrightnow = '';
     for (var j = 0; j < locations.length; j++) {
       // added to check
-      var numeral = locations[j].beansPerHour[i];
-      //console.log(numeral);
+      // console.log(locations[j].locationName);
+      // console.log(beansPerHour);
+      beansForHour += locations[j].beansPerHour[i];
+      // console.log('location: ' + locations[j].locationName + ' time: ' + hours[i]);
+      // console.log('beans per current hour: ' + locations[j].beansPerHour[i]);
+      // console.log(beansForHour);
+      // console.log(typeof beansForHour);
+      // console.log('.................');
       // console.log(i++);
       // console.log(locations[j]);
       // console.log(beansPerHour[i]);
       // close added to check
       // put me back in beansForHour += locations[j].beansPerHour[i];
-      var thElement = document.createElement('th');
-      thElement.textContent = beansForHour;
-      trElement.appendChild(thElement);
     }
+    // console.log(Math.ceil(beansForHour));
+    // beansForHour = Math.ceil(beansForHour); // better way to do this? straightforward not working
+    var thElement = document.createElement('th');
+    thElement.textContent = Math.ceil(beansForHour);
+    trElement.appendChild(thElement);
     //beansForHour.push(sum-name-tbd);
   }
+  // THE BELOW THROWS NOT A FUNCTION ERROR
   tableName.appendChild(trElement);
   // loop
   // third cell addition of hourly totals for 6am location[i].hours[j]
@@ -330,6 +393,8 @@ function coffeeDataFooter(tableName) {
 // -----------------------------------------------------------------------------
 // COFFEE AND BARISTA DATA TABLE RENDER
 // -----------------------------------------------------------------------------
+
+calcCoffeeDataFooter(testTable);
 
 coffeeDataHeader(beansTable);
 callBeanData();
