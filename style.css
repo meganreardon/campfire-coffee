@@ -1,118 +1,106 @@
 
 body {
-  min-width: 200px;
-  max-width: 640px;
-  display: flex;
-  justify-content: center;
+  /*min-width: 200px;
+  max-width: 640px;*/
+  /*display: flex;
+  justify-content: center;*/
   background-image: url("images/campsite-tent-night.jpg");
   background-repeat: no-repeat;
   background-attachment: scroll;
-  background-size: cover;
-  background-color: #1f1f7a;
+  /*background-size: cover;*/
+  background-size: contain;
+  background-color: #000000;
   color: #ffffff;
   font-family: 'Oswald', sans-serif;
 }
 
-img.bg {
-  min-height: 100%;
-  min-width: 1024px;
-  width: 100%;
-  height: auto;
-  position: fixed;
-  top: 0;
-  left: 0;
+/*img.bg {
+min-height: 100%;
+min-width: 1024px;
+width: 100%;
+height: auto;
+position: fixed;
+top: 0;
+left: 0;
+}*/
+
+main {
+  min-width: 200px;
+  max-width: 640px;
+  display: flex;
+  justify-content: space-around;
+  flex-direction: column;
+  margin: auto;
+}
+
+h1 {
+  max-width: 640px;
+  font-family: 'Fredericka the Great', cursive;
+  font-size: 525%;
+  color: #ffffff;
+  font-weight: normal;
+  /*width: 100%;*/
+  /*font-size: 6vw;*/
+  /*opacity: 0.5;*/
+  /*background-color: white;*/
+}
+
+footer {
+  display: flex;
+  justify-content: center;
+}
+
+#maininfo {
+  display: flex;
+  justify-content: space-between;
+  background-color: #666666;
+}
+
+#aboutus {
+  display: flex;
+  justify-content: space-between;
+  background-color: #333333;
+}
+
+#aboutcoffee {
+  display: flex;
+  justify-content: space-between;
+  background-color: #666666;
+}
+
+#blog {
+  /*display: flex;
+  justify-content: space-between;*/
+  background-color: #333333;
+}
+
+#blogcontent {
+  display: flex;
+  justify-content: space-between;
 }
 
 #locationshourstable {
   /* style for the public page locations & hours */
 }
 
+#socialmedia {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
 #socialmedia>img {
   width: 100px;
 }
 
-h1 {
-  font-family: 'Fredericka the Great', cursive;
-  font-size: 400%;
-  color: #ffffff;
-  font-weight: normal;
-  /*opacity: 0.5;*/
-  /*background-color: white;*/
+#aboutusimg {
+  width: 200px;
 }
 
-#maininfo {
+#aboutcoffeeimg {
+  width: 200px;
 }
 
-
-/* BELOW HERE IS EARLIER WORK FOR PRIVATE FORMS PAGE */
-
-/*
-
-body {
-  background-color: white;
-  color: black;
-  font-family: Verdana, Arial, sans-serif;
-  font-size: 12px;
-  empty-cells: show;
+#blogimage {
+    width: 200px;
 }
-
-table {
-  background-color: #4d79ff;
-  border-radius: 5px;
-}
-
-tr {
-  background-color: #4d79ff;
-  padding: 2px 5px;
-  color: #ffffff;
-}
-
-tr.hover {
-  background-color: #4d79ff;
-}
-
-th {
-  background-color: #4d79ff;
-  padding: 2px 5px 2px 5px;
-  text-align: left;
-  color: #ffffff;
-}
-
-td {
-  background-color: #ffffff;
-  padding: 2px 5px;
-  color: black;
-}
-
-div {
-  margin: 10px;
-  padding: 10px;
-}
-
-form {
-  background-color: #808080;
-  padding: 30px 10px 15px 10px;
-  border-radius: 5px;
-  width: 500px;
-  color: white;
-}
-
-input {
-  margin: 4px;
-  text-align: right;
-}
-
-.submitbutton {
-  text-align: right;
-  padding-right: 40px;
-}
-
-.formtext {
-  float: left;
-  text-align: right;
-  width: 325px;
-  font-size: 14px;
-  padding: 4px 10px 0px 4px;
-}
-
-*/
