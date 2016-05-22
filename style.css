@@ -16,7 +16,11 @@ main {
   max-width: 800px;
   display: flex;
   flex-direction: column;
-  margin: auto; /* this is what is keeping everything centered, why? */
+  /* this is what is keeping everything centered, why? */
+  margin: auto;
+  /* the below does not center the main part of the page, why?*/
+  /*justify-content: center;*/
+  /*justify-content: space-around;*/
 }
 
 #maininfo {
@@ -49,9 +53,6 @@ h3 {
 }
 
 footer {
-  all: default;
-  /*display: flex;*/
-  /*justify-content: center;*/
   text-align: center;
   margin: 0px;
   padding: 30px 0px;
@@ -65,22 +66,32 @@ footer {
   background-color: #999999;
 }
 
-a:link {
+h2 a {
+    text-decoration: none;
+    color: #ffffff;
+}
+
+h3 a {
+    text-decoration: none;
+    color: #ffffff;
+}
+
+p a:link {
   color: #999999;
   text-decoration: none;
 }
 
-a:visited {
+p a:visited {
   color: #999999;
   text-decoration: none;
 }
 
-a:hover {
+p a:hover {
   color: #ff6600;
   text-decoration: underline;
 }
 
-a:active {
+p a:active {
   color: #ffd633;
   text-decoration: none;
 }
