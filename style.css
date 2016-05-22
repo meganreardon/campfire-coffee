@@ -12,7 +12,24 @@ body {
   background-color: #333333;
   color: #ffffff;
   font-family: 'Oswald', sans-serif;
+
 }
+
+/*#opacitytest {
+  background-color: orange;
+  opacity: 0.6;
+  position: absolute;
+  top: 230px;
+  width: 800px;
+  height: 4000px;
+  margin: auto;
+  min-width: 200px;
+  max-width: 800px;
+  display: flex;
+  justify-content: space-around;
+  margin: auto;
+  z-index: 0;
+}*/
 
 /*img.bg {
 min-height: 100%;
@@ -28,9 +45,13 @@ main {
   min-width: 200px;
   max-width: 800px;
   display: flex;
-  justify-content: space-around;
+  /*justify-content: center;*/
   flex-direction: column;
-  margin: auto;
+  margin: auto; /* this is what is keeping everything centered, why? */
+}
+
+#maininfo {
+  background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAJklEQVQYV2M0Njb+f/bsWUZCNCMDAwMDIUUgeYImwQwZNRFvUAEAsOW8A5HBcJkAAAAASUVORK5CYII=) repeat;
 }
 
 h1 {
@@ -62,30 +83,48 @@ h3 {
 footer {
   display: flex;
   justify-content: center;
+  margin: 50px 0px;
+}
+
+a:link {
+  color: #999999;
+}
+
+a:visited {
+  color: #999999;
+}
+
+a:hover {
+  color: #ff6600;
+  text-decoration: underline;
+}
+
+a:active {
+  color: #ffd633;
 }
 
 #maininfo {
   display: flex;
   justify-content: space-between;
-  background-color: #666666;
+  /*background-color: #666666;*/
 }
 
 #aboutus {
   display: flex;
   justify-content: space-between;
-  background-color: #555555;
+  /*background-color: #555555;*/
 }
 
 #aboutcoffee {
   display: flex;
   justify-content: space-between;
-  background-color: #666666;
+  /*background-color: #666666;*/
 }
 
 #blog {
   /*display: flex;
   justify-content: space-between;*/
-  background-color: #555555;
+  /*background-color: #555555;*/
 }
 
 #blogcontent {
@@ -108,7 +147,7 @@ footer {
 }*/
 
 .socialimg {
-  width: 100px;
+  width: 50px;
 }
 
 .imagecontainer {
@@ -121,6 +160,10 @@ footer {
 
 .photograph {
   width: 100%;
+}
+
+.more {
+
 }
 
 /*#aboutusimg {
@@ -146,3 +189,18 @@ footer {
 /*.blogpost {
 
 }*/
+
+
+div.transpbox {
+  margin: 30px;
+  background-color: #ffffff;
+  border: 1px solid black;
+  opacity: 0.6;
+  filter: alpha(opacity=60); /* For IE8 and earlier */
+}
+
+div.transpbox p {
+  margin: 5%;
+  font-weight: bold;
+  color: #000000;
+}
