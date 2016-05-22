@@ -7,7 +7,7 @@ var whichHourlyTotal = '';
 var beansTable = document.getElementById('beans-table');
 var baristasTable = document.getElementById('baristas-table');
 // new for footer
-var companyBeansPerDay = '0';
+var companyBeansPerDay = 0;
 
 var locations = [];
 // get with locations[i].locationName
@@ -129,15 +129,16 @@ CoffeeCarts.prototype.calcDailyPoundPackagesTotal = function() {
 CoffeeCarts.prototype.calcDailyBeansNeeded = function() {
   this.dailyBeansNeeded = (this.dailyCupsTotal / 16) + this.dailyPoundPackagesTotal;
   this.dailyBeansNeeded = Math.round( this.dailyBeansNeeded * 10 ) / 10;
-  console.log('location is ' + this.location + ' and daily beans needed is ' + this.dailyBeansNeeded);
-  console.log('daily beans needed type is:' + typeof this.dailyBeansNeeded);
+  console.log('daily beans needed is: ' + this.dailyBeansNeeded);
+  console.log('daily beans needed is: ' + typeof this.dailyBeansNeeded);
   // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
   // COMPANY TOTAL BEANS CALCULTAIONS HERE ALSO RETURN STRING
   // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
   parseInt(this.dailyBeansNeeded);
   parseInt(companyBeansPerDay);
   companyBeansPerDay = companyBeansPerDay + this.dailyBeansNeeded;
-  console.log('daily beans needed total is at: ' + companyBeansPerDay);
+  console.log('company beans needed total is at: ' + companyBeansPerDay); // THIS RETURNS A STRING
+  console.log('...........');
 };
 
 // method to render bean data table
@@ -365,7 +366,7 @@ handleNewCartSubmit.addEventListener('submit', function(event){
   callCalcMethods(newCoffeeCart);
 
   // loop through body and footer of Beans table and set
-  //chatList.innerHTML = '';
+  // chatList.innerHTML = '';
   beansTable.innerHTML = '';
   baristasTable.innerHTML = '';
   // for (var i = 0; i < locations.length; i++) {
@@ -373,7 +374,7 @@ handleNewCartSubmit.addEventListener('submit', function(event){
   //   locations[i].innerHTML = '';
   // };
 
-  //rewrite body and footers of tables
+  // rewrite body and footers of tables
   coffeeDataHeader(beansTable);
   callBeanData();
   coffeeDataFooter(beansTable);
@@ -382,34 +383,10 @@ handleNewCartSubmit.addEventListener('submit', function(event){
   callBaristasData();
   coffeeDataFooter(baristasTable);
 
+  // reset form
   event.target.newlocation.value = null;
   event.target.newmin.value = null;
   event.target.newmax.value = null;
   event.target.newcups.value = null;
   event.target.newpounds.value = null;
 });
-
-function calcPublicData() {
-  var trElement = document.createElemnt('tr');
-  for (var i = 0; i < locations.length; i++) {
-    var tdElement = document.createElement('td');
-    tdElement.textContent = locations[i].locationName;
-    trElement.appendChild(tdElement);
-    document.createElemnt('td');
-    tdElement.textContent = '7am - 9pm';
-    trElement.appendChild(tdElement);
-  }
-  // var trElement = document.createElement('tr');
-  // var thElement = document.createElement('th');
-  // thElement.textContent = '';
-  // trElement.appendChild(thElement);
-  // var thElement = document.createElement('th');
-  // thElement.textContent = 'Daily Total';
-  // trElement.appendChild(thElement);
-  // for (var i = 0; i < hours.length; i++) {
-  //   var thElement = document.createElement('th');
-  //   thElement.textContent = hours[i];
-  //   trElement.appendChild(thElement);
-  // }
-  publicData.appendChild(trElement);
-};
