@@ -201,7 +201,7 @@ function callCalcMethods(location) {
   location.calcDailyBeansNeeded();
   location.calcDailyEmployeesNeeded();
   location.calcBeansPerHour();
-  // SAM HAS ALL KIOSK PUSH THING HERE
+};
 
 function callBeanData() {
   for (var i = 0; i < locations.length; i++) {
@@ -321,9 +321,6 @@ function coffeeDataFooter(tableName) {
 // COFFEE AND BARISTA DATA TABLE RENDER
 // -----------------------------------------------------------------------------
 
-var testTable = document.getElementById('test-table');
-calcCoffeeDataFooter(testTable);
-
 coffeeDataHeader(beansTable);
 callBeanData();
 coffeeDataFooter(beansTable);
@@ -382,3 +379,28 @@ handleNewCartSubmit.addEventListener('submit', function(event){
   event.target.newcups.value = null;
   event.target.newpounds.value = null;
 });
+
+function calcPublicData() {
+  var trElement = document.createElemnt('tr');
+  for (var i = 0; i < locations.length; i++) {
+    var tdElement = document.createElement('td');
+    tdElement.textContent = locations[i].locationName;
+    trElement.appendChild(tdElement);
+    document.createElemnt('td');
+    tdElement.textContent = '7am - 9pm';
+    trElement.appendChild(tdElement);
+  }
+  // var trElement = document.createElement('tr');
+  // var thElement = document.createElement('th');
+  // thElement.textContent = '';
+  // trElement.appendChild(thElement);
+  // var thElement = document.createElement('th');
+  // thElement.textContent = 'Daily Total';
+  // trElement.appendChild(thElement);
+  // for (var i = 0; i < hours.length; i++) {
+  //   var thElement = document.createElement('th');
+  //   thElement.textContent = hours[i];
+  //   trElement.appendChild(thElement);
+  // }
+  publicData.appendChild(trElement);
+};

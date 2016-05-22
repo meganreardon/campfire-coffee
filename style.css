@@ -1,3 +1,53 @@
+
+body {
+  min-width: 200px;
+  max-width: 640px;
+  display: flex;
+  justify-content: center;
+  background-image: url("images/campsite-tent-night.jpg");
+  background-repeat: no-repeat;
+  background-attachment: scroll;
+  background-size: cover;
+  background-color: #1f1f7a;
+  color: #ffffff;
+  font-family: 'Oswald', sans-serif;
+}
+
+img.bg {
+  min-height: 100%;
+  min-width: 1024px;
+  width: 100%;
+  height: auto;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+#locationshourstable {
+  /* style for the public page locations & hours */
+}
+
+#socialmedia>img {
+  width: 100px;
+}
+
+h1 {
+  font-family: 'Fredericka the Great', cursive;
+  font-size: 400%;
+  color: #ffffff;
+  font-weight: normal;
+  /*opacity: 0.5;*/
+  /*background-color: white;*/
+}
+
+#maininfo {
+}
+
+
+/* BELOW HERE IS EARLIER WORK FOR PRIVATE FORMS PAGE */
+
+/*
+
 body {
   background-color: white;
   color: black;
@@ -64,3 +114,5 @@ input {
   font-size: 14px;
   padding: 4px 10px 0px 4px;
 }
+
+*/
