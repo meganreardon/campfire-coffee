@@ -185,54 +185,6 @@ CoffeeCarts.prototype.renderBaristasDataRows = function() {
   tableName.appendChild(trElement);
 };
 
-// // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-// // YEAH PRETTY MUCH DELETE ALL THIS MESS
-// // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-//
-// CoffeeCarts.prototype.calcCoffeeDataFooter = function(tableName) {
-//   console.log('can u c me?');
-//   // console.log('inside new footer row, table name is: ' + tableName);
-//   // first cell 'TOTALS'
-//   var trElement = document.createElement('tr');
-//   var thElement = document.createElement('th');
-//   thElement.textContent = 'TOTALS';
-//   trElement.appendChild(thElement);
-//   // second cell company wide beans per day
-//   var thElement = document.createElement('th');
-//   thElement.textContent = companyBeansPerDay;
-//   // thElement.textContent = 'placeholder';
-//   // console.log('company beans per day is: ' + companyBeansPerDay);
-//   trElement.appendChild(thElement);
-//   // loops
-//   for (var i = 0; i < hours.length; i++) {
-//     // declare empty variables
-//     // var beansForHour = 0;
-//     for (var j = 0; j < locations.length; j++) {
-//       // added to check
-//       var numeral = locations[j].beansPerHour[i];
-//       console.log(locations[j].locationName);
-//       console.log(beansPerHour);
-//       console.log(numeral);
-//       console.log('.................');
-//       // console.log(i++);
-//       // console.log(locations[j]);
-//       // console.log(beansPerHour[i]);
-//       // close added to check
-//       // put me back in beansForHour += locations[j].beansPerHour[i];
-//       var thElement = document.createElement('th');
-//       thElement.textContent = beansForHour;
-//       trElement.appendChild(thElement);
-//     }
-//     //beansForHour.push(sum-name-tbd);
-//   }
-//   // THE BELOW THROWS NOT A FUNCTION ERROR
-//   tableName.appendChild(trElement);
-//   // loop
-//   // third cell addition of hourly totals for 6am location[i].hours[j]
-//   // fourth cell addition of hourly totals for 7am location[i].hours[j]
-//   // push this to an array
-// };
-
 /*
 // ----------------
 // render for the form
@@ -314,7 +266,7 @@ function coffeeDataHeader(tableName) {
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 
 function calcCoffeeDataFooter(tableName) {
-  console.log('inside new footer row, table name is: ' + tableName);
+  // console.log('inside new footer row, table name is: ' + tableName);
   // first cell 'TOTALS'
   var trElement = document.createElement('tr');
   var thElement = document.createElement('th');
@@ -465,11 +417,13 @@ handleNewCartSubmit.addEventListener('submit', function(event){
   // rewrite body and footers of tables
   coffeeDataHeader(beansTable);
   callBeanData();
-  coffeeDataFooter(beansTable);
+  // coffeeDataFooter(beansTable);
+  calcCoffeeDataFooter(beansTable);
 
   coffeeDataHeader(baristasTable);
   callBaristasData();
-  coffeeDataFooter(baristasTable);
+  calcBaristasDataFooter(baristasTable);
+  // coffeeDataFooter(baristasTable);
 
   // reset form
   event.target.newlocation.value = null;
