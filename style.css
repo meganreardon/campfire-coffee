@@ -9,7 +9,7 @@ body {
   background-attachment: scroll;
   /*background-size: cover;*/
   background-size: contain;
-  background-color: #000000;
+  background-color: #333333;
   color: #ffffff;
   font-family: 'Oswald', sans-serif;
 }
@@ -26,7 +26,7 @@ left: 0;
 
 main {
   min-width: 200px;
-  max-width: 640px;
+  max-width: 800px;
   display: flex;
   justify-content: space-around;
   flex-direction: column;
@@ -34,15 +34,29 @@ main {
 }
 
 h1 {
-  max-width: 640px;
+  max-width: 800px;
   font-family: 'Fredericka the Great', cursive;
-  font-size: 525%;
+  font-size: 655%;
   color: #ffffff;
   font-weight: normal;
   /*width: 100%;*/
   /*font-size: 6vw;*/
   /*opacity: 0.5;*/
   /*background-color: white;*/
+}
+
+h2 {
+  font-family: 'Fredericka the Great', cursive;
+  font-size: 300%;
+  color: #ffffff;
+  font-weight: normal;
+}
+
+h3 {
+  font-family: 'Fredericka the Great', cursive;
+  font-size: 200%;
+  color: #ffffff;
+  font-weight: normal;
 }
 
 footer {
@@ -59,7 +73,7 @@ footer {
 #aboutus {
   display: flex;
   justify-content: space-between;
-  background-color: #333333;
+  background-color: #555555;
 }
 
 #aboutcoffee {
@@ -71,7 +85,7 @@ footer {
 #blog {
   /*display: flex;
   justify-content: space-between;*/
-  background-color: #333333;
+  background-color: #555555;
 }
 
 #blogcontent {
@@ -89,18 +103,46 @@ footer {
   justify-content: flex-end;
 }
 
-#socialmedia>img {
+/*#socialmedia>img {
+  width: 100px;
+}*/
+
+.socialimg {
   width: 100px;
 }
 
-#aboutusimg {
-  width: 200px;
+.imagecontainer {
+  width: 50%
 }
 
-#aboutcoffeeimg {
-  width: 200px;
+.about {
+  width: 50%;
 }
 
-#blogimage {
-    width: 200px;
+.photograph {
+  width: 100%;
 }
+
+/*#aboutusimg {
+  width: 100%;
+}*/
+
+/*#aboutcoffeeimg {
+  width: 100%;
+}*/
+
+/*#blogimage {
+  width: 100%;
+}*/
+
+/*#aboutuscontainer {
+
+}*/
+
+/*#aboutcoffeecontainer {
+
+}*/
+
+/*.blogpost {
+
+}*/
