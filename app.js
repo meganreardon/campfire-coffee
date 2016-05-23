@@ -1,41 +1,40 @@
 var hours = ['6:00am', '7:00am', '8:00am', '9:00am', '10:00am', '11:00am', '12:00pm', '1:00pm', '2:00pm', '3:00pm', '4:00pm', '5:00pm', '6:00pm', '7:00pm', '8:00pm'];
 
-// varibles to create data tables
+// global varibles to create data tables
 var tableName = '';
 var whichDailyTotal = '';
 var whichHourlyTotal = '';
-var beansTable = document.getElementById('beans-table');
-var baristasTable = document.getElementById('baristas-table');
-var testTable = document.getElementById('test-table');
-// new for footer
 var companyBeansPerDay = 0;
 var beansForHour = 0;
 var companyEmployeesPerDay = 0;
 var employeesForHour = 0;
-
 var locations = [];
-// get with locations[i].locationName
-// will be iteration indicator word, not locationName string
+// for table footer data collection
+var allBeansPerHour = [];
+var allEmployeesPerHour = [];
+var beansTable = document.getElementById('beans-table');
+var baristasTable = document.getElementById('baristas-table');
+
+// ADDED FOR COMBINING FUNCTIONS
+var forCurrentHour = 0;
+var perDayTotal = 0;
+var perHourTotal = 0;
 
 // ---------------------------------------
 // constructor function code below
 // ---------------------------------------
 
-// constructor and variables to pass
 function CoffeeCarts(locationName, minCustomersHour, maxCustomersHour, avgCupsPerCustomer, avgPoundBagsBoughtPerCustomer) {
-  // known values below
   this.locationName = locationName;
   this.minCustomersHour = minCustomersHour;
   this.maxCustomersHour = maxCustomersHour;
   this.avgCupsPerCustomer = avgCupsPerCustomer;
   this.avgPoundBagsBoughtPerCustomer = avgPoundBagsBoughtPerCustomer;
-  // unknown values below
   this.dailyCustomersTotal = 0;
   this.dailyCupsTotal = 0;
   this.dailyPoundPackagesTotal = 0;
   this.dailyBeansNeeded = 0;
   this.dailyEmployeesNeeded = 0;
-  // arrays!
   this.customersPerHour = [];
   this.cupsPerHour = [];
   this.beansPerHour = [];
@@ -46,12 +45,10 @@ function CoffeeCarts(locationName, minCustomersHour, maxCustomersHour, avgCupsPe
   locations.push(this);
 };
 
-// my code for methods for our object
 CoffeeCarts.prototype.calcCustomersPerHour = function(min, max) {
   for (var i = 0; i < hours.length; i ++) {
     var customers = Math.floor(Math.random() * (max - min + 1)) + min;
     this.customersPerHour.push(customers);
-
   }
 };
 
@@ -65,7 +62,6 @@ CoffeeCarts.prototype.calcCupsPerHour = function() {
 };
 
 CoffeeCarts.prototype.calcBeansNeededForCupsPerHour = function() {
-  //this.calcCupsPerHour(); // spencer added this to call up there
   for (var i = 0; i < hours.length; i++) {
     var beans = this.cupsPerHour[i] / 16;
     beans = Math.round( beans * 10 ) / 10;
@@ -83,27 +79,27 @@ CoffeeCarts.prototype.calcPoundPackagesPerHour = function() {
 };
 
 CoffeeCarts.prototype.calcBeansPerHour = function() {
+  var addAllBeansPerHour = [];
   for (var i = 0; i < hours.length; i++) {
     var pounds = this.beansNeededForCupsPerHour[i] + this.poundPackagesPerHour[i];
-    // console.log('pounds is at: ' + pounds);
-    // console.log (this.beansNeededForCupsPerHour[i] + this.poundPackagesPerHour[i]);
     pounds = Math.round( pounds * 10 ) / 10;
     this.beansPerHour.push(pounds);
-    // companyBeansPerDay += pounds;
-    // this is Dan example code
-    // why is pounds a string here??
+    addAllBeansPerHour.push(pounds);
   }
+  allBeansPerHour.push(addAllBeansPerHour);
 };
 
 CoffeeCarts.prototype.calcEmployeesNeededPerHour = function() {
+  var addAllEmployeesPerHour = [];
   for (var i = 0; i < hours.length; i++) {
     var employees = (this.customersPerHour[i] * 2) / 60;
     employees = Math.ceil(employees);
     this.employeesPerHour.push(employees);
+    addAllEmployeesPerHour.push(employees);
   }
+  allEmployeesPerHour.push(addAllEmployeesPerHour);
 };
 
-// new function added to varible dailyEmployeesNeeded
 CoffeeCarts.prototype.calcDailyEmployeesNeeded = function() {
   for (var i = 0; i < hours.length; i++) {
     this.dailyEmployeesNeeded += this.employeesPerHour[i];
@@ -134,13 +130,9 @@ CoffeeCarts.prototype.calcDailyPoundPackagesTotal = function() {
 CoffeeCarts.prototype.calcDailyBeansNeeded = function() {
   this.dailyBeansNeeded = (this.dailyCupsTotal / 16) + this.dailyPoundPackagesTotal;
   this.dailyBeansNeeded = Math.round( this.dailyBeansNeeded * 10 ) / 10;
-  // console.log('daily beans needed is: ' + this.dailyBeansNeeded);
-  // console.log('daily beans needed is: ' + typeof this.dailyBeansNeeded);
   parseInt(this.dailyBeansNeeded);
   parseInt(companyBeansPerDay);
   companyBeansPerDay = companyBeansPerDay + this.dailyBeansNeeded;
-  // console.log('company beans needed total is at: ' + companyBeansPerDay);
-  // console.log('...........');
 };
 
 // method to render bean data table
@@ -151,12 +143,10 @@ CoffeeCarts.prototype.renderCoffeeDataRows = function() {
   thElement.textContent = this.locationName;
   trElement.appendChild(thElement);
   var tdElement = document.createElement('td');
-  // tdElement.innerHTML = '<td>' + this.dailyBeansNeeded + '</td>';
   tdElement.textContent = this.dailyBeansNeeded;
   trElement.appendChild(tdElement);
   for (var j = 0; j < hours.length; j++) {
     var tdElement = document.createElement('td');
-    // tdElement.innerHTML = '<td>' + this.beansPerHour[j] + '</td>';
     tdElement.textContent = this.beansPerHour[j];
     trElement.appendChild(tdElement);
   }
@@ -169,33 +159,18 @@ CoffeeCarts.prototype.renderBaristasDataRows = function() {
   var trElement = document.createElement('tr');
   trElement.innerHTML = '<tr>';
   var thElement = document.createElement('th');
-  // thElement.innerHTML = '<th>' + this.locationName + '</th>';
   thElement.textContent = this.locationName;
   trElement.appendChild(thElement);
   var tdElement = document.createElement('td');
-  // tdElement.innerHTML = '<td>' + this.dailyEmployeesNeeded + '</td>';
   tdElement.textContent = this.dailyEmployeesNeeded;
   trElement.appendChild(tdElement);
   for (var j = 0; j < hours.length; j++) {
     var tdElement = document.createElement('td');
-    // tdElement.innerHTML = '<td>' + this.employeesPerHour[j] + '</td>';
     tdElement.textContent = this.employeesPerHour[j];
     trElement.appendChild(tdElement);
   }
   tableName.appendChild(trElement);
 };
-
-/*
-// ----------------
-// render for the form
-// ----------------
-// this is example from class // delete later
-Comment.prototype.render = function() {
-  var liEl = document.createElement('li');
-  liEl.innerHTML = '<img width="100px" src="img/' + this.userName + '.jpg"> <b>' + this.userName + ': </b><em>' + this.text + '</em>';
-  return liEl;
-};
-*/
 
 // ---------------------------------------
 // instance creation
@@ -206,7 +181,6 @@ var seattlePublicLibrary = new CoffeeCarts('Seattle Public Library', 9, 45, 2.6,
 var southLakeUnion = new CoffeeCarts('South Lake Union', 5, 18, 1.3, 0.04);
 var seaTac = new CoffeeCarts('Sea-Tac Airport', 28, 44, 1.1, 0.41);
 
-//loop to call methods
 function callCalcMethods(location) {
   location.calcCupsPerHour();
   location.calcBeansNeededForCupsPerHour();
@@ -258,112 +232,28 @@ function coffeeDataHeader(tableName) {
 };
 
 // ---------------------------------------
-// function to render table footer row
+// function to render table footer rows
 // ---------------------------------------
 
-// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-// THIS IS MY NEW FOOTER ROW
-// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-
-function calcCoffeeDataFooter(tableName) {
-  // console.log('inside new footer row, table name is: ' + tableName);
-  // first cell 'TOTALS'
+function calcTableFooter(tableName, perDayTotal, perHourTotal) {
   var trElement = document.createElement('tr');
   var thElement = document.createElement('th');
-  thElement.textContent = 'TOTALS';
-  trElement.appendChild(thElement);
-  // second cell company wide beans per day
-  var thElement = document.createElement('th');
-  thElement.textContent = Math.ceil(companyBeansPerDay);
-  // thElement.textContent = 'placeholder';
-  // console.log('company beans per day is: ' + companyBeansPerDay);
-  trElement.appendChild(thElement);
-  // loops
-  for (var i = 0; i < hours.length; i++) {
-    // declare empty variables
-    var beansForHour = 0; // reset to zero for new hour
-    // var locationrightnow = '';
-    for (var j = 0; j < locations.length; j++) {
-      // added to check
-      // console.log(locations[j].locationName);
-      // console.log(beansPerHour);
-      beansForHour += locations[j].beansPerHour[i];
-      // console.log('location: ' + locations[j].locationName + ' time: ' + hours[i]);
-      // console.log('beans per current hour: ' + locations[j].beansPerHour[i]);
-      // console.log(beansForHour);
-      // console.log(typeof beansForHour);
-      // console.log('.................');
-      // console.log(i++);
-      // console.log(locations[j]);
-      // console.log(beansPerHour[i]);
-      // close added to check
-      // put me back in beansForHour += locations[j].beansPerHour[i];
-    }
-    // console.log(Math.ceil(beansForHour));
-    // beansForHour = Math.ceil(beansForHour); // better way to do this? straightforward not working
-    var thElement = document.createElement('th');
-    thElement.textContent = Math.ceil(beansForHour);
-    trElement.appendChild(thElement);
-    //beansForHour.push(sum-name-tbd);
-  }
-  // THE BELOW THROWS NOT A FUNCTION ERROR
-  tableName.appendChild(trElement);
-  // loop
-  // third cell addition of hourly totals for 6am location[i].hours[j]
-  // fourth cell addition of hourly totals for 7am location[i].hours[j]
-  // push this to an array
-};
-
-function calcBaristasDataFooter(tableName) {
-  var trElement = document.createElement('tr');
-  var thElement = document.createElement('th');
-  thElement.textContent = 'TOTALS';
+  thElement.textContent = 'ALL LOCATIONS';
   trElement.appendChild(thElement);
   var thElement = document.createElement('th');
-  thElement.textContent = Math.ceil(companyEmployeesPerDay);// CHANGE
+  thElement.textContent = Math.ceil(perDayTotal);
   trElement.appendChild(thElement);
   for (var i = 0; i < hours.length; i++) {
-    var employeesForHour = 0; // reset to zero for new hour // CHANGE
+    forCurrentHour = 0;
     for (var j = 0; j < locations.length; j++) {
-      employeesForHour += locations[j].employeesPerHour[i];// CHANGE
+      forCurrentHour += perHourTotal[j][i];
     }
     var thElement = document.createElement('th');
-    thElement.textContent = Math.ceil(employeesForHour);// CHANGE
+    thElement.textContent = Math.ceil(forCurrentHour);
     trElement.appendChild(thElement);
   }
   tableName.appendChild(trElement);
 };
-
-function coffeeDataFooter(tableName) {
-  var trElement = document.createElement('tr');
-  var thElement = document.createElement('th');
-  thElement.textContent = 'TOTALS';
-  trElement.appendChild(thElement);
-  var thElement = document.createElement('th');
-  thElement.textContent = 'PH';
-  trElement.appendChild(thElement);
-  for (var i = 0; i < hours.length; i++) {
-    var thElement = document.createElement('th');
-    thElement.textContent = 'ph';
-    trElement.appendChild(thElement);
-  }
-  tableName.appendChild(trElement);
-};
-
-// // sam's example code
-// var destinationArray = [];
-// var a = [3, 7, 6, 5];
-// var b = [9, 4, 2, 6];
-// var c = [5, 1, 8, 7];
-// var all = [a, b, c];
-//
-// for (var i = 0; i < a.length; i++) {
-//   var sum = 0;
-//   for (var j = 0; j < all.length; j++) {
-//     sum += all[j][i];
-//   }
-//   destinationArray.push(sum);
-// }
 
 // -----------------------------------------------------------------------------
 // COFFEE AND BARISTA DATA TABLE RENDER
@@ -371,28 +261,24 @@ function coffeeDataFooter(tableName) {
 
 coffeeDataHeader(beansTable);
 callBeanData();
-// coffeeDataFooter(beansTable);
-calcCoffeeDataFooter(beansTable);
+calcTableFooter(beansTable, companyBeansPerDay, allBeansPerHour);
 
 coffeeDataHeader(baristasTable);
 callBaristasData();
-calcBaristasDataFooter(baristasTable);
-// coffeeDataFooter(baristasTable);
+calcTableFooter(baristasTable, companyEmployeesPerDay, allEmployeesPerHour);
 
 // -----------------------------------------------------------------------------
 // FORM INFORMATION BELOW
 // -----------------------------------------------------------------------------
 
 // setting up variables
-var handleNewCartSubmit = document.getElementById('add-new-location-form'); // this is the form itself
+var handleNewCartSubmit = document.getElementById('add-new-location-form');
 
-// handle submission - my own, unfinished
 handleNewCartSubmit.addEventListener('submit', function(event){
 
   event.preventDefault();
 
   var addNewLocation = event.target.newlocation.value;
-  // need to parse int the numbers as they go in
   var addNewMin = parseFloat(event.target.newmin.value);
   var addNewMax = parseFloat(event.target.newmax.value);
   var addNewCups = parseFloat(event.target.newcups.value);
@@ -405,25 +291,17 @@ handleNewCartSubmit.addEventListener('submit', function(event){
   var newCoffeeCart = new CoffeeCarts(addNewLocation, addNewMin, addNewMax, addNewCups, addNewPounds);
   callCalcMethods(newCoffeeCart);
 
-  // loop through body and footer of Beans table and set
-  // chatList.innerHTML = '';
   beansTable.innerHTML = '';
   baristasTable.innerHTML = '';
-  // for (var i = 0; i < locations.length; i++) {
-  //   console.log('about to delete ' + i);
-  //   locations[i].innerHTML = '';
-  // };
 
   // rewrite body and footers of tables
   coffeeDataHeader(beansTable);
   callBeanData();
-  // coffeeDataFooter(beansTable);
-  calcCoffeeDataFooter(beansTable);
+  calcTableFooter(beansTable, companyBeansPerDay, allBeansPerHour);
 
   coffeeDataHeader(baristasTable);
   callBaristasData();
-  calcBaristasDataFooter(baristasTable);
-  // coffeeDataFooter(baristasTable);
+  calcTableFooter(baristasTable, companyEmployeesPerDay, allEmployeesPerHour);
 
   // reset form
   event.target.newlocation.value = null;
