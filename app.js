@@ -4,14 +4,21 @@ var hours = ['6:00am', '7:00am', '8:00am', '9:00am', '10:00am', '11:00am', '12:0
 var tableName = '';
 var whichDailyTotal = '';
 var whichHourlyTotal = '';
-var beansTable = document.getElementById('beans-table');
-var baristasTable = document.getElementById('baristas-table');
-var testTable = document.getElementById('test-table');
 var companyBeansPerDay = 0;
 var beansForHour = 0;
 var companyEmployeesPerDay = 0;
 var employeesForHour = 0;
 var locations = [];
+var allBeansPerHour = [];
+var allEmployeesPerHour = [];
+var beansTable = document.getElementById('beans-table');
+var baristasTable = document.getElementById('baristas-table');
+var testTable = document.getElementById('test-table');
+
+// ADDED FOR COMBINING FUNCTIONS
+var forCurrentHour = 0;
+var perDayTotal = 0;
+var perHourTotal = 0;
 
 // ---------------------------------------
 // constructor function code below
@@ -71,20 +78,32 @@ CoffeeCarts.prototype.calcPoundPackagesPerHour = function() {
   }
 };
 
+// *****************************************************************************
+// ************************************************************** BEANS PER HOUR
+// *****************************************************************************
 CoffeeCarts.prototype.calcBeansPerHour = function() {
+  var addAllBeansPerHour = [];
   for (var i = 0; i < hours.length; i++) {
     var pounds = this.beansNeededForCupsPerHour[i] + this.poundPackagesPerHour[i];
     pounds = Math.round( pounds * 10 ) / 10;
     this.beansPerHour.push(pounds);
+    addAllBeansPerHour.push(pounds);
   }
+  allBeansPerHour.push(addAllBeansPerHour);
 };
 
+// *****************************************************************************
+// ********************************************************** EMPLOYEES PER HOUR
+// *****************************************************************************
 CoffeeCarts.prototype.calcEmployeesNeededPerHour = function() {
+  var addAllEmployeesPerHour = [];
   for (var i = 0; i < hours.length; i++) {
     var employees = (this.customersPerHour[i] * 2) / 60;
     employees = Math.ceil(employees);
     this.employeesPerHour.push(employees);
+    addAllEmployeesPerHour.push(employees);
   }
+  allEmployeesPerHour.push(addAllEmployeesPerHour);
 };
 
 CoffeeCarts.prototype.calcDailyEmployeesNeeded = function() {
@@ -219,13 +238,46 @@ function coffeeDataHeader(tableName) {
 };
 
 // ---------------------------------------
-// function to render table footer row
+// function to render table footer rows
 // ---------------------------------------
+
+function calcTableFooter(tableName, perDayTotal, perHourTotal) {
+  var trElement = document.createElement('tr');
+  var thElement = document.createElement('th');
+  thElement.textContent = 'ALL LOCATIONS';
+  trElement.appendChild(thElement);
+  var thElement = document.createElement('th');
+  console.log('per day total is: ' + perDayTotal);
+  thElement.textContent = Math.ceil(perDayTotal);
+  trElement.appendChild(thElement);
+  // turn into method
+  for (var i = 0; i < hours.length; i++) {
+    var perHourToal = 0;
+    for (var j = 0; j < locations.length; j++) {
+      // console.log('locations j is: ' + locations[j].locationName);
+      // console.log('per hour total i is: ' + perHourTotal[i]);
+
+      forCurrentHour += locations[j].perHourTotal[i];
+      // forCurrentHour += locations[j][perHourTotal][i];
+    }
+    var thElement = document.createElement('th');
+    thElement.textContent = Math.ceil(forCurrentHour);
+    trElement.appendChild(thElement);
+  }
+  // turn into method
+  tableName.appendChild(trElement);
+};
+
+// calcTableFooter(beansTable, companyBeansPerDay, beansPerHour);
+
+// var forCurrentHour = 0;
+// var perDayTotal = 0;
+// var perHourTotal = 0;
 
 function calcCoffeeDataFooter(tableName) {
   var trElement = document.createElement('tr');
   var thElement = document.createElement('th');
-  thElement.textContent = 'TOTALS';
+  thElement.textContent = 'ALL LOCATIONS';
   trElement.appendChild(thElement);
   var thElement = document.createElement('th');
   thElement.textContent = Math.ceil(companyBeansPerDay);
@@ -245,7 +297,7 @@ function calcCoffeeDataFooter(tableName) {
 function calcBaristasDataFooter(tableName) {
   var trElement = document.createElement('tr');
   var thElement = document.createElement('th');
-  thElement.textContent = 'TOTALS';
+  thElement.textContent = 'ALL LOCATIONS';
   trElement.appendChild(thElement);
   var thElement = document.createElement('th');
   thElement.textContent = Math.ceil(companyEmployeesPerDay);
@@ -268,10 +320,12 @@ function calcBaristasDataFooter(tableName) {
 
 coffeeDataHeader(beansTable);
 callBeanData();
+// calcTableFooter(beansTable, companyBeansPerDay, beansForHour);
 calcCoffeeDataFooter(beansTable);
 
 coffeeDataHeader(baristasTable);
 callBaristasData();
+// calcTableFooter(baristasTable, companyEmployeesPerDay, employeesPerHour);
 calcBaristasDataFooter(baristasTable);
 
 // -----------------------------------------------------------------------------
@@ -304,10 +358,12 @@ handleNewCartSubmit.addEventListener('submit', function(event){
   // rewrite body and footers of tables
   coffeeDataHeader(beansTable);
   callBeanData();
+  // calcTableFooter(beansTable, companyBeansPerDay, beansPerHour);
   calcCoffeeDataFooter(beansTable);
 
   coffeeDataHeader(baristasTable);
   callBaristasData();
+  // calcTableFooter(baristasTable, companyEmployeesPerDay, employeesPerHour);
   calcBaristasDataFooter(baristasTable);
 
   // reset form
