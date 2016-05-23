@@ -1,9 +1,5 @@
 
 body {
-  /*background-image: url("images/campsite-tent-night.jpg");
-  background-repeat: no-repeat;
-  background-attachment: scroll;
-  background-size: contain;*/
   background-color: #333333;
   color: #ffffff;
   font-family: 'Oswald', sans-serif;
@@ -16,11 +12,7 @@ main {
   max-width: 800px;
   display: flex;
   flex-direction: column;
-  /* this is what is keeping everything centered, why? */
   margin: auto;
-  /* the below does not center the main part of the page, why?*/
-  /*justify-content: center;*/
-  /*justify-content: space-around;*/
 }
 
 footer {
@@ -32,11 +24,7 @@ footer {
   padding: 30px 0px;
   font-size: 80%;
   width: 100%;
-  background-image: url("images/campsite-tent-night.jpg");
-  background-repeat: no-repeat;
-  background-attachment: scroll;
-  /*background-size: contain;*/
-  background-size: cover;
+  background-color: #444444;
 }
 
 h1 {
@@ -97,8 +85,6 @@ p a:active {
 }
 
 table {
-  /* style for the public page locations & hours */
-  /*margin: 10px 10px 40px 10px;*/
   padding: 20px 10px 10px 20px;
   font-size: 150%;
 }
@@ -128,12 +114,6 @@ td {
     max-height: 630px;
     width: 100%;
 }
-
-/*#bgcampcontainer>img {
-  width: 100%;
-  max-height: none;
-  display: none;
-}*/
 
 #maininfo {
   display: flex;
@@ -208,10 +188,4 @@ td {
 /* sets the width of the photograph to take up the whole container */
 .photograph {
   width: 100%;
-}
-
-#styleinfo {
-  display: block;
-  width: 300;
-  margin: auto;
 }
